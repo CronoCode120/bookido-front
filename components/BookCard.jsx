@@ -2,7 +2,8 @@ import { useState } from 'react'
 import CoverView from './CoverView.jsx'
 import BookViews from './BookViews.jsx'
 import SideTouch from './SideTouch.jsx'
-import { CardWrapper, Container } from './styles/BookCard.js'
+import { CardWrapper, Container, ContentWrapper } from './styles/BookCard.js'
+import DetailView from './DetailView.jsx'
 
 const BookCard = () => {
   const [pageNum, setPageNum] = useState(0)
@@ -21,7 +22,10 @@ const BookCard = () => {
         <SideTouch handleLeft={handleLeft} handleRight={handleRight} />
         <CardWrapper>
           <BookViews pageNum={pageNum} />
-          <CoverView />
+          <ContentWrapper>
+            {(pageNum === 0 && <CoverView />) ||
+              (pageNum === 1 && <DetailView />)}
+          </ContentWrapper>
         </CardWrapper>
       </Container>
     </>
