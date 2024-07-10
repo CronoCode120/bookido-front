@@ -1,5 +1,5 @@
 import styled from 'styled-components/native'
-import { getWidthPercent } from '../../utils/dimensions.js'
+import { getHeightPercent, getWidthPercent } from '../../utils/dimensions.js'
 
 export const Container = styled.View`
   align-self: stretch;
@@ -9,12 +9,19 @@ export const Container = styled.View`
 
 export const CardWrapper = styled.View`
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   gap: 30px;
   width: ${getWidthPercent(95)}px;
+  height: ${getHeightPercent(80)}px;
   background-color: white;
   border: 1px solid green;
   border-radius: 30px;
   padding: 24px;
-  box-shadow: 2px 2px 1px black;
+`
+
+export const ContentWrapper = styled.View`
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  flex: 1;
 `
