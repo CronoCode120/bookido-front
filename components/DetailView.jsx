@@ -1,12 +1,13 @@
 import { Text, View } from 'react-native'
+import { SynopsisTitle, Wrapper } from './styles/DetailView.js'
 
 const DetailView = ({ synopsis, tags }) => {
   return (
     <>
-      <View>
-        <Text>Sinopsis</Text>
+      <Wrapper>
+        <SynopsisTitle>Sinopsis</SynopsisTitle>
         <Text>{synopsis}</Text>
-      </View>
+      </Wrapper>
       <View>
         <Text>Tags</Text>
       </View>
