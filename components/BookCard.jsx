@@ -12,7 +12,7 @@ const BookCard = () => {
   }
 
   const handleRight = () => {
-    setPageNum(prevNum => (prevNum >= 2 ? prevNum : ++prevNum))
+    setPageNum(prevNum => (prevNum >= 1 ? prevNum : ++prevNum))
   }
 
   return (
