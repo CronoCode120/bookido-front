@@ -1,4 +1,5 @@
 import CoverView from './CoverView.jsx'
+import DetailView from './DetailView.jsx'
 import { ContentWrapper } from './styles/BookCard.js'
 
 const CardContent = ({ pageNum }) => {
