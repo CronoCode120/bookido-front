@@ -16,15 +16,13 @@ const BookCard = ({ item }) => {
   }
 
   return (
-    <>
-      <Container>
-        <SideTouch handleLeft={handleLeft} handleRight={handleRight} />
-        <CardWrapper>
-          <BookViews pageNum={pageNum} />
-          <CardContent pageNum={pageNum} />
-        </CardWrapper>
-      </Container>
-    </>
+    <Container>
+      <SideTouch handleLeft={handleLeft} handleRight={handleRight} />
+      <CardWrapper>
+        <BookViews pageNum={pageNum} />
+        <CardContent pageNum={pageNum} />
+      </CardWrapper>
+    </Container>
   )
 }
 
