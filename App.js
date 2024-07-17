@@ -14,7 +14,6 @@ export default function App() {
     try {
       const res = await fetch('https://bookido-back.onrender.com/books')
       const data = await res.json()
-      console.log(data)
 
       setBooks(data.books)
     } catch (error) {
@@ -26,10 +25,11 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style='auto' />
-      <FlatList
+      <BookCard />
+      {/* <FlatList
         data={books}
         renderItem={({ item }) => <BookCard item={item} />}
-      />
+      /> */}
     </View>
   )
 }
