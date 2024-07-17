@@ -1,39 +1,19 @@
-import { useWindowDimensions } from 'react-native'
 import {
   Gesture,
   GestureDetector,
   GestureHandlerRootView
 } from 'react-native-gesture-handler'
-import Animated, {
-  useSharedValue,
-  useDerivedValue,
-  useAnimatedStyle,
-  interpolate,
-  withTiming,
-  Easing
-} from 'react-native-reanimated'
+import Animated, { withTiming, Easing } from 'react-native-reanimated'
+import useSwipeAnimation from '../hooks/useSwipeAnimation.js'
 
 const SwipeHandler = ({ children }) => {
-  const { width } = useWindowDimensions()
-
-  const translationX = useSharedValue(0)
-  const translationY = useSharedValue(0)
-  const prevTranslationX = useSharedValue(0)
-  const prevTranslationY = useSharedValue(0)
-
-  const MAX_ROTATION = 60
-  const rotate = useDerivedValue(
-    () =>
-      interpolate(translationX.value, [0, width * 2], [0, MAX_ROTATION]) + 'deg'
-  )
-
-  const animatedStyles = useAnimatedStyle(() => ({
-    transform: [
-      { translateX: translationX.value },
-      { translateY: translationY.value },
-      { rotate: rotate.value }
-    ]
-  }))
+  const {
+    translationX,
+    translationY,
+    prevTranslationX,
+    prevTranslationY,
+    animatedStyles
+  } = useSwipeAnimation()
 
   const resetAnim = withTiming(0, {
     easing: Easing.out(Easing.back(2))
