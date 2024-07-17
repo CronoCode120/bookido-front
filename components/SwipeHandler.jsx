@@ -3,21 +3,23 @@ import {
   GestureDetector,
   GestureHandlerRootView
 } from 'react-native-gesture-handler'
-import Animated, { withTiming, Easing } from 'react-native-reanimated'
+import Animated, { withSpring } from 'react-native-reanimated'
 import useSwipeAnimation from '../hooks/useSwipeAnimation.js'
+import { useWindowDimensions } from 'react-native'
+
+const SWIPE_VELOCITY = 1600
 
 const SwipeHandler = ({ children }) => {
+  const { width } = useWindowDimensions()
   const {
     translationX,
     translationY,
     prevTranslationX,
     prevTranslationY,
     animatedStyles
-  } = useSwipeAnimation()
+  } = useSwipeAnimation(width)
 
-  const resetAnim = withTiming(0, {
-    easing: Easing.out(Easing.back(2))
-  })
+  const hiddenTranslateX = width * 2
 
   const pan = Gesture.Pan()
     .minDistance(1)
@@ -29,9 +31,16 @@ const SwipeHandler = ({ children }) => {
       translationX.value = prevTranslationX.value + event.translationX
       translationY.value = prevTranslationY.value + event.translationY
     })
-    .onEnd(() => {
-      translationX.value = resetAnim
-      translationY.value = resetAnim
+    .onEnd(event => {
+      if (Math.abs(event.velocityX) < SWIPE_VELOCITY) {
+        translationX.value = withSpring(0, { duration: 1600 })
+        translationY.value = withSpring(0, { duration: 1600 })
+        return
+      }
+
+      translationX.value = withSpring(
+        hiddenTranslateX * Math.sign(event.velocityX)
+      )
     })
 
   return (
