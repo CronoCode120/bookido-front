@@ -1,4 +1,3 @@
-import { useWindowDimensions } from 'react-native'
 import {
   useSharedValue,
   useDerivedValue,
@@ -6,9 +5,7 @@ import {
   interpolate
 } from 'react-native-reanimated'
 
-const useSwipeAnimation = () => {
-  const { width } = useWindowDimensions()
-
+const useSwipeAnimation = windowWidth => {
   const translationX = useSharedValue(0)
   const translationY = useSharedValue(0)
   const prevTranslationX = useSharedValue(0)
@@ -17,7 +14,8 @@ const useSwipeAnimation = () => {
   const MAX_ROTATION = 60
   const rotate = useDerivedValue(
     () =>
-      interpolate(translationX.value, [0, width * 2], [0, MAX_ROTATION]) + 'deg'
+      interpolate(translationX.value, [0, windowWidth * 2], [0, MAX_ROTATION]) +
+      'deg'
   )
 
   const animatedStyles = useAnimatedStyle(() => ({
