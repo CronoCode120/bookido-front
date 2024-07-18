@@ -38,9 +38,11 @@ const SwipeHandler = ({ children }) => {
         return
       }
 
-      translationX.value = withSpring(
-        hiddenTranslateX * Math.sign(event.velocityX)
-      )
+      if (event.velocityX > SWIPE_VELOCITY) {
+        translationX.value = withSpring(
+          hiddenTranslateX * Math.sign(event.velocityX)
+        )
+      }
     })
 
   return (
