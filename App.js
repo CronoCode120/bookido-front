@@ -1,10 +1,16 @@
 import { useState, useEffect } from 'react'
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 import BookCard from './components/BookCard.jsx'
+import SwipeDetector from './components/SwipeDetector.jsx'
+import useSwipe from './hooks/useSwipe.js'
 
 export default function App() {
   const [books, setBooks] = useState([])
+  const { panGesture, animatedStyles, swipeRight, swipeLeft } = useSwipe({
+    onSwipeLeft: () => console.log('left'),
+    onSwipeRight: () => console.log('right')
+  })
 
   useEffect(() => {
     getBooks()
@@ -25,7 +31,24 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style='auto' />
-      <BookCard />
+      <SwipeDetector panGesture={panGesture} animatedStyles={animatedStyles}>
+        <BookCard />
+      </SwipeDetector>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-evenly',
+          alignSelf: 'stretch',
+          marginBottom: 30
+        }}
+      >
+        <Pressable onPress={swipeLeft}>
+          <Text>{':('}</Text>
+        </Pressable>
+        <Pressable onPress={swipeRight}>
+          <Text>{'<3'}</Text>
+        </Pressable>
+      </View>
       {/* <FlatList
         data={books}
         renderItem={({ item }) => <BookCard item={item} />}
