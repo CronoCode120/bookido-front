@@ -3,13 +3,13 @@ import {
   GestureDetector,
   GestureHandlerRootView
 } from 'react-native-gesture-handler'
-import Animated, { withSpring } from 'react-native-reanimated'
+import Animated, { withSpring, runOnJS } from 'react-native-reanimated'
 import useSwipeAnimation from '../hooks/useSwipeAnimation.js'
 import { useWindowDimensions } from 'react-native'
 
 const SWIPE_VELOCITY = 1600
 
-const SwipeHandler = ({ children }) => {
+const SwipeHandler = ({ children, onSwipeLeft, onSwipeRight }) => {
   const { width } = useWindowDimensions()
   const {
     translationX,
@@ -19,7 +19,23 @@ const SwipeHandler = ({ children }) => {
     animatedStyles
   } = useSwipeAnimation(width)
 
+  const decisionThreshold = width * 0.4
   const hiddenTranslateX = width * 2
+
+  const resetPosition = () => {
+    'worklet'
+    translationX.value = withSpring(0, { duration: 1600 })
+    translationY.value = withSpring(0, { duration: 1600 })
+  }
+
+  const swipe = () => {
+    'worklet'
+    const goLeft = translationX.value < 0
+    translationX.value = withSpring(
+      hiddenTranslateX * Math.sign(translationX.value)
+    )
+    goLeft ? runOnJS(onSwipeLeft)() : runOnJS(onSwipeRight)()
+  }
 
   const pan = Gesture.Pan()
     .minDistance(1)
@@ -32,17 +48,12 @@ const SwipeHandler = ({ children }) => {
       translationY.value = prevTranslationY.value + event.translationY
     })
     .onEnd(event => {
-      if (Math.abs(event.velocityX) < SWIPE_VELOCITY) {
-        translationX.value = withSpring(0, { duration: 1600 })
-        translationY.value = withSpring(0, { duration: 1600 })
-        return
-      }
+      const velocityX = event.velocityX
+      const decisionMade = Math.abs(translationX.value) >= decisionThreshold
 
-      if (event.velocityX > SWIPE_VELOCITY) {
-        translationX.value = withSpring(
-          hiddenTranslateX * Math.sign(event.velocityX)
-        )
-      }
+      if (Math.abs(velocityX) > SWIPE_VELOCITY || decisionMade) return swipe()
+
+      resetPosition()
     })
 
   return (
