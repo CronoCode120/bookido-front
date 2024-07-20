@@ -1,15 +1,11 @@
-import {
-  Gesture,
-  GestureDetector,
-  GestureHandlerRootView
-} from 'react-native-gesture-handler'
-import Animated, { withSpring, runOnJS } from 'react-native-reanimated'
-import useSwipeAnimation from '../hooks/useSwipeAnimation.js'
+import { Gesture } from 'react-native-gesture-handler'
+import { withSpring, runOnJS } from 'react-native-reanimated'
+import useSwipeAnimation from './useSwipeAnimation.js'
 import { useWindowDimensions } from 'react-native'
 
 const SWIPE_VELOCITY = 1600
 
-const SwipeHandler = ({ children, onSwipeLeft, onSwipeRight }) => {
+const useSwipe = ({ onSwipeLeft, onSwipeRight }) => {
   const { width } = useWindowDimensions()
   const {
     translationX,
@@ -28,16 +24,19 @@ const SwipeHandler = ({ children, onSwipeLeft, onSwipeRight }) => {
     translationY.value = withSpring(0, { duration: 1600 })
   }
 
-  const swipe = () => {
+  const swipeLeft = () => {
     'worklet'
-    const goLeft = translationX.value < 0
-    translationX.value = withSpring(
-      hiddenTranslateX * Math.sign(translationX.value)
-    )
-    goLeft ? runOnJS(onSwipeLeft)() : runOnJS(onSwipeRight)()
+    translationX.value = withSpring(-hiddenTranslateX)
+    runOnJS(onSwipeLeft)()
   }
 
-  const pan = Gesture.Pan()
+  const swipeRight = () => {
+    'worklet'
+    translationX.value = withSpring(hiddenTranslateX)
+    runOnJS(onSwipeRight)()
+  }
+
+  const panGesture = Gesture.Pan()
     .minDistance(1)
     .onStart(() => {
       prevTranslationX.value = translationX.value
@@ -51,25 +50,21 @@ const SwipeHandler = ({ children, onSwipeLeft, onSwipeRight }) => {
       const velocityX = event.velocityX
       const decisionMade = Math.abs(translationX.value) >= decisionThreshold
 
-      if (Math.abs(velocityX) > SWIPE_VELOCITY || decisionMade) return swipe()
+      if (Math.abs(velocityX) > SWIPE_VELOCITY || decisionMade) {
+        const goRight = translationX.value > 0
+        goRight ? swipeRight() : swipeLeft()
+        return
+      }
 
       resetPosition()
     })
 
-  return (
-    <GestureHandlerRootView
-      style={{
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      <GestureDetector gesture={pan}>
-        <Animated.View style={[animatedStyles]}>{children}</Animated.View>
-      </GestureDetector>
-    </GestureHandlerRootView>
-  )
+  return {
+    panGesture,
+    animatedStyles,
+    swipeLeft,
+    swipeRight
+  }
 }
 
-export default SwipeHandler
+export default useSwipe
