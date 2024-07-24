@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View, FlatList } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 import BookCard from './components/BookCard.jsx'
 import SwipeDetector from './components/SwipeDetector.jsx'
 import useSwipe from './hooks/useSwipe.js'
+import { getDimensions } from './utils/dimensions.js'
 
 export default function App() {
   const [books, setBooks] = useState([])
@@ -15,6 +16,8 @@ export default function App() {
   useEffect(() => {
     getBooks()
   }, [])
+
+  const [firstBook, secondBook, ...queue] = books
 
   const getBooks = async () => {
     try {
@@ -31,9 +34,21 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style='auto' />
-      <SwipeDetector panGesture={panGesture} animatedStyles={animatedStyles}>
-        <BookCard />
-      </SwipeDetector>
+      {firstBook && (
+        <SwipeDetector panGesture={panGesture} animatedStyles={animatedStyles}>
+          <BookCard book={firstBook} />
+        </SwipeDetector>
+      )}
+      {secondBook && (
+        <View
+          style={{
+            position: 'absolute',
+            top: getDimensions().height * 1.4
+          }}
+        >
+          <BookCard book={secondBook} />
+        </View>
+      )}
       <View
         style={{
           flexDirection: 'row',
@@ -49,10 +64,6 @@ export default function App() {
           <Text>{'<3'}</Text>
         </Pressable>
       </View>
-      {/* <FlatList
-        data={books}
-        renderItem={({ item }) => <BookCard item={item} />}
-      /> */}
     </View>
   )
 }
