@@ -1,11 +1,11 @@
 import { Container, InfoText, Title } from './styles/BookInfo.js'
 
-const BookInfo = () => {
+const BookInfo = ({ title, author, publisher }) => {
   return (
     <Container>
-      <Title>Title</Title>
-      <InfoText>Author</InfoText>
-      <InfoText>Genre</InfoText>
+      <Title>{title}</Title>
+      <InfoText>{author}</InfoText>
+      <InfoText>{publisher}</InfoText>
     </Container>
   )
 }

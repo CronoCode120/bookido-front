@@ -4,7 +4,7 @@ import SideTouch from './SideTouch.jsx'
 import CardContent from './CardContent.jsx'
 import { CardWrapper, Container } from './styles/BookCard.js'
 
-const BookCard = ({ item }) => {
+const BookCard = ({ book }) => {
   const [pageNum, setPageNum] = useState(0)
 
   const handleLeft = () => {
@@ -20,7 +20,7 @@ const BookCard = ({ item }) => {
       <SideTouch handleLeft={handleLeft} handleRight={handleRight} />
       <CardWrapper>
         <BookViews pageNum={pageNum} />
-        <CardContent pageNum={pageNum} />
+        <CardContent pageNum={pageNum} book={book} />
       </CardWrapper>
     </Container>
   )
