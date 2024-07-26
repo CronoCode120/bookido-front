@@ -1,13 +1,14 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native'
 
 export const Container = styled.View`
   align-self: stretch;
-`;
+`
 
 export const InfoText = styled.Text`
-  font-size: 24px;
-`;
+  font-size: 18px;
+`
 
-export const Title = styled(InfoText)`
+export const Title = styled.Text`
+  font-size: 24px;
   font-weight: 600;
-`;
+`
