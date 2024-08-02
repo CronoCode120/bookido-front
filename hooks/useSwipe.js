@@ -63,7 +63,13 @@ const useSwipe = ({ onSwipeLeft, onSwipeRight }) => {
     panGesture,
     animatedStyles,
     swipeLeft,
-    swipeRight
+    swipeRight,
+    animation: {
+      translationX,
+      translationY,
+      prevTranslationX,
+      prevTranslationY
+    }
   }
 }
 
