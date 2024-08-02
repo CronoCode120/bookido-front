@@ -1,23 +1,16 @@
 import { useState, useEffect } from 'react'
-import { Pressable, StyleSheet, Text, View, FlatList } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 import BookCard from './components/BookCard.jsx'
-import SwipeDetector from './components/SwipeDetector.jsx'
 import useSwipe from './hooks/useSwipe.js'
-import { getDimensions } from './utils/dimensions.js'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 export default function App() {
   const [books, setBooks] = useState([])
-  const { panGesture, animatedStyles, swipeRight, swipeLeft } = useSwipe({
-    onSwipeLeft: () => console.log('left'),
-    onSwipeRight: () => console.log('right')
-  })
 
   useEffect(() => {
     getBooks()
   }, [])
-
-  const [firstBook, secondBook, ...queue] = books
 
   const getBooks = async () => {
     try {
@@ -25,30 +18,65 @@ export default function App() {
       const data = await res.json()
 
       setBooks(data.books)
+      console.log(data.books[0])
     } catch (error) {
       console.log(error)
       return <Text>Ha ocurrido un error</Text>
     }
   }
 
+  const onSwipeLeft = () => console.log('left')
+  const onSwipeRight = () => console.log('right')
+
+  const swipeA = useSwipe({
+    onSwipeLeft,
+    onSwipeRight
+  })
+
+  const swipeB = useSwipe({
+    onSwipeLeft,
+    onSwipeRight
+  })
+
+  const swipeC = useSwipe({
+    onSwipeLeft,
+    onSwipeRight
+  })
+
+  const [firstBook, secondBook, thirdBook, ...queue] = books
+
   return (
     <View style={styles.container}>
       <StatusBar style='auto' />
-      {firstBook && (
-        <SwipeDetector panGesture={panGesture} animatedStyles={animatedStyles}>
-          <BookCard book={firstBook} />
-        </SwipeDetector>
-      )}
-      {secondBook && (
-        <View
-          style={{
-            position: 'absolute',
-            top: getDimensions().height * 1.4
-          }}
-        >
-          <BookCard book={secondBook} />
-        </View>
-      )}
+      <GestureHandlerRootView
+        style={{
+          flex: 1,
+          backgroundColor: 'lightblue',
+          alignSelf: 'stretch'
+        }}
+      >
+        {firstBook && (
+          <BookCard
+            book={firstBook}
+            panGesture={swipeA.panGesture}
+            animatedStyles={swipeA.animatedStyles}
+          />
+        )}
+        {secondBook && (
+          <BookCard
+            book={secondBook}
+            panGesture={swipeB.panGesture}
+            animatedStyles={swipeB.animatedStyles}
+          />
+        )}
+        {thirdBook && (
+          <BookCard
+            book={thirdBook}
+            panGesture={swipeC.panGesture}
+            animatedStyles={swipeC.animatedStyles}
+          />
+        )}
+      </GestureHandlerRootView>
       <View
         style={{
           flexDirection: 'row',
@@ -57,11 +85,11 @@ export default function App() {
           marginBottom: 30
         }}
       >
-        <Pressable onPress={swipeLeft}>
+        <Pressable onPress={swipeA.swipeLeft}>
           <Text>{':('}</Text>
         </Pressable>
-        <Pressable onPress={swipeRight}>
-          <Text>{'<3'}</Text>
+        <Pressable onPress={swipeA.swipeRight}>
+          <Text>{'3'}</Text>
         </Pressable>
       </View>
     </View>
