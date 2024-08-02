@@ -2,7 +2,7 @@ import styled from 'styled-components/native'
 import { getHeightPercent, getWidthPercent } from '../../utils/dimensions.js'
 
 export const Container = styled.View`
-  align-self: stretch;
+  position: relative;
   align-items: center;
   justify-content: center;
 `
