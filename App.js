@@ -4,29 +4,33 @@ import { StatusBar } from 'expo-status-bar'
 import BookCard from './components/BookCard.jsx'
 import useSwipe from './hooks/useSwipe.js'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import useBooks from './hooks/useBooks.js'
+import { runOnUI } from 'react-native-reanimated'
 
 export default function App() {
-  const [books, setBooks] = useState([])
+  const [books, setBooks] = useBooks()
+  const [curIdx, setCurIdx] = useState(0)
 
-  useEffect(() => {
-    getBooks()
-  }, [])
+  const [firstIdx, setFirstIdx] = useState(0)
+  const [secondIdx, setSecondIdx] = useState(1)
+  const [thirdIdx, setThirdIdx] = useState(2)
 
-  const getBooks = async () => {
-    try {
-      const res = await fetch('https://bookido-back.onrender.com/books')
-      const data = await res.json()
+  const remainder = curIdx % 3
+  const secondCardActive = curIdx === 1 || remainder === 1
+  const thirdCardActive = curIdx === 2 || remainder === 2
 
-      setBooks(data.books)
-      console.log(data.books[0])
-    } catch (error) {
-      console.log(error)
-      return <Text>Ha ocurrido un error</Text>
-    }
+  const firstBook = books[firstIdx]
+  const secondBook = books[secondIdx]
+  const thirdBook = books[thirdIdx]
+
+  const onSwipeLeft = () => {
+    console.log('left')
+    setCurIdx(prevIdx => prevIdx + 1)
   }
-
-  const onSwipeLeft = () => console.log('left')
-  const onSwipeRight = () => console.log('right')
+  const onSwipeRight = () => {
+    console.log('right')
+    setCurIdx(prevIdx => prevIdx + 1)
+  }
 
   const swipeA = useSwipe({
     onSwipeLeft,
@@ -43,7 +47,60 @@ export default function App() {
     onSwipeRight
   })
 
-  const [firstBook, secondBook, thirdBook, ...queue] = books
+  useEffect(() => {
+    console.log(curIdx)
+
+    if (curIdx === 0) {
+      swipeA.enable()
+      swipeB.disable()
+      swipeC.disable()
+      runOnUI(() => {
+        'worklet'
+        swipeA.animation.zIndex.value = 3
+        swipeB.animation.zIndex.value = 2
+        swipeC.animation.zIndex.value = 1
+      })()
+    }
+
+    if (curIdx !== 0 && remainder === 0) {
+      swipeA.enableWithCooldown()
+      swipeB.disable()
+      runOnUI(() => {
+        'worklet'
+        swipeA.animation.zIndex.value = 3
+        swipeB.animation.zIndex.value = 2
+        swipeC.animation.zIndex.value = 1
+        swipeB.animation.reset()
+      })()
+      setThirdIdx(thirdIdx + 3)
+    }
+
+    if (secondCardActive) {
+      swipeB.enableWithCooldown()
+      swipeC.disable()
+      runOnUI(() => {
+        'worklet'
+        swipeA.animation.zIndex.value = 1
+        swipeB.animation.zIndex.value = 3
+        swipeC.animation.zIndex.value = 2
+        swipeC.animation.reset()
+      })()
+      setFirstIdx(firstIdx + 3)
+    }
+
+    if (thirdCardActive) {
+      swipeC.enableWithCooldown()
+      swipeA.disable()
+      runOnUI(() => {
+        'worklet'
+        swipeA.animation.zIndex.value = 2
+        swipeB.animation.zIndex.value = 1
+        swipeC.animation.zIndex.value = 3
+        swipeA.animation.reset()
+      })()
+      setSecondIdx(secondIdx + 3)
+    }
+  }, [curIdx])
 
   return (
     <View style={styles.container}>
