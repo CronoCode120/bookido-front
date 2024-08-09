@@ -2,7 +2,7 @@ import styled from 'styled-components/native'
 
 export const Button = styled.Pressable`
   border: 1px solid black;
-  margin: auto;
+  margin: 0 auto;
   padding: 5px 8px;
   border-radius: 50px;
 `

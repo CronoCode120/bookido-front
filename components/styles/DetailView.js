@@ -3,7 +3,6 @@ import styled from 'styled-components/native'
 export const Wrapper = styled.View`
   align-self: stretch;
   height: 60%;
-  overflow: hidden;
 `
 
 export const SynopsisTitle = styled.Text`
@@ -13,7 +12,7 @@ export const SynopsisTitle = styled.Text`
 `
 
 export const SynopsisContainer = styled.View`
-  flex: 1;
+  margin-bottom: 6px;
 `
 
 export const Synopsis = styled.Text`
