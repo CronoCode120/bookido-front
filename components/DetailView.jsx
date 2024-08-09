@@ -1,11 +1,12 @@
-import { Pressable, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
+import { useState } from 'react'
+import MoreButton from './MoreButton.jsx'
 import {
   Synopsis,
   SynopsisContainer,
   SynopsisTitle,
   Wrapper
 } from './styles/DetailView.js'
-import { useState } from 'react'
 
 const DetailView = ({ synopsis, tags }) => {
   const [lines, setLines] = useState(12)
@@ -24,9 +25,7 @@ const DetailView = ({ synopsis, tags }) => {
         <SynopsisContainer onLayout={calcLines}>
           <Synopsis numberOfLines={lines}>{synopsis}</Synopsis>
         </SynopsisContainer>
-        <Pressable>
-          <Text>Ver más</Text>
-        </Pressable>
+        <MoreButton />
       </Wrapper>
       <View>
         <Text>Tags</Text>
