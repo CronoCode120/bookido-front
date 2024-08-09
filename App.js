@@ -8,7 +8,7 @@ import useBooks from './hooks/useBooks.js'
 import { runOnUI } from 'react-native-reanimated'
 
 export default function App() {
-  const [books, setBooks] = useBooks()
+  const [books] = useBooks()
   const [curIdx, setCurIdx] = useState(0)
 
   const [firstIdx, setFirstIdx] = useState(0)
