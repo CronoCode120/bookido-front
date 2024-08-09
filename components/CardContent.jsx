@@ -1,5 +1,6 @@
 import CoverView from './CoverView.jsx'
 import DetailView from './DetailView.jsx'
+import useBookSynopsis from '../hooks/useBookSynopsis.js'
 import { ContentWrapper } from './styles/BookCard.js'
 
 const CardContent = ({ pageNum, book }) => {
@@ -9,6 +10,9 @@ const CardContent = ({ pageNum, book }) => {
     publisher,
     isbn: [isbn]
   } = book
+
+  const [synopsis] = useBookSynopsis(isbn)
+
   return (
     <ContentWrapper>
       {(pageNum === 0 && (
@@ -19,7 +23,7 @@ const CardContent = ({ pageNum, book }) => {
           isbn={isbn}
         />
       )) ||
-        (pageNum === 1 && <DetailView />)}
+        (pageNum === 1 && <DetailView synopsis={synopsis} />)}
     </ContentWrapper>
   )
 }
