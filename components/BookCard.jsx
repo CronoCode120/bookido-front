@@ -3,6 +3,7 @@ import BookViews from './BookViews.jsx'
 import SideTouch from './SideTouch.jsx'
 import CardContent from './CardContent.jsx'
 import SwipeDetector from './SwipeDetector.jsx'
+import useBookSynopsis from '../hooks/useBookSynopsis.js'
 import { CardWrapper, Container } from './styles/BookCard.js'
 import { View, StyleSheet } from 'react-native'
 
@@ -16,6 +17,9 @@ const BookCard = ({ book, panGesture, animatedStyles }) => {
   const handleRight = () => {
     setPageNum(prevNum => (prevNum >= 1 ? prevNum : ++prevNum))
   }
+
+  const [synopsis] = useBookSynopsis(book.isbn[0])
+  const bookData = { ...book, synopsis }
 
   return (
     <View
@@ -31,7 +35,7 @@ const BookCard = ({ book, panGesture, animatedStyles }) => {
           <SideTouch handleLeft={handleLeft} handleRight={handleRight} />
           <CardWrapper>
             <BookViews pageNum={pageNum} />
-            <CardContent pageNum={pageNum} book={book} />
+            <CardContent pageNum={pageNum} book={bookData} />
           </CardWrapper>
         </Container>
       </SwipeDetector>
