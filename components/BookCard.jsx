@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import BookViews from './BookViews.jsx'
 import SideTouch from './SideTouch.jsx'
 import CardContent from './CardContent.jsx'
@@ -9,6 +9,10 @@ import { View, StyleSheet } from 'react-native'
 
 const BookCard = ({ book, panGesture, animatedStyles }) => {
   const [pageNum, setPageNum] = useState(0)
+
+  useEffect(() => {
+    setPageNum(0)
+  }, [book])
 
   const handleLeft = () => {
     setPageNum(prevNum => (prevNum <= 0 ? prevNum : --prevNum))
