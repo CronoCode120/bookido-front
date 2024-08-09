@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { getSynopsisByISBN } from '../api/books.js'
 
 const useBookSynopsis = isbn => {
   const [synopsis, setSynopsis] = useState('')
@@ -9,11 +10,7 @@ const useBookSynopsis = isbn => {
 
   const getDescription = async isbn => {
     try {
-      const res = await fetch(
-        'https://bookido-back.onrender.com/books/description?' +
-          new URLSearchParams({ isbn }).toString()
-      )
-      const data = await res.json()
+      const data = await getSynopsisByISBN(isbn)
       setSynopsis(data.description)
     } catch (error) {
       console.log('Error: ', error)

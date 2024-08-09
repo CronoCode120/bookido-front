@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { getBooksData } from '../api/books.js'
 
 const useBooks = () => {
   const [books, setBooks] = useState([])
@@ -9,8 +10,7 @@ const useBooks = () => {
 
   const getBooks = async () => {
     try {
-      const res = await fetch('https://bookido-back.onrender.com/books')
-      const data = await res.json()
+      const data = await getBooksData()
 
       setBooks(data.books)
       console.log(data.books[0])
