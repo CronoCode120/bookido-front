@@ -3,13 +3,7 @@ import DetailView from './DetailView.jsx'
 import { ContentWrapper } from './styles/BookCard.js'
 
 const CardContent = ({ pageNum, book }) => {
-  const {
-    title,
-    author,
-    publisher,
-    synopsis,
-    isbn: [isbn]
-  } = book
+  const { title, author, publisher, synopsis, isbn } = book
 
   return (
     <ContentWrapper>
@@ -18,7 +12,7 @@ const CardContent = ({ pageNum, book }) => {
           title={title}
           author={author}
           publisher={publisher[0]}
-          isbn={isbn}
+          isbn={isbn ? isbn[0] : ''}
         />
       )) ||
         (pageNum === 1 && <DetailView synopsis={synopsis} />)}

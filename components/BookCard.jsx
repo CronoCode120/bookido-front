@@ -22,7 +22,7 @@ const BookCard = ({ book, panGesture, animatedStyles }) => {
     setPageNum(prevNum => (prevNum >= 1 ? prevNum : ++prevNum))
   }
 
-  const [synopsis] = useBookSynopsis(book.isbn[0])
+  const [synopsis] = useBookSynopsis(book.isbn?.[0] ?? '')
   const bookData = { ...book, synopsis }
 
   return (
