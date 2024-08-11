@@ -6,6 +6,7 @@ import useSwipe from './hooks/useSwipe.js'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import useBooks from './hooks/useBooks.js'
 import { runOnUI } from 'react-native-reanimated'
+import SwipeButtons from './components/SwipeButtons.jsx'
 
 export default function App() {
   const [books] = useBooks()
@@ -47,6 +48,8 @@ export default function App() {
     onSwipeRight
   })
 
+  const [curSwipe, setCurSwipe] = useState(swipeA)
+
   useEffect(() => {
     console.log(curIdx)
 
@@ -73,6 +76,8 @@ export default function App() {
         swipeB.animation.reset()
       })()
       setThirdIdx(thirdIdx + 3)
+
+      setCurSwipe(swipeA)
     }
 
     if (secondCardActive) {
@@ -86,6 +91,8 @@ export default function App() {
         swipeC.animation.reset()
       })()
       setFirstIdx(firstIdx + 3)
+
+      setCurSwipe(swipeB)
     }
 
     if (thirdCardActive) {
@@ -99,6 +106,8 @@ export default function App() {
         swipeA.animation.reset()
       })()
       setSecondIdx(secondIdx + 3)
+
+      setCurSwipe(swipeC)
     }
   }, [curIdx])
 
@@ -134,21 +143,7 @@ export default function App() {
           />
         )}
       </GestureHandlerRootView>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-evenly',
-          alignSelf: 'stretch',
-          marginBottom: 30
-        }}
-      >
-        <Pressable onPress={swipeA.swipeLeft}>
-          <Text>{':('}</Text>
-        </Pressable>
-        <Pressable onPress={swipeA.swipeRight}>
-          <Text>{'3'}</Text>
-        </Pressable>
-      </View>
+      <SwipeButtons swipeInstance={curSwipe} />
     </View>
   )
 }
