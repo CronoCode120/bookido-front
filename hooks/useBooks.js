@@ -1,24 +1,20 @@
 import { useState, useEffect } from 'react'
 import { getBooksData } from '../api/books.js'
 
-const useBooks = () => {
+const useBooks = page => {
   const [books, setBooks] = useState([])
 
-  useEffect(() => {
-    getBooks()
-  }, [])
+  const sortBooks = fetchedBooks => {
+    if (!books.length) return setBooks(fetchedBooks)
 
-  const getBooks = async () => {
-    try {
-      const data = await getBooksData()
-
-      setBooks(data.books)
-      console.log(data.books[0])
-    } catch (error) {
-      console.log(error)
-      return <Text>Ha ocurrido un error</Text>
-    }
+    setBooks(prevBooks => prevBooks.concat(fetchedBooks))
   }
+
+  useEffect(() => {
+    getBooksData(page)
+      .then(data => sortBooks(data.books))
+      .catch(err => console.log(err))
+  }, [page])
 
   return [books, setBooks]
 }

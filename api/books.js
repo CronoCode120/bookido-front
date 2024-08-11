@@ -4,7 +4,12 @@ const apiUrl = axios.create({
   baseURL: 'https://bookido-back.onrender.com/books'
 })
 
-export const getBooksData = async () => (await apiUrl.get('/')).data
+export const getBooksData = async page =>
+  (
+    await apiUrl.get('/', {
+      params: { page }
+    })
+  ).data
 
 export const getSynopsisByISBN = async isbn =>
   (

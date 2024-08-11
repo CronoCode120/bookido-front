@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 import BookCard from './components/BookCard.jsx'
 import useSwipe from './hooks/useSwipe.js'
@@ -9,8 +9,10 @@ import { runOnUI } from 'react-native-reanimated'
 import SwipeButtons from './components/SwipeButtons.jsx'
 
 export default function App() {
-  const [books] = useBooks()
   const [curIdx, setCurIdx] = useState(0)
+
+  const page = Math.floor((curIdx + 3) / 20) + 1
+  const [books] = useBooks(page)
 
   const [firstIdx, setFirstIdx] = useState(0)
   const [secondIdx, setSecondIdx] = useState(1)
@@ -51,8 +53,6 @@ export default function App() {
   const [curSwipe, setCurSwipe] = useState(swipeA)
 
   useEffect(() => {
-    console.log(curIdx)
-
     if (curIdx === 0) {
       swipeA.enable()
       swipeB.disable()
