@@ -1,4 +1,5 @@
-import { Pressable, View, Text } from 'react-native'
+import { View } from 'react-native'
+import SwipeBtn from './SwipeBtn.jsx'
 
 const SwipeButtons = ({ swipeInstance }) => {
   return (
@@ -10,12 +11,8 @@ const SwipeButtons = ({ swipeInstance }) => {
         marginBottom: 30
       }}
     >
-      <Pressable onPress={swipeInstance?.swipeLeft}>
-        <Text>{':('}</Text>
-      </Pressable>
-      <Pressable onPress={swipeInstance?.swipeRight}>
-        <Text>{'3'}</Text>
-      </Pressable>
+      <SwipeBtn onPress={swipeInstance.swipeLeft} text={'Left'} />
+      <SwipeBtn onPress={swipeInstance.swipeRight} text={'Right'} />
     </View>
   )
 }
