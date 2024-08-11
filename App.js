@@ -143,7 +143,10 @@ export default function App() {
           />
         )}
       </GestureHandlerRootView>
-      <SwipeButtons swipeInstance={curSwipe} />
+      <SwipeButtons
+        swipeLeft={curSwipe.swipeLeft}
+        swipeRight={curSwipe.swipeRight}
+      />
     </View>
   )
 }

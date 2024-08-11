@@ -1,7 +1,16 @@
 import { View } from 'react-native'
+import { useState } from 'react'
 import SwipeBtn from './SwipeBtn.jsx'
 
-const SwipeButtons = ({ swipeInstance }) => {
+const SwipeButtons = ({ swipeRight, swipeLeft }) => {
+  const [disabled, setDisabled] = useState(false)
+
+  const handlePress = onPress => () => {
+    setDisabled(true)
+    onPress()
+    setTimeout(() => setDisabled(false), 1500)
+  }
+
   return (
     <View
       style={{
@@ -11,8 +20,16 @@ const SwipeButtons = ({ swipeInstance }) => {
         marginBottom: 30
       }}
     >
-      <SwipeBtn onPress={swipeInstance.swipeLeft} text={'Left'} />
-      <SwipeBtn onPress={swipeInstance.swipeRight} text={'Right'} />
+      <SwipeBtn
+        onPress={handlePress(swipeLeft)}
+        text={'Left'}
+        disabled={disabled}
+      />
+      <SwipeBtn
+        onPress={handlePress(swipeRight)}
+        text={'Right'}
+        disabled={disabled}
+      />
     </View>
   )
 }

@@ -1,10 +1,11 @@
-import { Pressable, Text } from 'react-native'
+import { Text } from 'react-native'
+import { Button } from './styles/SwipeBtn.js'
 
-const SwipeBtn = ({ onPress, text }) => {
+const SwipeBtn = ({ onPress, text, disabled }) => {
   return (
-    <Pressable onPress={onPress}>
+    <Button onPress={onPress} disabled={disabled}>
       <Text>{text}</Text>
-    </Pressable>
+    </Button>
   )
 }
 
