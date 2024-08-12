@@ -5,17 +5,10 @@ const useBookSynopsis = isbn => {
   const [synopsis, setSynopsis] = useState('')
 
   useEffect(() => {
-    getDescription(isbn)
+    getSynopsisByISBN(isbn)
+      .then(data => setSynopsis(data.description))
+      .catch(err => console.log(err))
   }, [isbn])
-
-  const getDescription = async isbn => {
-    try {
-      const data = await getSynopsisByISBN(isbn)
-      setSynopsis(data.description)
-    } catch (error) {
-      console.log('Error: ', error)
-    }
-  }
 
   return [synopsis, setSynopsis]
 }
