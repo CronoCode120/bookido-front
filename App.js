@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
-import BookCard from './components/BookCard.jsx'
+import BookCard from './components/swipe/BookCard.jsx'
 import useSwipe from './hooks/useSwipe.js'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import useBooks from './hooks/useBooks.js'
 import { runOnUI } from 'react-native-reanimated'
-import SwipeButtons from './components/SwipeButtons.jsx'
+import SwipeButtons from './components/swipe/SwipeButtons.jsx'
 
 export default function App() {
   const [curIdx, setCurIdx] = useState(0)

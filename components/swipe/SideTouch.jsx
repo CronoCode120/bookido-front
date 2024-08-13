@@ -1,4 +1,4 @@
-import { SidePressable, TouchWrapper } from './styles/SideTouch.js'
+import { SidePressable, TouchWrapper } from '../styles/SideTouch.js'
 
 const SideTouch = ({ handleLeft, handleRight }) => {
   return (
