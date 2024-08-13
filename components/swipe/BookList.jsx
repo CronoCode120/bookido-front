@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react'
-import { useSwipe, useBooks } from '../../hooks'
-import { BookCard, SwipeButtons } from '.'
+import { useBooks } from '../../hooks'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { runOnUI } from 'react-native-reanimated'
+import BookCard from './BookCard.jsx'
 
-const BookList = () => {
-  const [curIdx, setCurIdx] = useState(0)
-
+const BookList = ({ curIdx, swipeInstances, setCurSwipe }) => {
   const page = Math.floor((curIdx + 3) / 20) + 1
   const [books] = useBooks(page)
 
@@ -22,32 +20,7 @@ const BookList = () => {
   const secondBook = books[secondIdx]
   const thirdBook = books[thirdIdx]
 
-  const onSwipeLeft = () => {
-    console.log('left')
-    setCurIdx(prevIdx => prevIdx + 1)
-  }
-
-  const onSwipeRight = () => {
-    console.log('right')
-    setCurIdx(prevIdx => prevIdx + 1)
-  }
-
-  const swipeA = useSwipe({
-    onSwipeLeft,
-    onSwipeRight
-  })
-
-  const swipeB = useSwipe({
-    onSwipeLeft,
-    onSwipeRight
-  })
-
-  const swipeC = useSwipe({
-    onSwipeLeft,
-    onSwipeRight
-  })
-
-  const [curSwipe, setCurSwipe] = useState(swipeA)
+  const [swipeA, swipeB, swipeC] = swipeInstances
 
   useEffect(() => {
     const updateZIdx = (aZ, bZ, cZ) => {
@@ -98,41 +71,35 @@ const BookList = () => {
   }, [curIdx])
 
   return (
-    <>
-      <GestureHandlerRootView
-        style={{
-          flex: 1,
-          backgroundColor: 'lightblue',
-          alignSelf: 'stretch'
-        }}
-      >
-        {firstBook && (
-          <BookCard
-            book={firstBook}
-            panGesture={swipeA.panGesture}
-            animatedStyles={swipeA.animatedStyles}
-          />
-        )}
-        {secondBook && (
-          <BookCard
-            book={secondBook}
-            panGesture={swipeB.panGesture}
-            animatedStyles={swipeB.animatedStyles}
-          />
-        )}
-        {thirdBook && (
-          <BookCard
-            book={thirdBook}
-            panGesture={swipeC.panGesture}
-            animatedStyles={swipeC.animatedStyles}
-          />
-        )}
-      </GestureHandlerRootView>
-      <SwipeButtons
-        swipeLeft={curSwipe.swipeLeft}
-        swipeRight={curSwipe.swipeRight}
-      />
-    </>
+    <GestureHandlerRootView
+      style={{
+        flex: 1,
+        backgroundColor: 'lightblue',
+        alignSelf: 'stretch'
+      }}
+    >
+      {firstBook && (
+        <BookCard
+          book={firstBook}
+          panGesture={swipeA.panGesture}
+          animatedStyles={swipeA.animatedStyles}
+        />
+      )}
+      {secondBook && (
+        <BookCard
+          book={secondBook}
+          panGesture={swipeB.panGesture}
+          animatedStyles={swipeB.animatedStyles}
+        />
+      )}
+      {thirdBook && (
+        <BookCard
+          book={thirdBook}
+          panGesture={swipeC.panGesture}
+          animatedStyles={swipeC.animatedStyles}
+        />
+      )}
+    </GestureHandlerRootView>
   )
 }
 
