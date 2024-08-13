@@ -1,4 +1,3 @@
-export { default as BookList } from './BookList.jsx'
 export { default as BookCard } from './BookCard.jsx'
 export { default as BookInfo } from './BookInfo.jsx'
 export { default as BookViews } from './BookViews.jsx'
