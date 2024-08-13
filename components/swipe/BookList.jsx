@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useSwipe, useBooks } from '../../hooks'
-import BookCard from './BookCard.jsx'
+import { BookCard, SwipeButtons } from '.'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { runOnUI } from 'react-native-reanimated'
-import SwipeButtons from './SwipeButtons.jsx'
 
 const BookList = () => {
   const [curIdx, setCurIdx] = useState(0)
