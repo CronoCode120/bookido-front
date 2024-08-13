@@ -30,6 +30,7 @@ export default function App() {
     console.log('left')
     setCurIdx(prevIdx => prevIdx + 1)
   }
+
   const onSwipeRight = () => {
     console.log('right')
     setCurIdx(prevIdx => prevIdx + 1)
@@ -53,58 +54,47 @@ export default function App() {
   const [curSwipe, setCurSwipe] = useState(swipeA)
 
   useEffect(() => {
+    const updateZIdx = (aZ, bZ, cZ) => {
+      runOnUI(() => {
+        'worklet'
+        swipeA.animation.zIndex.value = aZ
+        swipeB.animation.zIndex.value = bZ
+        swipeC.animation.zIndex.value = cZ
+      })()
+    }
+
+    const enableSwipe = (enableSwipe, disableSwipe, resetSwipe = true) => {
+      enableSwipe.enableWithCooldown()
+      disableSwipe.disable()
+      resetSwipe && runOnUI(disableSwipe.animation.reset)()
+    }
+
     if (curIdx === 0) {
       swipeA.enable()
       swipeB.disable()
       swipeC.disable()
-      runOnUI(() => {
-        'worklet'
-        swipeA.animation.zIndex.value = 3
-        swipeB.animation.zIndex.value = 2
-        swipeC.animation.zIndex.value = 1
-      })()
+      updateZIdx(3, 2, 1)
     }
 
     if (curIdx !== 0 && remainder === 0) {
-      swipeA.enableWithCooldown()
-      swipeB.disable()
-      runOnUI(() => {
-        'worklet'
-        swipeA.animation.zIndex.value = 3
-        swipeB.animation.zIndex.value = 2
-        swipeC.animation.zIndex.value = 1
-        swipeB.animation.reset()
-      })()
+      enableSwipe(swipeA, swipeB)
+      updateZIdx(3, 2, 1)
       setThirdIdx(thirdIdx + 3)
 
       setCurSwipe(swipeA)
     }
 
     if (secondCardActive) {
-      swipeB.enableWithCooldown()
-      swipeC.disable()
-      runOnUI(() => {
-        'worklet'
-        swipeA.animation.zIndex.value = 1
-        swipeB.animation.zIndex.value = 3
-        swipeC.animation.zIndex.value = 2
-        swipeC.animation.reset()
-      })()
+      enableSwipe(swipeB, swipeC)
+      updateZIdx(1, 3, 2)
       setFirstIdx(firstIdx + 3)
 
       setCurSwipe(swipeB)
     }
 
     if (thirdCardActive) {
-      swipeC.enableWithCooldown()
-      swipeA.disable()
-      runOnUI(() => {
-        'worklet'
-        swipeA.animation.zIndex.value = 2
-        swipeB.animation.zIndex.value = 1
-        swipeC.animation.zIndex.value = 3
-        swipeA.animation.reset()
-      })()
+      enableSwipe(swipeC, swipeA)
+      updateZIdx(2, 1, 3)
       setSecondIdx(secondIdx + 3)
 
       setCurSwipe(swipeC)
