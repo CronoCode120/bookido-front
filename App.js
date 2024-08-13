@@ -1,12 +1,12 @@
 import { StyleSheet, View } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
-import BookList from './components/swipe/BookList.jsx'
+import BookSwipe from './components/swipe/BookSwipe.jsx'
 
 export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style='auto' />
-      <BookList />
+      <BookSwipe />
     </View>
   )
 }
