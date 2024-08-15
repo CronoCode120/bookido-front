@@ -2,9 +2,11 @@ import books from '../../books.json'
 import getAuthors from '../../utils/getAuthors.js'
 import getCoverUri from '../../utils/getCoverUri.js'
 import { useBookSynopsis } from '../../hooks/index.js'
+import AddIcon from '../svg/AddIcon.jsx'
 import {
   Cover,
   DetailWrapper,
+  Heading,
   InfoText,
   Synopsis,
   Title,
@@ -21,10 +23,13 @@ const BookItem = () => {
 
   return (
     <Wrapper>
-      <View>
-        <Title>{title}</Title>
-        <InfoText>{authorInfo}</InfoText>
-      </View>
+      <Heading>
+        <View>
+          <Title>{title}</Title>
+          <InfoText>{authorInfo}</InfoText>
+        </View>
+        <AddIcon />
+      </Heading>
       <DetailWrapper>
         <Cover src={coverUri} />
         <Synopsis numberOfLines={4}>{synopsis}</Synopsis>
