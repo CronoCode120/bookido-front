@@ -1,8 +1,16 @@
-import { Image, Text, View } from 'react-native'
 import books from '../../books.json'
 import getAuthors from '../../utils/getAuthors.js'
 import getCoverUri from '../../utils/getCoverUri.js'
 import { useBookSynopsis } from '../../hooks/index.js'
+import {
+  Cover,
+  DetailWrapper,
+  InfoText,
+  Synopsis,
+  Title,
+  Wrapper
+} from './styles/BookItem.js'
+import { View } from 'react-native'
 
 const BookItem = () => {
   const { title, author, isbn } = books[0]
@@ -12,14 +20,16 @@ const BookItem = () => {
   const [synopsis] = useBookSynopsis(isbnStr)
 
   return (
-    <View>
-      <Text>{title}</Text>
-      <Text>{authorInfo}</Text>
+    <Wrapper>
       <View>
-        <Image src={coverUri} />
-        <Text>{synopsis}</Text>
+        <Title>{title}</Title>
+        <InfoText>{authorInfo}</InfoText>
       </View>
-    </View>
+      <DetailWrapper>
+        <Cover src={coverUri} />
+        <Synopsis numberOfLines={4}>{synopsis}</Synopsis>
+      </DetailWrapper>
+    </Wrapper>
   )
 }
 
