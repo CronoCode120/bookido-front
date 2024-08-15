@@ -1,5 +1,5 @@
 import styled from 'styled-components/native'
-import { getHeightPercent } from '../../utils/dimensions.js'
+import { getHeightPercent } from '../../../utils/dimensions.js'
 
 export const Cover = styled.Image`
   width: auto;

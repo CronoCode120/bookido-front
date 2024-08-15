@@ -1,4 +1,4 @@
-import { Button, Label } from '../styles/MoreButton.js'
+import { Button, Label } from './styles/MoreButton.js'
 
 const MoreButton = () => {
   return (

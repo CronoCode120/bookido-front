@@ -1,5 +1,5 @@
 import styled from 'styled-components/native'
-import { getHeightPercent, getWidthPercent } from '../../utils/dimensions.js'
+import { getHeightPercent, getWidthPercent } from '../../../utils/dimensions.js'
 
 export const Container = styled.View`
   position: relative;

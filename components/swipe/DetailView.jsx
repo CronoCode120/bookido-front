@@ -6,7 +6,7 @@ import {
   SynopsisContainer,
   SynopsisTitle,
   Wrapper
-} from '../styles/DetailView.js'
+} from './styles/DetailView.js'
 
 const DetailView = ({ synopsis, tags }) => {
   const [lines, setLines] = useState(12)

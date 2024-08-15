@@ -4,7 +4,7 @@ import SideTouch from './SideTouch.jsx'
 import CardContent from './CardContent.jsx'
 import SwipeDetector from './SwipeDetector.jsx'
 import useBookSynopsis from '../../hooks/useBookSynopsis.js'
-import { CardWrapper, Container } from '../styles/BookCard.js'
+import { CardWrapper, Container } from './styles/BookCard.js'
 import { View, StyleSheet } from 'react-native'
 
 const BookCard = ({ book, panGesture, animatedStyles }) => {

@@ -1,5 +1,5 @@
 import { Text } from 'react-native'
-import { Button } from '../styles/SwipeBtn.js'
+import { Button } from './styles/SwipeBtn.js'
 
 const SwipeBtn = ({ onPress, text, disabled }) => {
   return (

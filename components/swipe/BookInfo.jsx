@@ -1,5 +1,5 @@
 import getAuthors from '../../utils/getAuthors.js'
-import { Container, InfoText, Title } from '../styles/BookInfo.js'
+import { Container, InfoText, Title } from './styles/BookInfo.js'
 
 const BookInfo = ({ title, author, publisher }) => {
   return (

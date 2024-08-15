@@ -1,4 +1,4 @@
-import { Container, Indicator } from '../styles/BookViews.js'
+import { Container, Indicator } from './styles/BookViews.js'
 
 const BookViews = ({ pageNum }) => {
   const pageQuant = 3
