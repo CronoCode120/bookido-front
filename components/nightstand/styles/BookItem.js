@@ -2,7 +2,6 @@ import styled from 'styled-components/native'
 
 export const Wrapper = styled.View`
   width: 90%;
-  border: 1px solid black;
   padding: 14px;
   gap: 14px;
   border-radius: 12px;
@@ -12,12 +11,13 @@ export const Wrapper = styled.View`
 export const Heading = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
 `
 
 export const Title = styled.Text`
   font-size: 20px;
   font-weight: 600;
+  width: 85%;
 `
 
 export const InfoText = styled.Text`
