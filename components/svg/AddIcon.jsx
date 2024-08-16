@@ -2,8 +2,8 @@ import Svg, { Path } from 'react-native-svg'
 const AddIcon = props => (
   <Svg
     xmlns='http://www.w3.org/2000/svg'
-    width={27}
-    height={27}
+    width={28}
+    height={28}
     fill='none'
     {...props}
   >
