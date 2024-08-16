@@ -1,4 +1,3 @@
-import books from '../../books.json'
 import getAuthors from '../../utils/getAuthors.js'
 import getCoverUri from '../../utils/getCoverUri.js'
 import { useBookSynopsis } from '../../hooks/index.js'
@@ -7,16 +6,15 @@ import {
   AddButton,
   Cover,
   DetailWrapper,
+  Header,
   Heading,
   InfoText,
   Synopsis,
   Title,
   Wrapper
 } from './styles/BookItem.js'
-import { View } from 'react-native'
 
-const BookItem = () => {
-  const { title, author, isbn } = books[0]
+const BookItem = ({ title, author, isbn }) => {
   const authorInfo = getAuthors(author)
   const isbnStr = isbn ? isbn[0] : ''
   const coverUri = getCoverUri(isbnStr)
@@ -24,15 +22,15 @@ const BookItem = () => {
 
   return (
     <Wrapper>
-      <Heading>
-        <View>
+      <Header>
+        <Heading>
           <Title>{title}</Title>
           <InfoText>{authorInfo}</InfoText>
-        </View>
+        </Heading>
         <AddButton>
           <AddIcon />
         </AddButton>
-      </Heading>
+      </Header>
       <DetailWrapper>
         <Cover src={coverUri} />
         <Synopsis numberOfLines={4}>{synopsis}</Synopsis>
