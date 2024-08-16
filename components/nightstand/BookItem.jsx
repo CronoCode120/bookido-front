@@ -4,6 +4,7 @@ import getCoverUri from '../../utils/getCoverUri.js'
 import { useBookSynopsis } from '../../hooks/index.js'
 import AddIcon from '../svg/AddIcon.jsx'
 import {
+  AddButton,
   Cover,
   DetailWrapper,
   Heading,
@@ -28,7 +29,9 @@ const BookItem = () => {
           <Title>{title}</Title>
           <InfoText>{authorInfo}</InfoText>
         </View>
-        <AddIcon />
+        <AddButton>
+          <AddIcon />
+        </AddButton>
       </Heading>
       <DetailWrapper>
         <Cover src={coverUri} />

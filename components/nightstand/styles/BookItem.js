@@ -43,3 +43,10 @@ export const Cover = styled.Image`
   aspect-ratio: 1/1.5;
   border-radius: 6px;
 `
+
+export const AddButton = styled.Pressable`
+  border: 1px solid black;
+  margin: 0 0 auto 0;
+  padding: 5px;
+  border-radius: 99px;
+`
