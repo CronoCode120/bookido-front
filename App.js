@@ -1,13 +1,16 @@
 import { StyleSheet, View } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
-import BookSwipe from './components/swipe/BookSwipe.jsx'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import Main from './components/Main.jsx'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar style='auto' />
-      <BookSwipe />
-    </View>
+    <SafeAreaProvider>
+      <View style={styles.container}>
+        <StatusBar style='auto' />
+        <Main />
+      </View>
+    </SafeAreaProvider>
   )
 }
 
