@@ -8,9 +8,13 @@ const ReadList = () => {
   const [drawerVisible, setDrawerVisible] = useState(false)
   const [curBook, setCurBook] = useState(null)
 
-  const toggleDrawer = book => {
-    setCurBook(book)
+  const toggleDrawer = () => {
     setDrawerVisible(!drawerVisible)
+  }
+
+  const openDrawer = book => {
+    setCurBook(book)
+    toggleDrawer()
   }
 
   return (
@@ -18,7 +22,7 @@ const ReadList = () => {
       <FlatList
         data={books}
         renderItem={({ item }) => (
-          <BookItem book={item} toggleDrawer={toggleDrawer} />
+          <BookItem book={item} openDrawer={openDrawer} />
         )}
         keyExtractor={item => item.title}
         contentContainerStyle={{ gap: 14 }}

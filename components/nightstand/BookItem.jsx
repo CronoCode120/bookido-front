@@ -14,7 +14,7 @@ import {
   Wrapper
 } from './styles/BookItem.js'
 
-const BookItem = ({ book, toggleDrawer }) => {
+const BookItem = ({ book, openDrawer }) => {
   const { title, author, isbn } = book
   const authorInfo = getAuthors(author)
   const isbnStr = isbn ? isbn[0] : ''
@@ -28,7 +28,7 @@ const BookItem = ({ book, toggleDrawer }) => {
           <Title>{title}</Title>
           <InfoText>{authorInfo}</InfoText>
         </Heading>
-        <AddButton onPress={() => toggleDrawer(book)}>
+        <AddButton onPress={() => openDrawer({ ...book, cover: coverUri })}>
           <AddIcon />
         </AddButton>
       </Header>
