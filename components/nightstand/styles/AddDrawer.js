@@ -9,5 +9,6 @@ export const Container = styled.View`
   height: 589px;
   padding: 24px;
   padding-top: 40px;
+  justify-content: space-between;
   background: #fffafad9;
 `
