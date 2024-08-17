@@ -1,7 +1,6 @@
 import { Modal, Text, Pressable } from 'react-native'
 import {
   Container,
-  BlurWrapper,
   ContentWrapper,
   Title,
   Cover,
@@ -12,39 +11,12 @@ import {
   DetailTitle,
   Heading
 } from './styles/AddDrawer.js'
-import Animated, {
-  useAnimatedProps,
-  useSharedValue,
-  withTiming
-} from 'react-native-reanimated'
-import { useEffect, useState } from 'react'
 import { getFullAuthors } from '../../utils/getAuthors.js'
+import BackdropBlur from './BackdropBlur.jsx'
 
 const AddDrawer = ({ book, visible, toggleDrawer }) => {
-  const blurIntensity = useSharedValue(0)
-  const [zIndex, setZIndex] = useState(-1)
-  const DURATION = 150
-
-  useEffect(() => {
-    blurIntensity.value = withTiming(visible ? 40 : 0, {
-      duration: DURATION
-    })
-    if (visible) setZIndex(1)
-    if (!visible) setTimeout(() => setZIndex(-1), DURATION)
-  }, [visible])
-
-  const animatedProps = useAnimatedProps(() => ({
-    intensity: blurIntensity.value
-  }))
-
-  const AnimatedBlurView = Animated.createAnimatedComponent(BlurWrapper)
-
   return (
-    <AnimatedBlurView
-      visible={visible}
-      animatedProps={animatedProps}
-      style={{ zIndex }}
-    >
+    <BackdropBlur visible={visible}>
       <Modal
         animationType='slide'
         visible={visible}
@@ -74,7 +46,7 @@ const AddDrawer = ({ book, visible, toggleDrawer }) => {
           </Pressable>
         </Container>
       </Modal>
-    </AnimatedBlurView>
+    </BackdropBlur>
   )
 }
 
