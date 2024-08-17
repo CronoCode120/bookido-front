@@ -6,8 +6,12 @@ import AddDrawer from './AddDrawer.jsx'
 
 const ReadList = () => {
   const [drawerVisible, setDrawerVisible] = useState(false)
+  const [curBook, setCurBook] = useState(null)
 
-  const toggleDrawer = () => setDrawerVisible(!drawerVisible)
+  const toggleDrawer = book => {
+    setCurBook(book)
+    setDrawerVisible(!drawerVisible)
+  }
 
   return (
     <>
@@ -19,7 +23,11 @@ const ReadList = () => {
         keyExtractor={item => item.title}
         contentContainerStyle={{ gap: 14 }}
       />
-      <AddDrawer visible={drawerVisible} toggleDrawer={toggleDrawer} />
+      <AddDrawer
+        book={curBook}
+        visible={drawerVisible}
+        toggleDrawer={toggleDrawer}
+      />
     </>
   )
 }

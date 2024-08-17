@@ -22,3 +22,12 @@ export const Container = styled.View`
   padding-top: 40px;
   background: #fffafad9;
 `
+
+export const ContentWrapper = styled.View`
+  flex-direction: row;
+`
+
+export const Title = styled.Text`
+  font-size: 18px;
+  font-weight: 600;
+`

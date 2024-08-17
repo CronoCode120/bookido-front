@@ -1,5 +1,10 @@
-import { Modal, Text, Pressable } from 'react-native'
-import { Container, BlurWrapper } from './styles/AddDrawer.js'
+import { Modal, Text, Pressable, View } from 'react-native'
+import {
+  Container,
+  BlurWrapper,
+  ContentWrapper,
+  Title
+} from './styles/AddDrawer.js'
 import Animated, {
   useAnimatedProps,
   useSharedValue,
@@ -7,7 +12,7 @@ import Animated, {
 } from 'react-native-reanimated'
 import { useEffect, useState } from 'react'
 
-const AddDrawer = ({ visible, toggleDrawer }) => {
+const AddDrawer = ({ book, visible, toggleDrawer }) => {
   const blurIntensity = useSharedValue(0)
   const [zIndex, setZIndex] = useState(-1)
   const DURATION = 150
@@ -39,7 +44,9 @@ const AddDrawer = ({ visible, toggleDrawer }) => {
         transparent
       >
         <Container>
-          <Text>Drawer</Text>
+          <ContentWrapper>
+            <Title>{book?.title}</Title>
+          </ContentWrapper>
           <Pressable onPress={toggleDrawer} style={{ padding: 20 }}>
             <Text>XXXX</Text>
           </Pressable>

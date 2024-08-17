@@ -28,7 +28,7 @@ const BookItem = ({ book, toggleDrawer }) => {
           <Title>{title}</Title>
           <InfoText>{authorInfo}</InfoText>
         </Heading>
-        <AddButton onPress={toggleDrawer}>
+        <AddButton onPress={() => toggleDrawer(book)}>
           <AddIcon />
         </AddButton>
       </Header>
