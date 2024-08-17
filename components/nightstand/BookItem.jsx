@@ -1,6 +1,6 @@
+import { useBookSynopsis } from '../../hooks/index.js'
 import getAuthors from '../../utils/getAuthors.js'
 import getCoverUri from '../../utils/getCoverUri.js'
-import { useBookSynopsis } from '../../hooks/index.js'
 import AddIcon from '../svg/AddIcon.jsx'
 import {
   AddButton,
@@ -14,7 +14,8 @@ import {
   Wrapper
 } from './styles/BookItem.js'
 
-const BookItem = ({ title, author, isbn }) => {
+const BookItem = ({ book, toggleDrawer }) => {
+  const { title, author, isbn } = book
   const authorInfo = getAuthors(author)
   const isbnStr = isbn ? isbn[0] : ''
   const coverUri = getCoverUri(isbnStr)
@@ -27,7 +28,7 @@ const BookItem = ({ title, author, isbn }) => {
           <Title>{title}</Title>
           <InfoText>{authorInfo}</InfoText>
         </Heading>
-        <AddButton>
+        <AddButton onPress={toggleDrawer}>
           <AddIcon />
         </AddButton>
       </Header>
