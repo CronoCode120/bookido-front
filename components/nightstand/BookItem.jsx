@@ -17,7 +17,7 @@ import {
 const BookItem = ({ book, openDrawer }) => {
   const { title, author, isbn } = book
   const authorInfo = getAuthors(author)
-  const isbnStr = isbn ? isbn[0] : ''
+  const isbnStr = isbn ? isbn[0] : 'Desconocido'
   const coverUri = getCoverUri(isbnStr)
   const [synopsis] = useBookSynopsis(isbnStr)
 
@@ -28,7 +28,11 @@ const BookItem = ({ book, openDrawer }) => {
           <Title>{title}</Title>
           <InfoText>{authorInfo}</InfoText>
         </Heading>
-        <AddButton onPress={() => openDrawer({ ...book, cover: coverUri })}>
+        <AddButton
+          onPress={() =>
+            openDrawer({ ...book, cover: coverUri, isbn: isbnStr })
+          }
+        >
           <AddIcon />
         </AddButton>
       </Header>
