@@ -13,6 +13,7 @@ import {
 } from './styles/AddDrawer.js'
 import { getFullAuthors } from '../../utils/getAuthors.js'
 import BackdropBlur from './BackdropBlur.jsx'
+import BookDetails from './BookDetails.jsx'
 
 const AddDrawer = ({ book, visible, toggleDrawer }) => {
   return (
@@ -24,23 +25,7 @@ const AddDrawer = ({ book, visible, toggleDrawer }) => {
         transparent
       >
         <Container>
-          <ContentWrapper>
-            <Cover src={book?.cover} />
-            <InfoWrapper>
-              <Heading>
-                <Title>{book?.title}</Title>
-                <Author>{book?.author && getFullAuthors(book.author)}</Author>
-              </Heading>
-              <DetailWrapper>
-                <DetailText>
-                  <DetailTitle>ISBN</DetailTitle> {book?.isbn[0]}
-                </DetailText>
-                <DetailText>
-                  <DetailTitle>EDITORIAL</DetailTitle> {book?.publisher[0]}
-                </DetailText>
-              </DetailWrapper>
-            </InfoWrapper>
-          </ContentWrapper>
+          <BookDetails book={book} />
           <Pressable onPress={toggleDrawer} style={{ padding: 20 }}>
             <Text>XXXX</Text>
           </Pressable>
