@@ -1,9 +1,16 @@
-import { Modal, Text, Pressable, View } from 'react-native'
+import { Modal, Text, Pressable } from 'react-native'
 import {
   Container,
   BlurWrapper,
   ContentWrapper,
-  Title
+  Title,
+  Cover,
+  Author,
+  InfoWrapper,
+  DetailWrapper,
+  DetailText,
+  DetailTitle,
+  Heading
 } from './styles/AddDrawer.js'
 import Animated, {
   useAnimatedProps,
@@ -11,6 +18,7 @@ import Animated, {
   withTiming
 } from 'react-native-reanimated'
 import { useEffect, useState } from 'react'
+import { getFullAuthors } from '../../utils/getAuthors.js'
 
 const AddDrawer = ({ book, visible, toggleDrawer }) => {
   const blurIntensity = useSharedValue(0)
@@ -45,7 +53,21 @@ const AddDrawer = ({ book, visible, toggleDrawer }) => {
       >
         <Container>
           <ContentWrapper>
-            <Title>{book?.title}</Title>
+            <Cover src={book?.cover} />
+            <InfoWrapper>
+              <Heading>
+                <Title>{book?.title}</Title>
+                <Author>{book?.author && getFullAuthors(book.author)}</Author>
+              </Heading>
+              <DetailWrapper>
+                <DetailText>
+                  <DetailTitle>ISBN</DetailTitle> {book?.isbn[0]}
+                </DetailText>
+                <DetailText>
+                  <DetailTitle>EDITORIAL</DetailTitle> {book?.publisher[0]}
+                </DetailText>
+              </DetailWrapper>
+            </InfoWrapper>
           </ContentWrapper>
           <Pressable onPress={toggleDrawer} style={{ padding: 20 }}>
             <Text>XXXX</Text>
