@@ -49,7 +49,6 @@ export const Cover = styled.Image`
 `
 
 export const AddButton = styled.Pressable`
-  border: 1px solid black;
   margin: 0 0 auto 0;
   padding: 5px;
   border-radius: 99px;
