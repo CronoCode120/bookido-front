@@ -1,14 +1,11 @@
-import { Button, Label, Wrapper } from './styles/DrawerButtons.js'
+import Button from './Button.jsx'
+import { Wrapper } from './styles/DrawerButtons.js'
 
 const DrawerButtons = () => {
   return (
     <Wrapper>
-      <Button>
-        <Label>Marcar como leído</Label>
-      </Button>
-      <Button>
-        <Label>Caja de donaciones</Label>
-      </Button>
+      <Button>Marcar como leído</Button>
+      <Button type='tertiary'>Caja de donaciones</Button>
     </Wrapper>
   )
 }
