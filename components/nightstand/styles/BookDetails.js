@@ -5,12 +5,6 @@ export const ContentWrapper = styled.View`
   justify-content: space-between;
 `
 
-export const Cover = styled.Image`
-  aspect-ratio: 1/1.5;
-  width: 28%;
-  border-radius: 6px;
-`
-
 export const InfoWrapper = styled.View`
   width: 65%;
   justify-content: space-between;

@@ -1,8 +1,8 @@
 import { getFullAuthors } from '../../utils/getAuthors.js'
+import { Cover } from '../../styles.js'
 import {
   ContentWrapper,
   Title,
-  Cover,
   Author,
   InfoWrapper,
   DetailWrapper,
@@ -17,7 +17,7 @@ const BookDetails = ({ book }) => {
 
   return (
     <ContentWrapper>
-      <Cover src={cover} />
+      <Cover src={cover} width='28%' />
       <InfoWrapper>
         <Heading>
           <Title>{title}</Title>

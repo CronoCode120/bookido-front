@@ -41,13 +41,6 @@ export const Synopsis = styled(InfoText)`
   overflow: hidden;
 `
 
-export const Cover = styled.Image`
-  width: 20%;
-  height: auto;
-  aspect-ratio: 1/1.5;
-  border-radius: 6px;
-`
-
 export const AddButton = styled.Pressable`
   margin: 0 0 auto 0;
   padding: 5px;

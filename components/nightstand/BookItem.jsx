@@ -1,10 +1,10 @@
 import { useBookSynopsis } from '../../hooks/index.js'
 import getAuthors from '../../utils/getAuthors.js'
 import getCoverUri from '../../utils/getCoverUri.js'
-import AddIcon from '../svg/AddIcon.jsx'
+import AddIcon from '../icons/AddIcon.jsx'
+import { Cover } from '../../styles.js'
 import {
   AddButton,
-  Cover,
   DetailWrapper,
   Header,
   Heading,
@@ -37,7 +37,7 @@ const BookItem = ({ book, openDrawer }) => {
         </AddButton>
       </Header>
       <DetailWrapper>
-        <Cover src={coverUri} />
+        <Cover src={coverUri} width='20%' />
         <Synopsis numberOfLines={4}>{synopsis}</Synopsis>
       </DetailWrapper>
     </Wrapper>
