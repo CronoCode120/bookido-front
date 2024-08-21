@@ -1,8 +1,9 @@
-import { Modal, Text, Pressable } from 'react-native'
+import { Modal } from 'react-native'
 import { Container } from './styles/AddDrawer.js'
 import BackdropBlur from './BackdropBlur.jsx'
 import BookDetails from './BookDetails.jsx'
 import DrawerButtons from './DrawerButtons.jsx'
+import CloseBtn from './CloseBtn.jsx'
 
 const AddDrawer = ({ book, visible, toggleDrawer }) => {
   return (
@@ -14,11 +15,9 @@ const AddDrawer = ({ book, visible, toggleDrawer }) => {
         transparent
       >
         <Container>
+          <CloseBtn onPress={toggleDrawer} />
           <BookDetails book={book} />
           <DrawerButtons />
-          <Pressable onPress={toggleDrawer} style={{ padding: 20 }}>
-            <Text>XXXX</Text>
-          </Pressable>
         </Container>
       </Modal>
     </BackdropBlur>
