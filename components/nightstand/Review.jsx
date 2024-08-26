@@ -14,7 +14,7 @@ import {
 } from './styles/Review.js'
 import { useState } from 'react'
 
-const Review = () => {
+const Review = ({ isbn }) => {
   const [review, setReview] = useState('')
 
   return (
@@ -23,7 +23,7 @@ const Review = () => {
         <Header>
           <Cover width='20%' style={{ backgroundColor: 'lightgray' }} />
           <View>
-            <Heading>Título</Heading>
+            <Heading>Título {isbn}</Heading>
             <Text>Autor</Text>
           </View>
         </Header>

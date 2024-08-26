@@ -1,10 +1,13 @@
 import Button from './Button.jsx'
+import { Link } from 'expo-router'
 import { Wrapper } from './styles/DrawerButtons.js'
 
-const DrawerButtons = () => {
+const DrawerButtons = ({ isbn }) => {
   return (
     <Wrapper>
-      <Button>Marcar como leído</Button>
+      <Link href={`/${isbn}`} asChild>
+        <Button>Marcar como leído</Button>
+      </Link>
       <Button type='tertiary'>Caja de donaciones</Button>
     </Wrapper>
   )

@@ -17,7 +17,7 @@ const AddDrawer = ({ book, visible, toggleDrawer }) => {
         <Container>
           <CloseBtn onPress={toggleDrawer} />
           <BookDetails book={book} />
-          <DrawerButtons />
+          <DrawerButtons isbn={book?.isbn} />
         </Container>
       </Modal>
     </BackdropBlur>
