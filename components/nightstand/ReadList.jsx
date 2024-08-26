@@ -25,7 +25,7 @@ const ReadList = () => {
           <BookItem book={item} openDrawer={openDrawer} />
         )}
         keyExtractor={item => item.title}
-        contentContainerStyle={{ gap: 14 }}
+        contentContainerStyle={{ gap: 30 }}
       />
       <AddDrawer
         book={curBook}
