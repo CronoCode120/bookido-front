@@ -1,16 +1,14 @@
-import { Slot } from 'expo-router'
+import { Stack } from 'expo-router'
 import { View } from 'react-native'
 
 const RootLayout = () => {
   return (
     <View
       style={{
-        flex: 1,
-        alignItems: 'center',
-        paddingHorizontal: 14
+        flex: 1
       }}
     >
-      <Slot />
+      <Stack />
     </View>
   )
 }
