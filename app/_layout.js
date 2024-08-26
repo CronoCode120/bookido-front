@@ -8,7 +8,15 @@ const RootLayout = () => {
         flex: 1
       }}
     >
-      <Stack />
+      <Stack
+        screenOptions={{
+          headerTitle: '',
+          headerShadowVisible: false,
+          headerStyle: { backgroundColor: 'transparent' },
+          contentStyle: { backgroundColor: 'transparent' },
+          animation: 'slide_from_right'
+        }}
+      />
     </View>
   )
 }
