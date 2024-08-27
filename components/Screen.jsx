@@ -1,8 +1,9 @@
 import { View } from 'react-native'
 
-const Screen = ({ children }) => (
+const Screen = ({ style = {}, children }) => (
   <View
     style={{
+      ...style,
       flex: 1,
       paddingHorizontal: 14,
       backgroundColor: 'white'
