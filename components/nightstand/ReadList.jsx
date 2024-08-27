@@ -4,6 +4,9 @@ import books from '../../books.json'
 import BookItem from './BookItem.jsx'
 import AddDrawer from './AddDrawer.jsx'
 
+import { Stack } from 'expo-router'
+import NavHeader from '../NavHeader.jsx'
+
 const ReadList = () => {
   const [drawerVisible, setDrawerVisible] = useState(false)
   const [curBook, setCurBook] = useState(null)
@@ -19,6 +22,11 @@ const ReadList = () => {
 
   return (
     <>
+      <Stack.Screen
+        options={{
+          headerLeft: () => <NavHeader title='Mesita de noche' />
+        }}
+      />
       <FlatList
         data={books}
         renderItem={({ item }) => (
