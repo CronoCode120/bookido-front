@@ -1,4 +1,5 @@
 import { Tabs } from 'expo-router'
+import NavHeader from '../../components/NavHeader.jsx'
 
 import {
   HomeIcon,
@@ -11,7 +12,9 @@ const TabsLayout = () => {
   return (
     <Tabs
       screenOptions={{
-        headerShown: false
+        headerShown: false,
+        headerTitle: '',
+        headerShadowVisible: false
       }}
     >
       <Tabs.Screen
@@ -25,7 +28,9 @@ const TabsLayout = () => {
         name='nightstand'
         options={{
           title: 'Mesita',
-          tabBarIcon: () => <StandIcon />
+          tabBarIcon: () => <StandIcon />,
+          headerShown: true,
+          headerLeft: () => <NavHeader title='Mesita de noche' />
         }}
       />
     </Tabs>
