@@ -1,10 +1,10 @@
-import ReadList from './nightstand/ReadList.jsx'
+import BookSwipe from './swipe/BookSwipe.jsx'
 import Screen from './Screen.jsx'
 
 const Main = () => {
   return (
     <Screen>
-      <ReadList />
+      <BookSwipe />
     </Screen>
   )
 }
