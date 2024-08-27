@@ -1,4 +1,4 @@
-import BackIcon from './icons/BackIcon.jsx'
+import { BackIcon } from './icons'
 import styled from 'styled-components/native'
 
 const NavHeader = ({ title }) => {
