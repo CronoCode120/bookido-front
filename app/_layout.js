@@ -13,6 +13,7 @@ const RootLayout = () => {
           headerTitle: '',
           headerShadowVisible: false,
           headerStyle: { backgroundColor: 'transparent' },
+          headerShown: false,
           contentStyle: { backgroundColor: 'transparent' },
           animation: 'slide_from_right'
         }}
