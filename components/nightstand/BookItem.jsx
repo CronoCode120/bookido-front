@@ -37,7 +37,7 @@ const BookItem = ({ book, openDrawer }) => {
         </AddButton>
       </Header>
       <DetailWrapper>
-        <Cover src={coverUri} width='20%' />
+        <Cover src={coverUri} $width='20%' />
         <Synopsis numberOfLines={4}>{synopsis}</Synopsis>
       </DetailWrapper>
     </Wrapper>
