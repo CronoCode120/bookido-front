@@ -8,14 +8,13 @@ export const Container = styled.View`
 `
 
 export const CardWrapper = styled.View`
+  border-radius: 30px;
   align-items: center;
   justify-content: start;
   gap: 30px;
   width: ${getWidthPercent(95)}px;
   height: ${getHeightPercent(80)}px;
   background-color: white;
-  border: 1px solid green;
-  border-radius: 30px;
   padding: 24px;
 `
 
