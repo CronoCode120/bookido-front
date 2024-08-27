@@ -1,20 +1,11 @@
-import { View } from 'react-native'
 import ReadList from './nightstand/ReadList.jsx'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import Screen from './Screen.jsx'
 
 const Main = () => {
-  const insets = useSafeAreaInsets()
   return (
-    <View
-      style={{
-        paddingTop: insets.top,
-        paddingBottom: insets.bottom,
-        paddingLeft: insets.left,
-        paddingRight: insets.right
-      }}
-    >
+    <Screen>
       <ReadList />
-    </View>
+    </Screen>
   )
 }
 
