@@ -14,7 +14,8 @@ const TabsLayout = () => {
       screenOptions={{
         headerShown: false,
         headerTitle: '',
-        headerShadowVisible: false
+        headerShadowVisible: false,
+        headerLeftContainerStyle: { paddingHorizontal: 14 }
       }}
     >
       <Tabs.Screen
