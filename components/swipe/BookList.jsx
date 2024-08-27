@@ -74,7 +74,6 @@ const BookList = ({ curIdx, swipeInstances, setCurSwipe }) => {
     <GestureHandlerRootView
       style={{
         flex: 1,
-        backgroundColor: 'lightblue',
         alignSelf: 'stretch'
       }}
     >
