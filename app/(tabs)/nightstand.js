@@ -1,10 +1,5 @@
 import ReadList from '../../components/nightstand/ReadList.jsx'
-import Screen from '../../components/Screen.jsx'
 
-const NightStand = () => (
-  <Screen>
-    <ReadList />
-  </Screen>
-)
+const NightStand = () => <ReadList />
 
 export default NightStand
