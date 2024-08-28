@@ -5,7 +5,7 @@ export const Wrapper = styled.View`
   padding: 14px;
   gap: 14px;
   border-radius: 12px;
-  background: #e2e8f066;
+  background: #e2e8f0;
 `
 
 export const Header = styled.View`
