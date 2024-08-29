@@ -3,14 +3,13 @@ import { FlatList } from 'react-native'
 import books from '../../books.json'
 import BookItem from './BookItem.jsx'
 import AddDrawer from './AddDrawer.jsx'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 const ReadList = () => {
   const [drawerVisible, setDrawerVisible] = useState(false)
   const [curBook, setCurBook] = useState(null)
 
-  const toggleDrawer = () => {
-    setDrawerVisible(!drawerVisible)
-  }
+  const toggleDrawer = () => setDrawerVisible(!drawerVisible)
 
   const openDrawer = book => {
     setCurBook(book)
@@ -18,7 +17,7 @@ const ReadList = () => {
   }
 
   return (
-    <>
+    <GestureHandlerRootView>
       <FlatList
         data={books}
         renderItem={({ item }) => (
@@ -37,7 +36,7 @@ const ReadList = () => {
         visible={drawerVisible}
         toggleDrawer={toggleDrawer}
       />
-    </>
+    </GestureHandlerRootView>
   )
 }
 
