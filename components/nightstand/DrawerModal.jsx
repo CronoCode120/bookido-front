@@ -1,5 +1,5 @@
 import Slider from './Slider.jsx'
-import { Container, ContentView } from './styles/DrawerModal.js'
+import { ContentView } from './styles/DrawerModal.js'
 import { BlurWrapper } from './styles/BackdropBlur.js'
 import Animated, {
   interpolate,
@@ -11,6 +11,8 @@ import Animated, {
 } from 'react-native-reanimated'
 import { useEffect, useState } from 'react'
 import { useSlide } from '../../hooks'
+import { Shadow } from 'react-native-shadow-2'
+import { View } from 'react-native'
 
 const DrawerModal = ({ visible, onClose, children }) => {
   const [zIndex, setZIndex] = useState(-1)
@@ -54,10 +56,26 @@ const DrawerModal = ({ visible, onClose, children }) => {
       <>
         <AnimatedBlur animatedProps={animatedBlurProps} style={{ zIndex }} />
         <Animated.View style={[animatedStyle]}>
-          <Container>
-            <Slider panGesture={panGesture} />
-            <ContentView>{children}</ContentView>
-          </Container>
+          <Shadow sides={{ bottom: false, start: false, end: false }} stretch>
+            <View
+              style={{
+                position: 'absolute',
+                top: '100%',
+                left: 0,
+                right: 0,
+                borderTopStartRadius: 40,
+                borderTopEndRadius: 40,
+                height: 460,
+                overflow: 'hidden',
+                paddingHorizontal: 24,
+                paddingBottom: 20,
+                backgroundColor: '#fffafad9'
+              }}
+            >
+              <Slider panGesture={panGesture} />
+              <ContentView>{children}</ContentView>
+            </View>
+          </Shadow>
         </Animated.View>
       </>
     )
