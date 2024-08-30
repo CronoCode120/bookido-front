@@ -1,10 +1,13 @@
 import { BackIcon } from './icons'
+import { useNavigation } from 'expo-router'
 import styled from 'styled-components/native'
 
 const NavHeader = ({ title }) => {
+  const navigation = useNavigation()
+
   return (
     <Wrapper>
-      <BackBtn>
+      <BackBtn onPress={navigation.goBack}>
         <BackIcon />
       </BackBtn>
       <Title>{title}</Title>
