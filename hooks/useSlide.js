@@ -60,7 +60,8 @@ const useSlide = (containerHeight, onClose) => {
 
   return {
     panGesture,
-    translateY
+    translateY,
+    closeContainer
   }
 }
 
