@@ -11,6 +11,13 @@ export const getBooksData = async page =>
     })
   ).data
 
+export const getBookByISBN = async (isbn, fields) =>
+  (
+    await apiUrl.get(`/${isbn}`, {
+      params: { fields }
+    })
+  ).data
+
 export const getSynopsisByISBN = async isbn =>
   (
     await apiUrl.get('/description', {
