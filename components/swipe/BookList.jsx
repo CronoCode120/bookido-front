@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useBooks } from '../../hooks'
+import { ActivityIndicator, View } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { runOnUI } from 'react-native-reanimated'
 import BookCard from './BookCard.jsx'
@@ -69,6 +70,19 @@ const BookList = ({ curIdx, swipeInstances, setCurSwipe }) => {
       setCurSwipe(swipeC)
     }
   }, [curIdx])
+
+  if (!books.length)
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
+      >
+        <ActivityIndicator />
+      </View>
+    )
 
   return (
     <GestureHandlerRootView
