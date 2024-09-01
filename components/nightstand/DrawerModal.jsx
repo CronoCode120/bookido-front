@@ -10,7 +10,7 @@ import Animated, {
   withTiming
 } from 'react-native-reanimated'
 import { useEffect, useState } from 'react'
-import { useSlide } from '../../hooks'
+import { useBackAction, useSlide } from '../../hooks'
 import { Shadow } from 'react-native-shadow-2'
 import { View } from 'react-native'
 
@@ -18,7 +18,7 @@ const DrawerModal = ({ visible, onClose, children }) => {
   const [zIndex, setZIndex] = useState(-1)
   const HEIGHT = 460
 
-  const { panGesture, translateY } = useSlide(HEIGHT, onClose)
+  const { panGesture, translateY, closeContainer } = useSlide(HEIGHT, onClose)
 
   useEffect(() => {
     if (visible) {
@@ -50,6 +50,14 @@ const DrawerModal = ({ visible, onClose, children }) => {
   }))
 
   const AnimatedBlur = Animated.createAnimatedComponent(BlurWrapper)
+
+  useBackAction(() => {
+    if (visible) {
+      closeContainer()
+      return true
+    }
+    return false
+  }, [visible])
 
   if (visible)
     return (
