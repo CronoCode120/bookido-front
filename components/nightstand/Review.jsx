@@ -1,24 +1,31 @@
+import { useState } from 'react'
+import { useBookISBN } from '../../hooks'
+import getAuthors from '../../utils/getAuthors.js'
+import getCoverUri from '../../utils/getCoverUri.js'
 import { Text, View } from 'react-native'
-import Button from './Button.jsx'
 import Screen from '../Screen.jsx'
+import { Stack } from 'expo-router'
+import NavHeader from '../NavHeader.jsx'
+import Button from './Button.jsx'
 import { HeartIcon, LikeIcon, DislikeIcon } from '../icons'
 import { Cover } from '../../styles.js'
 import {
   Container,
   Header,
   Heading,
+  HeadingWrapper,
   Input,
   MainWrapper,
   RateBtn,
   RateText,
   RatingWrapper
 } from './styles/Review.js'
-import { useState } from 'react'
-import { Stack } from 'expo-router'
-import NavHeader from '../NavHeader.jsx'
 
 const Review = ({ isbn }) => {
+  const [book] = useBookISBN(isbn, ['title', 'author'])
   const [review, setReview] = useState('')
+
+  const cover = getCoverUri(isbn)
 
   return (
     <Screen>
@@ -31,11 +38,15 @@ const Review = ({ isbn }) => {
       <Container>
         <MainWrapper>
           <Header>
-            <Cover width='20%' style={{ backgroundColor: 'lightgray' }} />
-            <View>
-              <Heading>Título {isbn}</Heading>
-              <Text>Autor</Text>
-            </View>
+            <Cover
+              $width='20%'
+              src={cover}
+              style={{ backgroundColor: 'lightgray' }}
+            />
+            <HeadingWrapper>
+              <Heading>{book?.title}</Heading>
+              <Text>{getAuthors(book?.author)}</Text>
+            </HeadingWrapper>
           </Header>
           <Heading>¿Qué te pareció este libro?</Heading>
           <RatingWrapper>

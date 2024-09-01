@@ -2,7 +2,7 @@ import styled from 'styled-components/native'
 
 export const Container = styled.View`
   border: 1px solid black;
-  height: 100%;
+  height: 500px;
   width: 100%;
   padding: 14px;
   border-radius: 12px;
@@ -18,6 +18,10 @@ export const MainWrapper = styled.View`
 export const Header = styled.View`
   flex-direction: row;
   gap: 20px;
+`
+
+export const HeadingWrapper = styled.View`
+  width: 80%;
 `
 
 export const Heading = styled.Text`
