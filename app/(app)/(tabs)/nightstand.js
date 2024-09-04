@@ -1,4 +1,4 @@
-import ReadList from '../../components/nightstand/ReadList.jsx'
+import ReadList from '../../../components/nightstand/ReadList.jsx'
 
 const NightStand = () => <ReadList />
 
