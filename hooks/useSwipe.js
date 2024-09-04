@@ -2,21 +2,33 @@ import { Gesture } from 'react-native-gesture-handler'
 import { withSpring, runOnJS } from 'react-native-reanimated'
 import useSwipeAnimation from './useSwipeAnimation.js'
 import { useWindowDimensions } from 'react-native'
+import { useState } from 'react'
 
 const SWIPE_VELOCITY = 1600
+const COOLDOWN = 1500
 
 const useSwipe = ({ onSwipeLeft, onSwipeRight }) => {
+  const [enabled, setEnabled] = useState(true)
   const { width } = useWindowDimensions()
   const {
     translationX,
     translationY,
     prevTranslationX,
     prevTranslationY,
+    scale,
+    zIndex,
+    opacity,
     animatedStyles
   } = useSwipeAnimation(width)
 
   const decisionThreshold = width * 0.4
   const hiddenTranslateX = width * 2
+
+  const reset = () => {
+    'worklet'
+    translationX.value = 0
+    translationY.value = 0
+  }
 
   const resetPosition = () => {
     'worklet'
@@ -36,8 +48,13 @@ const useSwipe = ({ onSwipeLeft, onSwipeRight }) => {
     runOnJS(onSwipeRight)()
   }
 
+  const enable = () => setEnabled(true)
+  const enableWithCooldown = () => setTimeout(enable, COOLDOWN)
+  const disable = () => setEnabled(false)
+
   const panGesture = Gesture.Pan()
     .minDistance(1)
+    .enabled(enabled)
     .onStart(() => {
       prevTranslationX.value = translationX.value
       prevTranslationY.value = translationY.value
@@ -63,7 +80,16 @@ const useSwipe = ({ onSwipeLeft, onSwipeRight }) => {
     panGesture,
     animatedStyles,
     swipeLeft,
-    swipeRight
+    swipeRight,
+    enable,
+    enableWithCooldown,
+    disable,
+    animation: {
+      zIndex,
+      opacity,
+      scale,
+      reset
+    }
   }
 }
 
