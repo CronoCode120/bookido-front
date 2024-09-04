@@ -1,5 +1,5 @@
 import { useLocalSearchParams } from 'expo-router'
-import Review from '../components/nightstand/Review.jsx'
+import Review from '../../components/nightstand/Review.jsx'
 
 const ReviewPage = () => {
   const { isbn } = useLocalSearchParams()
