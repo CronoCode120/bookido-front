@@ -1,7 +1,7 @@
 import { View, Text, TextInput, Pressable } from 'react-native'
 import { useSession } from '../context/SessionProvider.js'
 import { useState } from 'react'
-import { router } from 'expo-router'
+import { Link, router } from 'expo-router'
 
 const Login = () => {
   const { signIn, session } = useSession()
@@ -34,6 +34,9 @@ const Login = () => {
       <Pressable onPress={handleSubmit}>
         <Text>Iniciar sesión</Text>
       </Pressable>
+      <Text>
+        ¿No tienes una cuenta? <Link href='/register'>Regístrate</Link>.
+      </Text>
     </View>
   )
 }
