@@ -1,4 +1,4 @@
-import Button, { LinkButton } from './Button.jsx'
+import Button, { LinkButton } from '../Button.jsx'
 import { Wrapper } from './styles/DrawerButtons.js'
 
 const DrawerButtons = ({ isbn }) => {

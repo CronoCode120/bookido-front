@@ -2,13 +2,13 @@ import { useState } from 'react'
 import { useBookISBN } from '../../hooks'
 import getAuthors from '../../utils/getAuthors.js'
 import getCoverUri from '../../utils/getCoverUri.js'
-import { Text, View } from 'react-native'
+import { Text } from 'react-native'
 import Screen from '../Screen.jsx'
 import { Stack } from 'expo-router'
 import NavHeader from '../NavHeader.jsx'
-import Button from './Button.jsx'
+import Button from '../Button.jsx'
 import { HeartIcon, LikeIcon, DislikeIcon } from '../icons'
-import { Cover } from '../../styles.js'
+import { Cover } from '../../styles/Cover.js'
 import {
   Container,
   Header,

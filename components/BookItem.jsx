@@ -1,8 +1,8 @@
-import { useBookSynopsis } from '../../hooks/index.js'
-import getAuthors from '../../utils/getAuthors.js'
-import getCoverUri from '../../utils/getCoverUri.js'
-import { AddIcon } from '../icons'
-import { Cover } from '../../styles.js'
+import { useBookSynopsis } from '../hooks/index.js'
+import getAuthors from '../utils/getAuthors.js'
+import getCoverUri from '../utils/getCoverUri.js'
+import { AddIcon } from './icons/index.js'
+import { Cover } from '../styles/Cover.js'
 import {
   AddButton,
   DetailWrapper,
@@ -12,7 +12,7 @@ import {
   Synopsis,
   Title,
   Wrapper
-} from './styles/BookItem.js'
+} from '../styles/BookItem.js'
 import { Shadow } from 'react-native-shadow-2'
 
 const BookItem = ({ book, openDrawer }) => {

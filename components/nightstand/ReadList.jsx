@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { FlatList } from 'react-native'
 import books from '../../books.json'
-import BookItem from './BookItem.jsx'
+import BookItem from '../BookItem.jsx'
 import AddDrawer from './AddDrawer.jsx'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
