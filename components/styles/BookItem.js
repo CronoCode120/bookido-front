@@ -41,7 +41,7 @@ export const Synopsis = styled(InfoText)`
   overflow: hidden;
 `
 
-export const AddButton = styled.Pressable`
+export const ActionButton = styled.Pressable`
   margin: 0 0 auto 0;
   padding: 5px;
   border-radius: 99px;
