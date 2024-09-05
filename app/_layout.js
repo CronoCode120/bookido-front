@@ -1,24 +1,11 @@
-import { Stack } from 'expo-router'
-import { View } from 'react-native'
+import { SessionProvider } from '../context/SessionProvider'
+import { Slot } from 'expo-router'
 
 const RootLayout = () => {
   return (
-    <View
-      style={{
-        flex: 1
-      }}
-    >
-      <Stack
-        screenOptions={{
-          headerTitle: '',
-          headerShadowVisible: false,
-          headerStyle: { backgroundColor: 'transparent' },
-          headerShown: false,
-          contentStyle: { backgroundColor: 'transparent' },
-          animation: 'slide_from_right'
-        }}
-      />
-    </View>
+    <SessionProvider>
+      <Slot />
+    </SessionProvider>
   )
 }
 

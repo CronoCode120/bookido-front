@@ -1,12 +1,12 @@
 import { Tabs } from 'expo-router'
-import NavHeader from '../../components/NavHeader.jsx'
+import NavHeader from '../../../components/NavHeader.jsx'
 
 import {
   HomeIcon,
   StandIcon,
   ShelfIcon,
   ProfileIcon
-} from '../../components/icons'
+} from '../../../components/icons/index.js'
 
 const TabsLayout = () => {
   return (

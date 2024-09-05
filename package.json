@@ -25,7 +25,8 @@
     "react-native-screens": "3.31.1",
     "react-native-shadow-2": "^7.1.0",
     "react-native-svg": "15.2.0",
-    "styled-components": "6.1.11"
+    "styled-components": "6.1.11",
+    "expo-secure-store": "~13.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
