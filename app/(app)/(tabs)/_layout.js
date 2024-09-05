@@ -34,6 +34,22 @@ const TabsLayout = () => {
           headerLeft: () => <NavHeader title='Mesita de noche' />
         }}
       />
+      <Tabs.Screen
+        name='shelf'
+        options={{
+          title: 'Estantería',
+          tabBarIcon: () => <ShelfIcon />,
+          headerShown: true,
+          headerLeft: () => <NavHeader title='Estantería' />
+        }}
+      />
+      <Tabs.Screen
+        name='profile'
+        options={{
+          title: 'Perfil',
+          tabBarIcon: () => <ProfileIcon />
+        }}
+      />
     </Tabs>
   )
 }
