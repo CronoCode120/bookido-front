@@ -4,6 +4,7 @@ import books from '../../books.json'
 import BookItem from '../BookItem.jsx'
 import AddDrawer from './AddDrawer.jsx'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import BookList from '../BookList.jsx'
 
 const ReadList = () => {
   const [drawerVisible, setDrawerVisible] = useState(false)
@@ -18,18 +19,9 @@ const ReadList = () => {
 
   return (
     <GestureHandlerRootView>
-      <FlatList
-        data={books}
-        renderItem={({ item }) => (
-          <BookItem book={item} openDrawer={openDrawer} />
-        )}
-        keyExtractor={item => item.title}
-        contentContainerStyle={{
-          flex: 1,
-          gap: 30,
-          backgroundColor: 'white',
-          paddingTop: 8
-        }}
+      <BookList
+        books={books}
+        renderBook={book => <BookItem book={book} openDrawer={openDrawer} />}
       />
       <AddDrawer
         book={curBook}
