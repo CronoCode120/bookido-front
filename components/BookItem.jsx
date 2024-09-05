@@ -1,4 +1,4 @@
-import { useBookSynopsis } from '../hooks/index.js'
+import { useBookISBN, useBookSynopsis } from '../hooks/index.js'
 import getAuthors from '../utils/getAuthors.js'
 import getCoverUri from '../utils/getCoverUri.js'
 import { AddIcon, CrossIcon } from './icons/index.js'
@@ -15,13 +15,13 @@ import {
 } from './styles/BookItem.js'
 import { Shadow } from 'react-native-shadow-2'
 
-const BookItem = ({ book, onPress, action }) => {
-  const { title, author, isbn } = book
+const BookItem = ({ isbn, onPress, action }) => {
+  const [book] = useBookISBN(isbn, ['title', 'author', 'publisher'])
+
+  const { title, author } = book
   const authorInfo = getAuthors(author)
-  const isbnStr = isbn ? isbn[0] : 'Desconocido'
-  const coverUri = getCoverUri(isbnStr)
-  const [synopsis] = useBookSynopsis(isbnStr)
-  console.log(synopsis)
+  const coverUri = getCoverUri(isbn)
+  const [synopsis] = useBookSynopsis(isbn)
 
   return (
     <Shadow
@@ -37,7 +37,7 @@ const BookItem = ({ book, onPress, action }) => {
             <InfoText>{authorInfo}</InfoText>
           </Heading>
           <ActionButton
-            onPress={() => onPress({ ...book, isbn: isbnStr, cover: coverUri })}
+            onPress={() => onPress({ ...book, isbn, cover: coverUri })}
           >
             {action === 'add' && <AddIcon />}
             {action === 'delete' && <CrossIcon />}
