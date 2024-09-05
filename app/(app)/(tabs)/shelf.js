@@ -1,13 +1,21 @@
-import { Text } from 'react-native'
-import Screen from '../../../components/Screen.jsx'
 import BookItem from '../../../components/BookItem.jsx'
+import BookList from '../../../components/BookList.jsx'
 
 import books from '../../../books.json'
 
-const Shelf = () => (
-  <Screen>
-    <Text>Estantería</Text>
-  </Screen>
-)
+const Shelf = () => {
+  const handlePress = book => {
+    console.log('delete ' + book.isbn[0])
+  }
+
+  return (
+    <BookList
+      books={books}
+      renderBook={book => (
+        <BookItem book={book} action='delete' onPress={handlePress} />
+      )}
+    />
+  )
+}
 
 export default Shelf
