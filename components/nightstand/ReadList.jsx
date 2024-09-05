@@ -25,7 +25,7 @@ const ReadList = () => {
   }
 
   return (
-    <GestureHandlerRootView>
+    <GestureHandlerRootView style={{ flex: 1, backgroundColor: 'white' }}>
       <BookList
         books={books}
         renderBook={isbn => (
