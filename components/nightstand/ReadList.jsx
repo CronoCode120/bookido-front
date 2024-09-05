@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { FlatList } from 'react-native'
 import books from '../../books.json'
 import BookItem from '../BookItem.jsx'
 import AddDrawer from './AddDrawer.jsx'
@@ -21,7 +20,9 @@ const ReadList = () => {
     <GestureHandlerRootView>
       <BookList
         books={books}
-        renderBook={book => <BookItem book={book} openDrawer={openDrawer} />}
+        renderBook={book => (
+          <BookItem book={book} action='add' onPress={openDrawer} />
+        )}
       />
       <AddDrawer
         book={curBook}
