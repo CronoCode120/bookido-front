@@ -26,3 +26,26 @@ export const getSynopsisByISBN = async isbn =>
       }
     })
   ).data
+
+export const addToTable = async (isbn, userId) =>
+  (
+    await apiUrl.post('/table', {
+      isbn,
+      userId
+    })
+  ).data
+
+export const getBooksInTable = async userId =>
+  (
+    await apiUrl.get('/table', {
+      params: { userId }
+    })
+  ).data
+
+export const discardBook = async (isbn, userId) =>
+  (
+    await apiUrl.post('/discard', {
+      isbn,
+      userId
+    })
+  ).data
