@@ -42,6 +42,31 @@ export const getBooksInTable = async userId =>
     })
   ).data
 
+export const removeFromTable = async (isbn, userId) =>
+  await apiUrl.delete('/table', {
+    params: { isbn, userId }
+  })
+
+export const addToShelf = async (isbn, userId) =>
+  (
+    await apiUrl.post('/shelf', {
+      isbn,
+      userId
+    })
+  ).data
+
+export const getBooksInShelf = async userId =>
+  (
+    await apiUrl.get('/shelf', {
+      params: { userId }
+    })
+  ).data
+
+export const removeFromShelf = async (isbn, userId) =>
+  await apiUrl.delete('/shelf', {
+    params: { isbn, userId }
+  })
+
 export const discardBook = async (isbn, userId) =>
   (
     await apiUrl.post('/discard', {
