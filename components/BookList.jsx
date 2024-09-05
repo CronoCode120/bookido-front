@@ -5,12 +5,13 @@ const BookList = ({ books, renderBook }) => {
     <FlatList
       data={books}
       renderItem={({ item }) => renderBook(item)}
-      keyExtractor={item => item.title}
+      keyExtractor={item => item}
       contentContainerStyle={{
-        flex: 1,
+        alignSelf: 'stretch',
         gap: 30,
         backgroundColor: 'white',
-        paddingTop: 8
+        paddingVertical: 8,
+        overflow: 'auto'
       }}
     />
   )
