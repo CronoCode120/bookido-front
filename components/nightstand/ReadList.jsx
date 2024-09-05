@@ -1,13 +1,21 @@
-import { useState } from 'react'
-import books from '../../books.json'
+import { useEffect, useState } from 'react'
 import BookItem from '../BookItem.jsx'
 import AddDrawer from './AddDrawer.jsx'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import BookList from '../BookList.jsx'
+import { getBooksInTable } from '../../api/books.js'
+import { useSession } from '../../context/SessionProvider.js'
 
 const ReadList = () => {
   const [drawerVisible, setDrawerVisible] = useState(false)
   const [curBook, setCurBook] = useState(null)
+
+  const { session } = useSession()
+  const [books, setBooks] = useState([])
+
+  useEffect(() => {
+    getBooksInTable(session).then(data => setBooks(data.table))
+  }, [])
 
   const toggleDrawer = () => setDrawerVisible(!drawerVisible)
 
@@ -20,8 +28,8 @@ const ReadList = () => {
     <GestureHandlerRootView>
       <BookList
         books={books}
-        renderBook={book => (
-          <BookItem book={book} action='add' onPress={openDrawer} />
+        renderBook={isbn => (
+          <BookItem isbn={isbn} action='add' onPress={openDrawer} />
         )}
       />
       <AddDrawer
