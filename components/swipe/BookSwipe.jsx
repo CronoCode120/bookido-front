@@ -11,7 +11,7 @@ const BookSwipe = () => {
   const page = Math.floor((curIdx + 3) / 20) + 1
 
   const [books] = useBooks(page)
-  const { session } = useSession()
+  const { session, setUpdateStand } = useSession()
 
   const [btnDisabled, setBtnDisabled] = useState(false)
   const curIsbn = books[curIdx]?.isbn[0]
@@ -32,7 +32,7 @@ const BookSwipe = () => {
   }
 
   const onSwipeRight = () => {
-    addToTable(curIsbn, session)
+    addToTable(curIsbn, session).then(() => setUpdateStand(true))
     handleSwipe()
   }
 
