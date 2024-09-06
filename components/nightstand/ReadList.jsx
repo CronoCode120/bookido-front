@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import BookItem from '../BookItem.jsx'
 import AddDrawer from './AddDrawer.jsx'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
@@ -6,16 +6,24 @@ import BookList from '../BookList.jsx'
 import { getBooksInTable } from '../../api/books.js'
 import { useSession } from '../../context/SessionProvider.js'
 
+import { useFocusEffect } from 'expo-router'
+
 const ReadList = () => {
   const [drawerVisible, setDrawerVisible] = useState(false)
   const [curBook, setCurBook] = useState(null)
 
-  const { session } = useSession()
+  const { session, updateStand, setUpdateStand } = useSession()
   const [books, setBooks] = useState([])
 
-  useEffect(() => {
+  const fetchBooks = () =>
     getBooksInTable(session).then(data => setBooks(data.table))
-  }, [])
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchBooks()
+      setUpdateStand(false)
+    }, [updateStand])
+  )
 
   const toggleDrawer = () => setDrawerVisible(!drawerVisible)
 
