@@ -1,5 +1,5 @@
 import { getFullAuthors } from '../../utils/getAuthors.js'
-import { Cover } from '../../styles/Cover.js'
+import { Cover } from '../styles/Cover.js'
 import {
   ContentWrapper,
   Title,

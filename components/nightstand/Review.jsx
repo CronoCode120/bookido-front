@@ -8,7 +8,7 @@ import { Stack } from 'expo-router'
 import NavHeader from '../NavHeader.jsx'
 import Button from '../Button.jsx'
 import { HeartIcon, LikeIcon, DislikeIcon } from '../icons'
-import { Cover } from '../../styles/Cover.js'
+import { Cover } from '../styles/Cover.js'
 import {
   Container,
   Header,
