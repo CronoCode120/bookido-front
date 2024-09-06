@@ -18,8 +18,8 @@ export const SessionProvider = ({ children }) => {
 
   const signOut = () => setSession(null)
 
-  const [updateStand, setUpdateStand] = useState(false)
-  const [updateShelf, setUpdateShelf] = useState(false)
+  const [updateStand, setUpdateStand] = useState(true)
+  const [updateShelf, setUpdateShelf] = useState(true)
 
   return (
     <AuthContext.Provider
