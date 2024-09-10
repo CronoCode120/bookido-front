@@ -41,8 +41,7 @@ const DrawerModal = ({ visible, onClose, children }) => {
   })
 
   const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: translateY.value }],
-    zIndex: 3
+    transform: [{ translateY: translateY.value }]
   }))
 
   const animatedBlurProps = useAnimatedProps(() => ({
@@ -63,7 +62,7 @@ const DrawerModal = ({ visible, onClose, children }) => {
     return (
       <>
         <AnimatedBlur animatedProps={animatedBlurProps} style={{ zIndex }} />
-        <Animated.View style={[animatedStyle]}>
+        <Animated.View style={[animatedStyle, { zIndex: 3 }]}>
           <Shadow sides={{ bottom: false, start: false, end: false }} stretch>
             <View
               style={{
@@ -73,7 +72,7 @@ const DrawerModal = ({ visible, onClose, children }) => {
                 right: 0,
                 borderTopStartRadius: 40,
                 borderTopEndRadius: 40,
-                height: 460,
+                height: HEIGHT,
                 overflow: 'hidden',
                 paddingHorizontal: 24,
                 paddingBottom: 20,
