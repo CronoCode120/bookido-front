@@ -4,10 +4,10 @@ const apiUrl = axios.create({
   baseURL: 'https://bookido-back.onrender.com/books'
 })
 
-export const getBooksData = async page =>
+export const getBooksData = async (page, userId) =>
   (
     await apiUrl.get('/', {
-      params: { page }
+      params: { page, userId }
     })
   ).data
 
@@ -24,5 +24,53 @@ export const getSynopsisByISBN = async isbn =>
       params: {
         isbn
       }
+    })
+  ).data
+
+export const addToTable = async (isbn, userId) =>
+  (
+    await apiUrl.post('/table', {
+      isbn,
+      userId
+    })
+  ).data
+
+export const getBooksInTable = async userId =>
+  (
+    await apiUrl.get('/table', {
+      params: { userId }
+    })
+  ).data
+
+export const removeFromTable = async (isbn, userId) =>
+  await apiUrl.delete('/table', {
+    params: { isbn, userId }
+  })
+
+export const addToShelf = async (isbn, userId) =>
+  (
+    await apiUrl.post('/shelf', {
+      isbn,
+      userId
+    })
+  ).data
+
+export const getBooksInShelf = async userId =>
+  (
+    await apiUrl.get('/shelf', {
+      params: { userId }
+    })
+  ).data
+
+export const removeFromShelf = async (isbn, userId) =>
+  await apiUrl.delete('/shelf', {
+    params: { isbn, userId }
+  })
+
+export const discardBook = async (isbn, userId) =>
+  (
+    await apiUrl.post('/discard', {
+      isbn,
+      userId
     })
   ).data

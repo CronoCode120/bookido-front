@@ -10,7 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState('')
 
   const handleSubmit = async () => {
-    await signIn(email, password)
+    await signIn(email.trim(), password)
     router.replace('/')
   }
 

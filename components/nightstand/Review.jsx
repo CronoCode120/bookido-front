@@ -2,13 +2,13 @@ import { useState } from 'react'
 import { useBookISBN } from '../../hooks'
 import getAuthors from '../../utils/getAuthors.js'
 import getCoverUri from '../../utils/getCoverUri.js'
-import { Text, View } from 'react-native'
+import { Text } from 'react-native'
 import Screen from '../Screen.jsx'
 import { Stack } from 'expo-router'
 import NavHeader from '../NavHeader.jsx'
-import Button from './Button.jsx'
+import Button from '../Button.jsx'
 import { HeartIcon, LikeIcon, DislikeIcon } from '../icons'
-import { Cover } from '../../styles.js'
+import { Cover } from '../styles/Cover.js'
 import {
   Container,
   Header,
@@ -16,14 +16,21 @@ import {
   HeadingWrapper,
   Input,
   MainWrapper,
-  RateBtn,
-  RateText,
   RatingWrapper
 } from './styles/Review.js'
+import RatingBtn from './RatingBtn.jsx'
+
+const ratings = [
+  { label: 'Me encantó', value: 'love', icon: HeartIcon },
+  { label: 'Me gustó', value: 'like', icon: LikeIcon },
+  { label: 'No es para mí', value: 'dislike', icon: DislikeIcon }
+]
 
 const Review = ({ isbn }) => {
   const [book] = useBookISBN(isbn, ['title', 'author'])
+
   const [review, setReview] = useState('')
+  const [rating, setRating] = useState(null)
 
   const cover = getCoverUri(isbn)
 
@@ -50,18 +57,16 @@ const Review = ({ isbn }) => {
           </Header>
           <Heading>¿Qué te pareció este libro?</Heading>
           <RatingWrapper>
-            <RateBtn>
-              <HeartIcon />
-              <RateText>Me encantó</RateText>
-            </RateBtn>
-            <RateBtn>
-              <LikeIcon />
-              <RateText>Me gustó</RateText>
-            </RateBtn>
-            <RateBtn>
-              <DislikeIcon />
-              <RateText>No es para mí</RateText>
-            </RateBtn>
+            {ratings.map(({ label, value, icon }) => (
+              <RatingBtn
+                key={value}
+                label={label}
+                value={value}
+                Icon={icon}
+                selectedValue={rating}
+                onPress={setRating}
+              />
+            ))}
           </RatingWrapper>
           <Heading>Si quieres, deja una reseña</Heading>
           <Input value={review} onChangeText={text => setReview(text)} />

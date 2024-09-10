@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from 'react'
+import { createContext, useContext, useState } from 'react'
 import { useStorageState } from '../hooks/useStorageState.js'
 import { logIn } from '../api/user.js'
 
@@ -6,10 +6,6 @@ const AuthContext = createContext()
 
 export const SessionProvider = ({ children }) => {
   const [[isLoading, session], setSession] = useStorageState('session')
-
-  useEffect(() => {
-    console.log(session)
-  }, [session])
 
   const signIn = async (email, password) => {
     try {
@@ -22,13 +18,20 @@ export const SessionProvider = ({ children }) => {
 
   const signOut = () => setSession(null)
 
+  const [updateStand, setUpdateStand] = useState(true)
+  const [updateShelf, setUpdateShelf] = useState(true)
+
   return (
     <AuthContext.Provider
       value={{
         session,
         isLoading,
         signIn,
-        signOut
+        signOut,
+        updateStand,
+        setUpdateStand,
+        updateShelf,
+        setUpdateShelf
       }}
     >
       {children}

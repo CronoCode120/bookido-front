@@ -1,10 +1,10 @@
-import { useBookSynopsis } from '../../hooks/index.js'
-import getAuthors from '../../utils/getAuthors.js'
-import getCoverUri from '../../utils/getCoverUri.js'
-import { AddIcon } from '../icons'
-import { Cover } from '../../styles.js'
+import { useBookISBN, useBookSynopsis } from '../hooks/index.js'
+import getAuthors from '../utils/getAuthors.js'
+import getCoverUri from '../utils/getCoverUri.js'
+import { AddIcon, CrossIcon } from './icons/index.js'
+import { Cover } from './styles/Cover.js'
 import {
-  AddButton,
+  ActionButton,
   DetailWrapper,
   Header,
   Heading,
@@ -15,12 +15,13 @@ import {
 } from './styles/BookItem.js'
 import { Shadow } from 'react-native-shadow-2'
 
-const BookItem = ({ book, openDrawer }) => {
-  const { title, author, isbn } = book
+const BookItem = ({ isbn, onPress, action }) => {
+  const [book] = useBookISBN(isbn, ['title', 'author', 'publisher'])
+
+  const { title, author } = book ?? {}
   const authorInfo = getAuthors(author)
-  const isbnStr = isbn ? isbn[0] : 'Desconocido'
-  const coverUri = getCoverUri(isbnStr)
-  const [synopsis] = useBookSynopsis(isbnStr)
+  const coverUri = getCoverUri(isbn)
+  const [synopsis] = useBookSynopsis(isbn)
 
   return (
     <Shadow
@@ -35,13 +36,12 @@ const BookItem = ({ book, openDrawer }) => {
             <Title>{title}</Title>
             <InfoText>{authorInfo}</InfoText>
           </Heading>
-          <AddButton
-            onPress={() =>
-              openDrawer({ ...book, cover: coverUri, isbn: isbnStr })
-            }
+          <ActionButton
+            onPress={() => onPress({ ...book, isbn, cover: coverUri })}
           >
-            <AddIcon />
-          </AddButton>
+            {action === 'add' && <AddIcon />}
+            {action === 'delete' && <CrossIcon />}
+          </ActionButton>
         </Header>
         <DetailWrapper>
           <Cover src={coverUri} $width='20%' />

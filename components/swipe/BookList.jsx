@@ -1,14 +1,10 @@
 import { useState, useEffect } from 'react'
-import { useBooks } from '../../hooks'
 import { ActivityIndicator, View } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { runOnUI } from 'react-native-reanimated'
 import BookCard from './BookCard.jsx'
 
-const BookList = ({ curIdx, swipeInstances, setCurSwipe }) => {
-  const page = Math.floor((curIdx + 3) / 20) + 1
-  const [books] = useBooks(page)
-
+const BookList = ({ books, curIdx, swipeInstances, setCurSwipe }) => {
   const [firstIdx, setFirstIdx] = useState(0)
   const [secondIdx, setSecondIdx] = useState(1)
   const [thirdIdx, setThirdIdx] = useState(2)
