@@ -1,4 +1,7 @@
-import Slider from './Slider.jsx'
+import { useEffect, useState } from 'react'
+import { View, StyleSheet } from 'react-native'
+import { Slider } from '.'
+import { Shadow } from 'react-native-shadow-2'
 import { ContentView } from './styles/DrawerModal.js'
 import { BlurWrapper } from './styles/BackdropBlur.js'
 import Animated, {
@@ -9,16 +12,13 @@ import Animated, {
   useDerivedValue,
   withTiming
 } from 'react-native-reanimated'
-import { useEffect, useState } from 'react'
-import { useBackAction, useSlide } from '../../hooks'
-import { Shadow } from 'react-native-shadow-2'
-import { View } from 'react-native'
 
-const DrawerModal = ({ visible, onClose, children }) => {
+import { useModal } from '../../context/ModalProvider.js'
+
+const DrawerModal = ({ children }) => {
   const [zIndex, setZIndex] = useState(-1)
-  const HEIGHT = 460
 
-  const { panGesture, translateY, closeContainer } = useSlide(HEIGHT, onClose)
+  const { visible, panGesture, translateY, HEIGHT } = useModal()
 
   useEffect(() => {
     if (visible) {
@@ -50,13 +50,19 @@ const DrawerModal = ({ visible, onClose, children }) => {
 
   const AnimatedBlur = Animated.createAnimatedComponent(BlurWrapper)
 
-  useBackAction(() => {
-    if (visible) {
-      closeContainer()
-      return true
-    }
-    return false
-  }, [visible])
+  const containerStyle = StyleSheet.create({
+    position: 'absolute',
+    top: '100%',
+    left: 0,
+    right: 0,
+    borderTopStartRadius: 40,
+    borderTopEndRadius: 40,
+    height: HEIGHT,
+    overflow: 'hidden',
+    paddingHorizontal: 24,
+    paddingBottom: 20,
+    backgroundColor: '#fffafad9'
+  })
 
   if (visible)
     return (
@@ -64,21 +70,7 @@ const DrawerModal = ({ visible, onClose, children }) => {
         <AnimatedBlur animatedProps={animatedBlurProps} style={{ zIndex }} />
         <Animated.View style={[animatedStyle, { zIndex: 3 }]}>
           <Shadow sides={{ bottom: false, start: false, end: false }} stretch>
-            <View
-              style={{
-                position: 'absolute',
-                top: '100%',
-                left: 0,
-                right: 0,
-                borderTopStartRadius: 40,
-                borderTopEndRadius: 40,
-                height: HEIGHT,
-                overflow: 'hidden',
-                paddingHorizontal: 24,
-                paddingBottom: 20,
-                backgroundColor: '#fffafad9'
-              }}
-            >
+            <View style={containerStyle}>
               <Slider panGesture={panGesture} />
               <ContentView>{children}</ContentView>
             </View>

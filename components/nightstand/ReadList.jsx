@@ -1,15 +1,15 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import BookItem from '../BookItem.jsx'
-import AddDrawer from './AddDrawer.jsx'
-import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import BookList from '../BookList.jsx'
+import { AddDrawer } from '.'
 import { getBooksInTable } from '../../api/books.js'
-import { useSession } from '../../context/SessionProvider.js'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 import { useFocusEffect } from 'expo-router'
+import { useSession } from '../../context/SessionProvider.js'
+import { useModal } from '../../context/ModalProvider.js'
 
 const ReadList = () => {
-  const [drawerVisible, setDrawerVisible] = useState(false)
   const [curBook, setCurBook] = useState(null)
 
   const { session, updateStand, setUpdateStand } = useSession()
@@ -25,11 +25,10 @@ const ReadList = () => {
     }, [updateStand])
   )
 
-  const toggleDrawer = () => setDrawerVisible(!drawerVisible)
-
+  const { toggleVisible } = useModal()
   const openDrawer = book => {
     setCurBook(book)
-    toggleDrawer()
+    toggleVisible()
   }
 
   return (
@@ -40,11 +39,7 @@ const ReadList = () => {
           <BookItem isbn={isbn} action='add' onPress={openDrawer} />
         )}
       />
-      <AddDrawer
-        book={curBook}
-        visible={drawerVisible}
-        toggleDrawer={toggleDrawer}
-      />
+      <AddDrawer book={curBook} />
     </GestureHandlerRootView>
   )
 }
