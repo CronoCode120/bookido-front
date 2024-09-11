@@ -24,10 +24,6 @@ export const ModalProvider = ({ children }) => {
     return false
   }, [visible, focused])
 
-  useEffect(() => {
-    console.log('focused: ', focused)
-  }, [focused])
-
   const navigation = useNavigation()
   useEffect(() => {
     navigation.addListener('blur', () => setFocused(false))
