@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 import BookItem from '../BookItem.jsx'
 import BookList from '../BookList.jsx'
-import { AddDrawer } from '.'
+import AddDrawer from './AddDrawer.jsx'
 import { getBooksInTable } from '../../api/books.js'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { View, StyleSheet } from 'react-native'
-import { Slider } from '.'
+import Slider from './Slider.jsx'
 import { Shadow } from 'react-native-shadow-2'
 import { ContentView } from './styles/DrawerModal.js'
 import { BlurWrapper } from './styles/BackdropBlur.js'
