@@ -1,5 +1,5 @@
-import { PannableArea, SlideBar } from './styles/Slider.js'
 import { GestureDetector } from 'react-native-gesture-handler'
+import { PannableArea, SlideBar } from './styles/Slider.js'
 
 const Slider = ({ panGesture }) => {
   return (

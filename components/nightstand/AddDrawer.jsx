@@ -1,10 +1,8 @@
-import BookDetails from './BookDetails.jsx'
-import DrawerButtons from './DrawerButtons.jsx'
-import DrawerModal from './DrawerModal.jsx'
+import { BookDetails, DrawerButtons, DrawerModal } from '.'
 
-const AddDrawer = ({ book, visible, toggleDrawer }) => {
+const AddDrawer = ({ book }) => {
   return (
-    <DrawerModal visible={visible} onClose={toggleDrawer}>
+    <DrawerModal>
       <BookDetails book={book} />
       <DrawerButtons isbn={book?.isbn} />
     </DrawerModal>
