@@ -22,7 +22,7 @@ const RefBtn = forwardRef(function Button(
 ) {
   return (
     <StyledButton onPress={onPress} type={type} ref={ref}>
-      <Label type={type}>{children}</Label>
+      {children}
     </StyledButton>
   )
 })
