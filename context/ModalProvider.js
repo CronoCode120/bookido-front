@@ -11,7 +11,7 @@ export const ModalProvider = ({ children }) => {
   const [visible, setVisible] = useState(false)
   const toggleVisible = () => setVisible(prevState => !prevState)
 
-  const { panGesture, translateY, closeContainer } = useSlide(
+  const { panGesture, translateY, openContainer, closeContainer } = useSlide(
     HEIGHT,
     toggleVisible
   )
@@ -36,6 +36,7 @@ export const ModalProvider = ({ children }) => {
         visible,
         toggleVisible,
         closeContainer,
+        openContainer,
         panGesture,
         translateY,
         HEIGHT

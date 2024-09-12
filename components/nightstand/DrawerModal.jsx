@@ -6,11 +6,9 @@ import { ContentView } from './styles/DrawerModal.js'
 import { BlurWrapper } from './styles/BackdropBlur.js'
 import Animated, {
   interpolate,
-  runOnUI,
   useAnimatedProps,
   useAnimatedStyle,
-  useDerivedValue,
-  withTiming
+  useDerivedValue
 } from 'react-native-reanimated'
 
 import { useModal } from '../../context/ModalProvider.js'
@@ -18,27 +16,19 @@ import { useModal } from '../../context/ModalProvider.js'
 const DrawerModal = ({ children }) => {
   const [zIndex, setZIndex] = useState(-1)
 
-  const { visible, panGesture, translateY, HEIGHT } = useModal()
+  const { visible, panGesture, translateY, openContainer, HEIGHT } = useModal()
 
   useEffect(() => {
     if (visible) {
-      open()
+      openContainer()
       setZIndex(1)
     }
     if (!visible) setZIndex(-1)
   }, [visible])
 
-  const duration = 400
   const blurIntensity = useDerivedValue(() =>
     interpolate(translateY.value, [-HEIGHT, 0], [40, 0])
   )
-
-  const open = runOnUI(() => {
-    'worklet'
-    translateY.value = withTiming(-HEIGHT, {
-      duration
-    })
-  })
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: translateY.value }]

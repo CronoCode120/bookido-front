@@ -8,6 +8,7 @@ import {
 
 const useSlide = (containerHeight, onClose) => {
   const SLIDE_VELOCITY = 1600
+  const DURATION = 400
 
   const translateY = useSharedValue(0)
   const prevTranslateY = useSharedValue(0)
@@ -20,12 +21,17 @@ const useSlide = (containerHeight, onClose) => {
     translateY.value = withTiming(prevTranslateY.value)
   }
 
+  const openContainer = () => {
+    'worklet'
+    translateY.value = withTiming(-containerHeight, { duration: DURATION })
+  }
+
   const closeContainer = () => {
     'worklet'
     translateY.value = withTiming(
       0,
       {
-        duration: 400
+        duration: DURATION
       },
       _finished => {
         runOnJS(onClose)()
@@ -60,7 +66,9 @@ const useSlide = (containerHeight, onClose) => {
   return {
     panGesture,
     translateY,
-    closeContainer
+    prevTranslateY,
+    closeContainer,
+    openContainer
   }
 }
 
