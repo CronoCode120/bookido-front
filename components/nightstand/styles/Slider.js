@@ -6,7 +6,7 @@ export const PannableArea = styled.View`
 `
 
 export const SlideBar = styled.View`
-  border: 2px solid #64748b;
+  border: 2px solid ${({ theme }) => theme.colors.NEUTRAL_500};
   border-radius: 99px;
   width: 60px;
   margin: 0 auto;

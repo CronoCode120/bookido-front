@@ -5,14 +5,14 @@ const Button = styled.Pressable`
   border-radius: 8px;
 `
 
-export const StyledButton = styled(Button)(({ type }) => {
+export const StyledButton = styled(Button)(({ type, theme }) => {
   if (type === 'tertiary')
     return {
-      border: '0.8px solid #64748B'
+      border: '0.8px solid ' + theme.colors.NEUTRAL_500
     }
 
   return {
-    backgroundColor: '#334155'
+    backgroundColor: theme.colors.NEUTRAL_700
   }
 })
 
@@ -20,5 +20,6 @@ export const Label = styled.Text`
   text-align: center;
   font-size: 16px;
   font-weight: 600;
-  color: ${({ type }) => (type === 'tertiary' ? '#64748B' : '#fffafa')};
+  color: ${({ type, theme }) =>
+    type === 'tertiary' ? theme.colors.NEUTRAL_500 : theme.colors.WHITE};
 `
