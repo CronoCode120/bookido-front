@@ -1,5 +1,6 @@
 import Svg, { Path } from 'react-native-svg'
-const AddIcon = props => (
+import theme from '../../theme.js'
+const AddIcon = ({ color = theme.colors.BLACK, ...props }) => (
   <Svg
     xmlns='http://www.w3.org/2000/svg'
     width={28}
@@ -8,7 +9,7 @@ const AddIcon = props => (
     {...props}
   >
     <Path
-      stroke='#1F1F1F'
+      stroke={color}
       strokeLinecap='round'
       strokeLinejoin='round'
       strokeWidth={1.5}
