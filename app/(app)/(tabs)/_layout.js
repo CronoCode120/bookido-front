@@ -22,14 +22,14 @@ const TabsLayout = () => {
         name='index'
         options={{
           title: 'Inicio',
-          tabBarIcon: () => <HomeIcon />
+          tabBarIcon: ({ focused }) => <HomeIcon selected={focused} />
         }}
       />
       <Tabs.Screen
         name='nightstand'
         options={{
           title: 'Mesita',
-          tabBarIcon: () => <StandIcon />,
+          tabBarIcon: ({ focused }) => <StandIcon selected={focused} />,
           headerShown: true,
           headerLeft: () => <NavHeader title='Mesita de noche' />
         }}
@@ -38,7 +38,7 @@ const TabsLayout = () => {
         name='shelf'
         options={{
           title: 'Estantería',
-          tabBarIcon: () => <ShelfIcon />,
+          tabBarIcon: ({ focused }) => <ShelfIcon selected={focused} />,
           headerShown: true,
           headerLeft: () => <NavHeader title='Estantería' />
         }}
@@ -47,7 +47,7 @@ const TabsLayout = () => {
         name='profile'
         options={{
           title: 'Perfil',
-          tabBarIcon: () => <ProfileIcon />
+          tabBarIcon: ({ focused }) => <ProfileIcon selected={focused} />
         }}
       />
     </Tabs>
