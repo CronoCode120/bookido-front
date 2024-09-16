@@ -2,11 +2,9 @@ import { useEffect, useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 import Slider from './Slider.jsx'
 import { Shadow } from 'react-native-shadow-2'
-import { ContentView } from './styles/DrawerModal.js'
-import { BlurWrapper } from './styles/BackdropBlur.js'
+import { Background, ContentView } from './styles/DrawerModal.js'
 import Animated, {
   interpolate,
-  useAnimatedProps,
   useAnimatedStyle,
   useDerivedValue
 } from 'react-native-reanimated'
@@ -26,19 +24,19 @@ const DrawerModal = ({ children }) => {
     if (!visible) setZIndex(-1)
   }, [visible])
 
-  const blurIntensity = useDerivedValue(() =>
-    interpolate(translateY.value, [-HEIGHT, 0], [40, 0])
+  const bgOpacity = useDerivedValue(() =>
+    interpolate(translateY.value, [-HEIGHT, 0], [0.4, 0])
   )
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: translateY.value }]
   }))
 
-  const animatedBlurProps = useAnimatedProps(() => ({
-    intensity: blurIntensity.value
+  const animatedOpacity = useAnimatedStyle(() => ({
+    opacity: bgOpacity.value
   }))
 
-  const AnimatedBlur = Animated.createAnimatedComponent(BlurWrapper)
+  const AnimatedBg = Animated.createAnimatedComponent(Background)
 
   const containerStyle = StyleSheet.create({
     position: 'absolute',
@@ -51,13 +49,13 @@ const DrawerModal = ({ children }) => {
     overflow: 'hidden',
     paddingHorizontal: 24,
     paddingBottom: 20,
-    backgroundColor: '#fffafad9'
+    backgroundColor: '#fffafa'
   })
 
   if (visible)
     return (
       <>
-        <AnimatedBlur animatedProps={animatedBlurProps} style={{ zIndex }} />
+        <AnimatedBg style={[animatedOpacity, { zIndex }]} />
         <Animated.View style={[animatedStyle, { zIndex: 3 }]}>
           <Shadow sides={{ bottom: false, start: false, end: false }} stretch>
             <View style={containerStyle}>
