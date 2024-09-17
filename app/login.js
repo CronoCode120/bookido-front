@@ -24,7 +24,13 @@ const Login = () => {
         <InputsContainer>
           <InputWrapper>
             <StyledText>Correo electrónico</StyledText>
-            <Input value={email} onChangeText={text => setEmail(text)} />
+            <Input
+              value={email}
+              onChangeText={text => setEmail(text)}
+              inputMode='email'
+              autoComplete='email'
+              autoCorrect={false}
+            />
           </InputWrapper>
           <InputWrapper>
             <StyledText>Contraseña</StyledText>
@@ -67,6 +73,7 @@ const Wrapper = styled.View`
 `
 
 const Title = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.CALISTOGA};
   font-size: 24px;
   margin-bottom: 28px;
 `
@@ -79,9 +86,12 @@ const InputWrapper = styled.View`
   gap: 8px;
 `
 
-const Input = styled.TextInput`
+const Input = styled.TextInput.attrs({
+  autoCapitalize: 'none'
+})`
   border-radius: 12px;
   height: 40px;
+  padding: 10px 12px;
   background: ${({ theme }) => theme.colors.NEUTRAL_200};
 `
 
