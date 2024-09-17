@@ -19,14 +19,28 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.cronocode.bookido"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
       "expo-router",
-      "expo-secure-store"
-    ]
+      "expo-secure-store",
+      "expo-font",
+      {
+        "fonts": [
+          "./assets/fonts/Calistoga-Regular.ttf",
+          "./assets/fonts/Roboto-Regular.ttf",
+          "./assets/fonts/Roboto-Bold.ttf"
+        ]
+      }
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "79c4e526-6b20-42a1-b422-fed33df79ad4"
+      }
+    }
   }
 }
