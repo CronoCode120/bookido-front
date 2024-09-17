@@ -28,14 +28,16 @@
     "plugins": [
       "expo-router",
       "expo-secure-store",
-      "expo-font",
-      {
-        "fonts": [
-          "./assets/fonts/Calistoga-Regular.ttf",
-          "./assets/fonts/Roboto-Regular.ttf",
-          "./assets/fonts/Roboto-Bold.ttf"
-        ]
-      }
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Calistoga-Regular.ttf",
+            "./assets/fonts/Roboto-Regular.ttf",
+            "./assets/fonts/Roboto-Bold.ttf"
+          ]
+        }
+      ]
     ],
     "extra": {
       "eas": {
