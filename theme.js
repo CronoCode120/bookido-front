@@ -25,6 +25,11 @@ const theme = {
     TEAL_600: '#3D7673',
     TEAL_400: '#8BACAA',
     TEAL_50: '#DDEEED'
+  },
+  fonts: {
+    ROBOTO_REGULAR: 'Roboto-Regular',
+    ROBOTO_BOLD: 'Roboto-Bold',
+    CALISTOGA: 'Calistoga-Regular'
   }
 }
 
