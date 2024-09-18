@@ -5,6 +5,7 @@ import { Link, router } from 'expo-router'
 import Button from '../components/Button.jsx'
 
 import styled from 'styled-components/native'
+import FormInput from '../components/Input.jsx'
 
 const Login = () => {
   const { signIn } = useSession()
@@ -22,20 +23,12 @@ const Login = () => {
       <Wrapper>
         <Title>Iniciar sesión</Title>
         <InputsContainer>
-          <InputWrapper>
-            <StyledText>Correo electrónico</StyledText>
-            <Input
-              value={email}
-              onChangeText={text => setEmail(text)}
-              inputMode='email'
-              autoComplete='email'
-              autoCorrect={false}
-            />
-          </InputWrapper>
-          <InputWrapper>
-            <StyledText>Contraseña</StyledText>
-            <Input value={password} onChangeText={text => setPassword(text)} />
-          </InputWrapper>
+          <FormInput type='email' value={email} onChangeText={setEmail} />
+          <FormInput
+            type='password'
+            value={password}
+            onChangeText={setPassword}
+          />
         </InputsContainer>
         <ForgotLink as={Link} href='/forgot-password'>
           ¿Has olvidado la contraseña?
@@ -80,19 +73,6 @@ const Title = styled.Text`
 
 const InputsContainer = styled.View`
   gap: 20px;
-`
-
-const InputWrapper = styled.View`
-  gap: 8px;
-`
-
-const Input = styled.TextInput.attrs({
-  autoCapitalize: 'none'
-})`
-  border-radius: 12px;
-  height: 40px;
-  padding: 10px 12px;
-  background: ${({ theme }) => theme.colors.NEUTRAL_200};
 `
 
 const StyledText = styled.Text`
