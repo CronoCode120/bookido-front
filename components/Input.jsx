@@ -2,18 +2,26 @@ import { InputWrapper, StyledText, Input } from './styles/FormInput'
 
 const inputProps = {
   email: {
+    label: 'Correo electrónico',
     inputMode: 'email',
     autoComplete: 'email',
     autoCorrect: false,
-    placeholder: 'ejemplo@mail.com'
+    placeholder: 'ejemplo@mail.com',
+    autoCapitalize: 'none'
+  },
+  password: {
+    label: 'Contraseña',
+    secureTextEntry: true,
+    autoCapitalize: 'none'
   }
 }
 
-const FormInput = () => {
+const FormInput = ({ value, onChangeText, type }) => {
+  const { label, ...props } = inputProps[type]
   return (
     <InputWrapper>
-      <StyledText>Correo electrónico</StyledText>
-      <Input {...inputProps.email} />
+      <StyledText>{label}</StyledText>
+      <Input value={value} onChangeText={onChangeText} {...props} />
     </InputWrapper>
   )
 }
