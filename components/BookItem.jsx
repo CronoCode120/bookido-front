@@ -33,7 +33,7 @@ const BookItem = ({ isbn, onPress, action }) => {
       <Wrapper>
         <Header>
           <Heading>
-            <Title>{title}</Title>
+            <Title numberOfLines={1}>{title}</Title>
             <InfoText>{authorInfo}</InfoText>
           </Heading>
           <ActionButton
