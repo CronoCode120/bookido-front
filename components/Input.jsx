@@ -13,6 +13,11 @@ const inputProps = {
     label: 'Contraseña',
     secureTextEntry: true,
     autoCapitalize: 'none'
+  },
+  'repeat-pwd': {
+    label: 'Confirmar contraseña',
+    secureTextEntry: true,
+    autoCapitalize: 'none'
   }
 }
 
