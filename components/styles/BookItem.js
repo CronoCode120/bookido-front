@@ -1,11 +1,21 @@
 import styled from 'styled-components/native'
+import { LinearGradient } from 'expo-linear-gradient'
+import { BlurView } from 'expo-blur'
 
-export const Wrapper = styled.View`
+export const Blur = styled(BlurView).attrs({
+  experimentalBlurMethod: 'dimezisBlurView',
+  intensity: 40
+})`
+  border-radius: 12px;
+  overflow: hidden;
+`
+
+export const Wrapper = styled(LinearGradient).attrs({
+  colors: ['#F1F5F980', '#F1F5F933']
+})`
   width: 100%;
   padding: 14px;
   gap: 14px;
-  border-radius: 12px;
-  background: #e2e8f0;
 `
 
 export const Header = styled.View`
