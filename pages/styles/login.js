@@ -16,7 +16,7 @@ export const Wrapper = styled.View`
 `
 
 export const Title = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.CALISTOGA};
+  font-family: ${({ theme }) => theme.fonts.HEADING};
   font-size: 24px;
   margin-bottom: 28px;
 `
@@ -57,9 +57,15 @@ export const OrText = styled.Text`
 
 export const RegisterText = styled(StyledText)`
   text-align: center;
+  width: 262px;
+  margin: 56px auto 0 auto;
 `
 
 export const RegisterLink = styled(StyledText)`
   font-weight: 600;
   text-decoration: underline;
+`
+
+export const TermsText = styled(StyledText)`
+  color: ${({ theme }) => theme.colors.NEUTRAL_700};
 `
