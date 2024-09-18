@@ -27,9 +27,9 @@ const theme = {
     TEAL_50: '#DDEEED'
   },
   fonts: {
-    ROBOTO_REGULAR: 'Roboto-Regular',
-    ROBOTO_BOLD: 'Roboto-Bold',
-    CALISTOGA: 'Calistoga-Regular'
+    BODY_REGULAR: 'Roboto-Regular',
+    BODY_BOLD: 'Roboto-Bold',
+    HEADING: 'Calistoga-Regular'
   }
 }
 
