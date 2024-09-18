@@ -17,7 +17,7 @@ import {
   Input,
   MainWrapper,
   RatingWrapper,
-  StyledText
+  SectionTitle
 } from './styles/Review.js'
 import RatingBtn from './RatingBtn.jsx'
 
@@ -56,7 +56,7 @@ const Review = ({ isbn }) => {
               <Text>{getAuthors(book?.author)}</Text>
             </HeadingWrapper>
           </Header>
-          <StyledText>¿Qué te pareció este libro? *</StyledText>
+          <SectionTitle>¿Qué te pareció este libro? *</SectionTitle>
           <RatingWrapper>
             {ratings.map(({ label, value, icon }) => (
               <RatingBtn
@@ -69,7 +69,7 @@ const Review = ({ isbn }) => {
               />
             ))}
           </RatingWrapper>
-          <StyledText>Si quieres, deja una reseña</StyledText>
+          <SectionTitle>Si quieres, deja una reseña</SectionTitle>
           <Input value={review} onChangeText={text => setReview(text)} />
         </MainWrapper>
         <Button>Guardar y marcar como leído</Button>

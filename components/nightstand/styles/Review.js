@@ -1,7 +1,6 @@
 import styled from 'styled-components/native'
 
 export const Container = styled.View`
-  border: 1px solid black;
   height: 500px;
   width: 100%;
   padding: 14px;
@@ -12,12 +11,12 @@ export const Container = styled.View`
 
 export const MainWrapper = styled.View`
   flex: 1;
-  gap: 24px;
 `
 
 export const Header = styled.View`
   flex-direction: row;
   gap: 20px;
+  margin-bottom: 24px;
 `
 
 export const HeadingWrapper = styled.View`
@@ -32,9 +31,14 @@ export const Heading = styled(StyledText)`
   font-weight: 600;
 `
 
+export const SectionTitle = styled(StyledText)`
+  margin-bottom: 12px;
+`
+
 export const RatingWrapper = styled.View`
   flex-direction: row;
   justify-content: space-evenly;
+  margin-bottom: 48px;
 `
 
 export const RateBtn = styled.Pressable`
