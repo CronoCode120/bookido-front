@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { Text } from 'react-native'
+import RatingBtn from './RatingBtn.jsx'
 import Screen from '../Screen.jsx'
 import Button from '../Button.jsx'
 import NavHeader from '../NavHeader.jsx'
-import { Stack } from 'expo-router'
+import { router, Stack } from 'expo-router'
 import { useBookISBN } from '../../hooks'
 import getAuthors from '../../utils/getAuthors.js'
 import getCoverUri from '../../utils/getCoverUri.js'
+import { addReview } from '../../api/review.js'
 import { HeartIcon, LikeIcon, DislikeIcon } from '../icons'
 import { Cover } from '../styles/Cover.js'
 import {
@@ -19,21 +21,33 @@ import {
   RatingWrapper,
   SectionTitle
 } from './styles/Review.js'
-import RatingBtn from './RatingBtn.jsx'
+import { useSession } from '../../context/SessionProvider.js'
 
 const ratings = [
-  { label: 'Me encantó', value: 'love', icon: HeartIcon },
-  { label: 'Me gustó', value: 'like', icon: LikeIcon },
-  { label: 'No es para mí', value: 'dislike', icon: DislikeIcon }
+  { label: 'Me encantó', value: 2, icon: HeartIcon },
+  { label: 'Me gustó', value: 1, icon: LikeIcon },
+  { label: 'No es para mí', value: 0, icon: DislikeIcon }
 ]
 
 const Review = ({ isbn }) => {
   const [book] = useBookISBN(isbn, ['title', 'author'])
+  const { session } = useSession()
 
   const [review, setReview] = useState('')
   const [rating, setRating] = useState(null)
 
   const cover = getCoverUri(isbn)
+
+  const submitReview = async () => {
+    if (rating === null) return
+    const res = await addReview({
+      userId: session,
+      isbn,
+      value: rating,
+      review
+    })
+    if (res.status === 201) router.back()
+  }
 
   return (
     <Screen>
@@ -72,7 +86,7 @@ const Review = ({ isbn }) => {
           <SectionTitle>Si quieres, deja una reseña</SectionTitle>
           <Input value={review} onChangeText={text => setReview(text)} />
         </MainWrapper>
-        <Button>Guardar y marcar como leído</Button>
+        <Button onPress={submitReview}>Guardar y enviar a Estantería</Button>
       </Container>
     </Screen>
   )
