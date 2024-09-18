@@ -10,7 +10,7 @@ const NavHeader = ({ title }) => {
       <BackBtn onPress={navigation.goBack}>
         <BackIcon />
       </BackBtn>
-      <Title>{title}</Title>
+      {title && <Title>{title}</Title>}
     </Wrapper>
   )
 }
