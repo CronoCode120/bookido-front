@@ -3,7 +3,8 @@ import {
   clamp,
   useSharedValue,
   withTiming,
-  runOnJS
+  runOnJS,
+  runOnUI
 } from 'react-native-reanimated'
 
 const useSlide = (containerHeight, onClose) => {
@@ -21,10 +22,10 @@ const useSlide = (containerHeight, onClose) => {
     translateY.value = withTiming(prevTranslateY.value)
   }
 
-  const openContainer = () => {
+  const openContainer = runOnUI(() => {
     'worklet'
     translateY.value = withTiming(-containerHeight, { duration: DURATION })
-  }
+  })
 
   const closeContainer = () => {
     'worklet'
@@ -67,7 +68,7 @@ const useSlide = (containerHeight, onClose) => {
     panGesture,
     translateY,
     prevTranslateY,
-    closeContainer,
+    closeContainer: runOnUI(closeContainer),
     openContainer
   }
 }
