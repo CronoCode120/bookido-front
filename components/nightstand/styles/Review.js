@@ -24,9 +24,12 @@ export const HeadingWrapper = styled.View`
   width: 80%;
 `
 
-export const Heading = styled.Text`
+export const StyledText = styled.Text`
+  font-size: 16px;
+`
+
+export const Heading = styled(StyledText)`
   font-weight: 600;
-  font-size: 20px;
 `
 
 export const RatingWrapper = styled.View`
@@ -38,15 +41,13 @@ export const RateBtn = styled.Pressable`
   align-items: center;
   justify-content: center;
   gap: 4px;
-  border: 1px solid black;
   border-radius: 6px;
   width: 90px;
-  padding: 5px;
 `
 
 export const RateText = styled.Text`
   font-weight: 600;
-  font-size: 12px;
+  font-size: 14px;
 `
 
 export const Input = styled.TextInput.attrs({
