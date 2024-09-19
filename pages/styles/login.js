@@ -14,6 +14,7 @@ export const Wrapper = styled.View`
   margin: auto;
   width: 100%;
   max-width: 312px;
+  background: white;
 `
 
 export const Title = styled.Text`
