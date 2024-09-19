@@ -1,15 +1,10 @@
-import { BackIcon } from './icons'
-import { useNavigation } from 'expo-router'
 import styled from 'styled-components/native'
+import BackButton from './BackButton.jsx'
 
 const NavHeader = ({ title }) => {
-  const navigation = useNavigation()
-
   return (
     <Wrapper>
-      <BackBtn onPress={navigation.goBack}>
-        <BackIcon />
-      </BackBtn>
+      <BackButton />
       {title && <Title>{title}</Title>}
     </Wrapper>
   )
@@ -27,9 +22,4 @@ const Wrapper = styled.View`
   flex-direction: row;
   gap: 10px;
   padding: 4px 0;
-`
-
-const BackBtn = styled.Pressable`
-  padding: 6px;
-  border-radius: 99px;
 `
