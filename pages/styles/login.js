@@ -72,7 +72,8 @@ export const TermsText = styled(StyledText)`
 `
 
 export const BackBtn = styled(BackButton)`
+  padding: 0;
   position: absolute;
-  top: ${({ top }) => top};
-  left: ${({ left }) => left};
+  top: ${({ top }) => top}px;
+  left: ${({ left }) => left}px;
 `

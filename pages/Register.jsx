@@ -17,11 +17,11 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [confirm, setConfirm] = useState('')
 
-  const insets = useSafeAreaInsets()
+  const { top, bottom } = useSafeAreaInsets()
 
   return (
-    <Container style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
-      <BackBtn top={insets.top} left={insets.left} />
+    <Container style={{ paddingTop: top, paddingBottom: bottom }}>
+      <BackBtn top={top + 16} left={24} />
       <Wrapper>
         <Title>Crear una cuenta</Title>
         <InputsContainer style={{ marginBottom: 26 }}>
