@@ -3,11 +3,13 @@ import { SessionProvider } from '../context/SessionProvider'
 import { Stack } from 'expo-router'
 
 import theme from '../theme.js'
+import { StatusBar } from 'expo-status-bar'
 
 const RootLayout = () => {
   return (
     <SessionProvider>
       <ThemeProvider theme={theme}>
+        <StatusBar backgroundColor='white' style='dark' />
         <Stack
           screenOptions={{
             headerTitle: '',
