@@ -38,6 +38,7 @@ const ReadList = () => {
         renderBook={isbn => (
           <BookItem isbn={isbn} action='add' onPress={openDrawer} />
         )}
+        noBooksMsg={'Aún no tienes libros por leer.'}
       />
       <AddDrawer book={curBook} />
     </GestureHandlerRootView>

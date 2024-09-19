@@ -5,3 +5,7 @@ export const ImgBackground = styled.ImageBackground.attrs({
 })`
   flex: 1;
 `
+
+export const EmptyText = styled.Text`
+  text-align: center;
+`
