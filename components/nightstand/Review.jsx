@@ -40,13 +40,13 @@ const Review = ({ isbn }) => {
 
   const submitReview = async () => {
     if (rating === null) return
-    const res = await addReview({
+    await addReview({
       userId: session,
       isbn,
       value: rating,
       review
     })
-    if (res.status === 201) router.back()
+    router.back()
   }
 
   return (
