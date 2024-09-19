@@ -13,13 +13,12 @@ const NavHeader = ({ title }) => {
 export default NavHeader
 
 const Title = styled.Text`
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 400;
+  font-family: ${({ theme }) => theme.fonts.HEADING};
 `
 
 const Wrapper = styled.View`
-  align-items: center;
-  flex-direction: row;
-  gap: 10px;
-  padding: 4px 0;
+  gap: 6px;
+  padding: 8px 0 0 0;
 `
