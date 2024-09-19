@@ -20,13 +20,14 @@ const inputProps = {
     autoCapitalize: 'none'
   },
   username: {
-    label: 'Usuario',
+    label: 'Nombre de usuario',
     autoCorrect: false,
-    autoComplete: 'username'
+    autoComplete: 'username',
+    placeholder: 'Usuario123'
   }
 }
 
-const FormInput = ({ value, onChangeText, type }) => {
+const FormInput = ({ value, onChangeText, onSubmit, type }) => {
   const { label, ...props } = inputProps[type]
 
   return (
@@ -36,6 +37,7 @@ const FormInput = ({ value, onChangeText, type }) => {
         value={value}
         onChangeText={onChangeText}
         returnKeyType='go'
+        onSubmitEditing={onSubmit}
         {...props}
       />
     </InputWrapper>
