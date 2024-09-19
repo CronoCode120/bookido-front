@@ -1,7 +1,6 @@
 import styled from 'styled-components/native'
 
 export const Container = styled.View`
-  border: 1px solid black;
   height: 500px;
   width: 100%;
   padding: 14px;
@@ -12,41 +11,47 @@ export const Container = styled.View`
 
 export const MainWrapper = styled.View`
   flex: 1;
-  gap: 24px;
 `
 
 export const Header = styled.View`
   flex-direction: row;
   gap: 20px;
+  margin-bottom: 24px;
 `
 
 export const HeadingWrapper = styled.View`
   width: 80%;
 `
 
-export const Heading = styled.Text`
+export const StyledText = styled.Text`
+  font-size: 16px;
+`
+
+export const Heading = styled(StyledText)`
   font-weight: 600;
-  font-size: 20px;
+`
+
+export const SectionTitle = styled(StyledText)`
+  margin-bottom: 12px;
 `
 
 export const RatingWrapper = styled.View`
   flex-direction: row;
   justify-content: space-evenly;
+  margin-bottom: 48px;
 `
 
 export const RateBtn = styled.Pressable`
   align-items: center;
   justify-content: center;
   gap: 4px;
-  border: 1px solid black;
   border-radius: 6px;
   width: 90px;
-  padding: 5px;
 `
 
 export const RateText = styled.Text`
   font-weight: 600;
-  font-size: 12px;
+  font-size: 14px;
 `
 
 export const Input = styled.TextInput.attrs({
@@ -61,4 +66,5 @@ export const Input = styled.TextInput.attrs({
   border: 0.8px solid #94a3b8;
   border-radius: 8px;
   padding: 10px;
+  background: white;
 `

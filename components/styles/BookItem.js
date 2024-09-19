@@ -1,11 +1,13 @@
 import styled from 'styled-components/native'
+import { LinearGradient } from 'expo-linear-gradient'
 
-export const Wrapper = styled.View`
+export const Wrapper = styled(LinearGradient).attrs({
+  colors: ['#F1F5F9E6', '#F1F5F9BF']
+})`
   width: 100%;
   padding: 14px;
   gap: 14px;
   border-radius: 12px;
-  background: #e2e8f0;
 `
 
 export const Header = styled.View`
