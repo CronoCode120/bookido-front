@@ -5,7 +5,7 @@ import styled from 'styled-components/native'
 const BackButton = ({ style }) => {
   const { goBack } = useNavigation()
   return (
-    <BackBtn style={style} onPress={goBack}>
+    <BackBtn style={style} onPress={goBack} aria-label='Volver'>
       <BackIcon />
     </BackBtn>
   )
