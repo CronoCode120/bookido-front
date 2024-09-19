@@ -14,6 +14,5 @@ const BackButton = ({ style }) => {
 export default BackButton
 
 const BackBtn = styled.Pressable`
-  padding: 6px;
   border-radius: 99px;
 `
