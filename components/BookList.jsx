@@ -1,10 +1,9 @@
 import { FlatList } from 'react-native'
 import { EmptyText, ImgBackground } from './styles/BookList.js'
-import standImg from '../assets/mesita.png'
 
-const BookList = ({ books, renderBook, noBooksMsg }) => {
+const BookList = ({ books, renderBook, noBooksMsg, bgImage }) => {
   return (
-    <ImgBackground source={standImg}>
+    <ImgBackground source={bgImage}>
       {books.length ? (
         <FlatList
           data={books}

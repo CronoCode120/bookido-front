@@ -8,6 +8,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useFocusEffect } from 'expo-router'
 import { useSession } from '../../context/SessionProvider.js'
 import { useModal } from '../../context/ModalProvider.js'
+import standImg from '../../assets/mesita.png'
 
 const ReadList = () => {
   const [curBook, setCurBook] = useState(null)
@@ -39,6 +40,7 @@ const ReadList = () => {
           <BookItem isbn={isbn} action='add' onPress={openDrawer} />
         )}
         noBooksMsg={'Aún no tienes libros por leer.'}
+        bgImage={standImg}
       />
       <AddDrawer book={curBook} />
     </GestureHandlerRootView>
