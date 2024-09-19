@@ -1,4 +1,5 @@
 import styled from 'styled-components/native'
+import BackButton from '../../components/BackButton'
 
 export const Container = styled.View`
   flex: 1;
@@ -68,4 +69,10 @@ export const RegisterLink = styled(StyledText)`
 
 export const TermsText = styled(StyledText)`
   color: ${({ theme }) => theme.colors.NEUTRAL_700};
+`
+
+export const BackBtn = styled(BackButton)`
+  position: absolute;
+  top: ${({ top }) => top};
+  left: ${({ left }) => left};
 `

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import FormInput from '../components/Input.jsx'
 import Button from '../components/Button.jsx'
 import {
+  BackBtn,
   Container,
   InputsContainer,
   RegisterText,
@@ -9,15 +10,18 @@ import {
   Title,
   Wrapper
 } from './styles/login.js'
-import { Text } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 const Register = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirm, setConfirm] = useState('')
 
+  const insets = useSafeAreaInsets()
+
   return (
-    <Container>
+    <Container style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
+      <BackBtn top={insets.top} left={insets.left} />
       <Wrapper>
         <Title>Crear una cuenta</Title>
         <InputsContainer style={{ marginBottom: 26 }}>
