@@ -18,15 +18,26 @@ const inputProps = {
     label: 'Confirmar contraseña',
     secureTextEntry: true,
     autoCapitalize: 'none'
+  },
+  username: {
+    label: 'Usuario',
+    autoCorrect: false,
+    autoComplete: 'username'
   }
 }
 
 const FormInput = ({ value, onChangeText, type }) => {
   const { label, ...props } = inputProps[type]
+
   return (
     <InputWrapper>
       <StyledText>{label}</StyledText>
-      <Input value={value} onChangeText={onChangeText} {...props} />
+      <Input
+        value={value}
+        onChangeText={onChangeText}
+        returnKeyType='go'
+        {...props}
+      />
     </InputWrapper>
   )
 }
