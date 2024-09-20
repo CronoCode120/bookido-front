@@ -31,8 +31,7 @@ const TabsLayout = () => {
           title: 'Mesita',
           tabBarIcon: ({ focused }) => <StandIcon selected={focused} />,
           headerShown: true,
-          headerLeft: () => <NavHeader title='Mesita de Noche' />,
-          headerTransparent: true
+          headerLeft: () => <NavHeader title='Mesita de Noche' />
         }}
       />
       <Tabs.Screen
@@ -41,8 +40,7 @@ const TabsLayout = () => {
           title: 'Estantería',
           tabBarIcon: ({ focused }) => <ShelfIcon selected={focused} />,
           headerShown: true,
-          headerLeft: () => <NavHeader title='Estantería' />,
-          headerTransparent: true
+          headerLeft: () => <NavHeader title='Estantería' />
         }}
       />
       <Tabs.Screen
