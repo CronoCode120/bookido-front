@@ -19,6 +19,8 @@ const Title = styled.Text`
 `
 
 const Wrapper = styled.View`
-  gap: 6px;
-  padding: 8px 0 0 0;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+  padding: 8px 0;
 `
