@@ -6,7 +6,6 @@ import SwipeDetector from './SwipeDetector.jsx'
 import useBookSynopsis from '../../hooks/useBookSynopsis.js'
 import { CardWrapper, Container } from './styles/BookCard.js'
 import { View, StyleSheet } from 'react-native'
-import { Shadow } from 'react-native-shadow-2'
 
 const BookCard = ({ book, panGesture, animatedStyles }) => {
   const [pageNum, setPageNum] = useState(0)
@@ -38,12 +37,10 @@ const BookCard = ({ book, panGesture, animatedStyles }) => {
       <SwipeDetector animatedStyles={animatedStyles} panGesture={panGesture}>
         <Container>
           <SideTouch handleLeft={handleLeft} handleRight={handleRight} />
-          <Shadow style={{ borderRadius: 30 }}>
-            <CardWrapper>
-              <BookViews pageNum={pageNum} />
-              <CardContent pageNum={pageNum} book={bookData} />
-            </CardWrapper>
-          </Shadow>
+          <BookViews pageNum={pageNum} />
+          <CardWrapper>
+            <CardContent pageNum={pageNum} book={bookData} />
+          </CardWrapper>
         </Container>
       </SwipeDetector>
     </View>
