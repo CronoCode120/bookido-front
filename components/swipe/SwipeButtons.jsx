@@ -1,6 +1,6 @@
 import SwipeBtn from './SwipeBtn.jsx'
 import { Wrapper } from './styles/SwipeButtons.js'
-import { DislikeIcon, LikeIcon } from '../icons'
+import { ClockIcon, DislikeIcon, LikeIcon } from '../icons'
 
 const SwipeButtons = ({ pageNum, swipeRight, swipeLeft, disabled }) => {
   const gradientColors =
@@ -8,8 +8,21 @@ const SwipeButtons = ({ pageNum, swipeRight, swipeLeft, disabled }) => {
 
   return (
     <Wrapper colors={gradientColors}>
-      <SwipeBtn onPress={swipeLeft} disabled={disabled} Icon={DislikeIcon} />
-      <SwipeBtn onPress={swipeRight} disabled={disabled} Icon={LikeIcon} />
+      <SwipeBtn
+        onPress={swipeLeft}
+        disabled={disabled}
+        Icon={() => <DislikeIcon big />}
+      />
+      <SwipeBtn
+        onPress={() => undefined}
+        disabled={disabled}
+        Icon={ClockIcon}
+      />
+      <SwipeBtn
+        onPress={swipeRight}
+        disabled={disabled}
+        Icon={() => <LikeIcon big />}
+      />
     </Wrapper>
   )
 }
