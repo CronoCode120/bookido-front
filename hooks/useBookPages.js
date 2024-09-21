@@ -1,4 +1,6 @@
-const useBookPages = () => {
+import { useState, useEffect } from 'react'
+
+const useBookPages = book => {
   const [pageNum, setPageNum] = useState(0)
 
   useEffect(() => {
