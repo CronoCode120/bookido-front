@@ -3,6 +3,8 @@ import { ActivityIndicator, View } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { runOnUI } from 'react-native-reanimated'
 import BookCard from './BookCard.jsx'
+import BookViews from './BookViews.jsx'
+import { useBookPages } from '../../hooks'
 
 const BookList = ({ books, curIdx, swipeInstances, setCurSwipe }) => {
   const [firstIdx, setFirstIdx] = useState(0)
@@ -67,6 +69,8 @@ const BookList = ({ books, curIdx, swipeInstances, setCurSwipe }) => {
     }
   }, [curIdx])
 
+  const { pageNum, handleLeft, handleRight } = useBookPages(curIdx)
+
   if (!books.length)
     return (
       <View
@@ -81,34 +85,46 @@ const BookList = ({ books, curIdx, swipeInstances, setCurSwipe }) => {
     )
 
   return (
-    <GestureHandlerRootView
-      style={{
-        flex: 1,
-        alignSelf: 'stretch'
-      }}
-    >
-      {firstBook && (
-        <BookCard
-          book={firstBook}
-          panGesture={swipeA.panGesture}
-          animatedStyles={swipeA.animatedStyles}
-        />
-      )}
-      {secondBook && (
-        <BookCard
-          book={secondBook}
-          panGesture={swipeB.panGesture}
-          animatedStyles={swipeB.animatedStyles}
-        />
-      )}
-      {thirdBook && (
-        <BookCard
-          book={thirdBook}
-          panGesture={swipeC.panGesture}
-          animatedStyles={swipeC.animatedStyles}
-        />
-      )}
-    </GestureHandlerRootView>
+    <View style={{ flex: 1 }}>
+      <BookViews pageNum={pageNum} />
+      <GestureHandlerRootView
+        style={{
+          flex: 1,
+          alignSelf: 'stretch'
+        }}
+      >
+        {firstBook && (
+          <BookCard
+            book={firstBook}
+            panGesture={swipeA.panGesture}
+            animatedStyles={swipeA.animatedStyles}
+            pageNum={curIdx === 0 || remainder === 0 ? pageNum : 0}
+            prevPage={handleLeft}
+            nextPage={handleRight}
+          />
+        )}
+        {secondBook && (
+          <BookCard
+            book={secondBook}
+            panGesture={swipeB.panGesture}
+            animatedStyles={swipeB.animatedStyles}
+            pageNum={secondCardActive ? pageNum : 0}
+            prevPage={handleLeft}
+            nextPage={handleRight}
+          />
+        )}
+        {thirdBook && (
+          <BookCard
+            book={thirdBook}
+            panGesture={swipeC.panGesture}
+            animatedStyles={swipeC.animatedStyles}
+            pageNum={thirdCardActive ? pageNum : 0}
+            prevPage={handleLeft}
+            nextPage={handleRight}
+          />
+        )}
+      </GestureHandlerRootView>
+    </View>
   )
 }
 
