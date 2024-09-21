@@ -9,7 +9,7 @@ export const Container = styled.View`
 `
 
 export const CardWrapper = styled.View`
-  border-radius: 30px;
+  border-radius: 8px;
   overflow: hidden;
   align-items: center;
   justify-content: start;

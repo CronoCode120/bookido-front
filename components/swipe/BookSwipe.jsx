@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useSwipe, useBooks } from '../../hooks'
 import BookList from './BookList.jsx'
-import SwipeButtons from './SwipeButtons.jsx'
 
 import { useSession } from '../../context/SessionProvider.js'
 import { addToTable, discardBook } from '../../api/books.js'
@@ -51,22 +50,13 @@ const BookSwipe = () => {
     })
   ]
 
-  const [curSwipe, setCurSwipe] = useState(swipes[0])
-
   return (
-    <>
-      <BookList
-        books={books}
-        curIdx={curIdx}
-        swipeInstances={swipes}
-        setCurSwipe={setCurSwipe}
-      />
-      <SwipeButtons
-        swipeLeft={curSwipe.swipeLeft}
-        swipeRight={curSwipe.swipeRight}
-        disabled={btnDisabled}
-      />
-    </>
+    <BookList
+      books={books}
+      curIdx={curIdx}
+      swipeInstances={swipes}
+      btnDisabled={btnDisabled}
+    />
   )
 }
 

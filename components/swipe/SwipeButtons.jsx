@@ -1,19 +1,16 @@
-import { View } from 'react-native'
 import SwipeBtn from './SwipeBtn.jsx'
+import { Wrapper } from './styles/SwipeButtons.js'
+import { DislikeIcon, LikeIcon } from '../icons'
 
-const SwipeButtons = ({ swipeRight, swipeLeft, disabled }) => {
+const SwipeButtons = ({ pageNum, swipeRight, swipeLeft, disabled }) => {
+  const gradientColors =
+    pageNum === 0 ? ['#1F1F1F00', '#1F1F1F'] : ['transparent', 'transparent']
+
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        alignSelf: 'stretch',
-        marginBottom: 30
-      }}
-    >
-      <SwipeBtn onPress={swipeLeft} text={'Left'} disabled={disabled} />
-      <SwipeBtn onPress={swipeRight} text={'Right'} disabled={disabled} />
-    </View>
+    <Wrapper colors={gradientColors}>
+      <SwipeBtn onPress={swipeLeft} disabled={disabled} Icon={DislikeIcon} />
+      <SwipeBtn onPress={swipeRight} disabled={disabled} Icon={LikeIcon} />
+    </Wrapper>
   )
 }
 

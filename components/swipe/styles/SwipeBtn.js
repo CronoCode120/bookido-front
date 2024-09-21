@@ -8,4 +8,5 @@ export const Button = styled.Pressable`
   align-items: center;
   border-radius: 99px;
   opacity: ${({ disabled }) => (disabled ? 0.4 : 1)};
+  background: ${({ theme }) => theme.colors.WHITE};
 `

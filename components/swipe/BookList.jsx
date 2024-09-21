@@ -6,7 +6,7 @@ import BookCard from './BookCard.jsx'
 import BookViews from './BookViews.jsx'
 import { useBookPages } from '../../hooks'
 
-const BookList = ({ books, curIdx, swipeInstances, setCurSwipe }) => {
+const BookList = ({ books, curIdx, swipeInstances, btnDisabled }) => {
   const [firstIdx, setFirstIdx] = useState(0)
   const [secondIdx, setSecondIdx] = useState(1)
   const [thirdIdx, setThirdIdx] = useState(2)
@@ -48,24 +48,18 @@ const BookList = ({ books, curIdx, swipeInstances, setCurSwipe }) => {
       enableSwipe(swipeA, swipeB)
       updateZIdx(3, 2, 1)
       setThirdIdx(thirdIdx + 3)
-
-      setCurSwipe(swipeA)
     }
 
     if (secondCardActive) {
       enableSwipe(swipeB, swipeC)
       updateZIdx(1, 3, 2)
       setFirstIdx(firstIdx + 3)
-
-      setCurSwipe(swipeB)
     }
 
     if (thirdCardActive) {
       enableSwipe(swipeC, swipeA)
       updateZIdx(2, 1, 3)
       setSecondIdx(secondIdx + 3)
-
-      setCurSwipe(swipeC)
     }
   }, [curIdx])
 
@@ -96,31 +90,31 @@ const BookList = ({ books, curIdx, swipeInstances, setCurSwipe }) => {
         {firstBook && (
           <BookCard
             book={firstBook}
-            panGesture={swipeA.panGesture}
-            animatedStyles={swipeA.animatedStyles}
+            swipe={swipeA}
             pageNum={curIdx === 0 || remainder === 0 ? pageNum : 0}
             prevPage={handleLeft}
             nextPage={handleRight}
+            btnDisabled={btnDisabled}
           />
         )}
         {secondBook && (
           <BookCard
             book={secondBook}
-            panGesture={swipeB.panGesture}
-            animatedStyles={swipeB.animatedStyles}
+            swipe={swipeB}
             pageNum={secondCardActive ? pageNum : 0}
             prevPage={handleLeft}
             nextPage={handleRight}
+            btnDisabled={btnDisabled}
           />
         )}
         {thirdBook && (
           <BookCard
             book={thirdBook}
-            panGesture={swipeC.panGesture}
-            animatedStyles={swipeC.animatedStyles}
+            swipe={swipeC}
             pageNum={thirdCardActive ? pageNum : 0}
             prevPage={handleLeft}
             nextPage={handleRight}
+            btnDisabled={btnDisabled}
           />
         )}
       </GestureHandlerRootView>
