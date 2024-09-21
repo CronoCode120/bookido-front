@@ -15,7 +15,14 @@ const CardContent = ({ pageNum, book }) => {
           isbn={isbn ? isbn[0] : ''}
         />
       )) ||
-        (pageNum === 1 && <DetailView synopsis={synopsis} />)}
+        (pageNum === 1 && (
+          <DetailView
+            title={title}
+            author={author}
+            publisher={publisher}
+            synopsis={synopsis}
+          />
+        ))}
     </ContentWrapper>
   )
 }

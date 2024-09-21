@@ -1,12 +1,13 @@
+import { Text } from 'react-native'
 import getAuthors from '../../utils/getAuthors.js'
-import { Container, InfoText, Title } from './styles/BookInfo.js'
+import { Author, Container, Title } from './styles/BookInfo.js'
 
 const BookInfo = ({ title, author, publisher }) => {
   return (
     <Container>
       <Title>{title}</Title>
-      <InfoText>{getAuthors(author)}</InfoText>
-      <InfoText>{publisher}</InfoText>
+      <Author>{getAuthors(author)}</Author>
+      <Text>{publisher}</Text>
     </Container>
   )
 }
