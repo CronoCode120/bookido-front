@@ -1,3 +1,4 @@
+import BookProfile from '../../../pages/BookProfile.jsx'
 import { useLocalSearchParams } from 'expo-router'
 
 const BookPage = () => {
