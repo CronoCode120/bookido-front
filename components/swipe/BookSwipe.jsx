@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { useSwipe, useBooks } from '../../hooks'
 import BookList from './BookList.jsx'
+import Button, { LinkButton } from '../Button.jsx'
 
 import { useSession } from '../../context/SessionProvider.js'
 import { addToTable, discardBook } from '../../api/books.js'
+import { Wrapper, BtnWrapper } from './styles/BookSwipe.js'
 
 const BookSwipe = () => {
   const [curIdx, setCurIdx] = useState(0)
@@ -51,12 +53,22 @@ const BookSwipe = () => {
   ]
 
   return (
-    <BookList
-      books={books}
-      curIdx={curIdx}
-      swipeInstances={swipes}
-      btnDisabled={btnDisabled}
-    />
+    <Wrapper>
+      <BookList
+        books={books}
+        curIdx={curIdx}
+        swipeInstances={swipes}
+        btnDisabled={btnDisabled}
+      />
+      <BtnWrapper>
+        <Button type='secondary' style={{ flex: 1 }}>
+          Marcar como leído
+        </Button>
+        <LinkButton href={`/book/${curIsbn}`} style={{ flex: 1 }}>
+          Ver libro
+        </LinkButton>
+      </BtnWrapper>
+    </Wrapper>
   )
 }
 
