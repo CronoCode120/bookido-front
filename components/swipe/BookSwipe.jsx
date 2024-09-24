@@ -11,7 +11,7 @@ const BookSwipe = () => {
   const [curIdx, setCurIdx] = useState(0)
   const page = Math.floor((curIdx + 3) / 20) + 1
 
-  const [books] = useBooks(page)
+  const { books, saveForLater } = useBooks(page)
   const { session, setUpdateStand } = useSession()
 
   const [btnDisabled, setBtnDisabled] = useState(false)
@@ -37,18 +37,26 @@ const BookSwipe = () => {
     handleSwipe()
   }
 
+  const onSwipeUp = () => {
+    saveForLater(books[curIdx])
+    handleSwipe()
+  }
+
   const swipes = [
     useSwipe({
       onSwipeLeft,
-      onSwipeRight
+      onSwipeRight,
+      onSwipeUp
     }),
     useSwipe({
       onSwipeLeft,
-      onSwipeRight
+      onSwipeRight,
+      onSwipeUp
     }),
     useSwipe({
       onSwipeLeft,
-      onSwipeRight
+      onSwipeRight,
+      onSwipeUp
     })
   ]
 
