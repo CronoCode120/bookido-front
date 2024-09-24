@@ -27,6 +27,7 @@ const BookCard = ({
           <SwipeButtons
             swipeLeft={swipe.swipeLeft}
             swipeRight={swipe.swipeRight}
+            swipeUp={swipe.swipeUp}
             disabled={btnDisabled}
             pageNum={pageNum}
           />

@@ -100,6 +100,7 @@ const useSwipe = ({ onSwipeLeft, onSwipeRight, onSwipeUp }) => {
     animatedStyles,
     swipeLeft,
     swipeRight,
+    swipeUp,
     enable,
     enableWithCooldown,
     disable,
