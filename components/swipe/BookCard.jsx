@@ -1,10 +1,9 @@
-import { View, StyleSheet } from 'react-native'
 import SideTouch from './SideTouch.jsx'
 import CardContent from './CardContent.jsx'
 import SwipeDetector from './SwipeDetector.jsx'
 import SwipeButtons from './SwipeButtons.jsx'
 import { useBookSynopsis } from '../../hooks'
-import { CardWrapper, Container } from './styles/BookCard.js'
+import { CardWrapper, Container, Wrapper } from './styles/BookCard.js'
 
 const BookCard = ({
   book,
@@ -18,19 +17,12 @@ const BookCard = ({
   const bookData = { ...book, synopsis }
 
   return (
-    <View
-      pointerEvents='box-none'
-      style={{
-        ...StyleSheet.absoluteFillObject,
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}
-    >
+    <Container>
       <SwipeDetector
         animatedStyles={swipe.animatedStyles}
         panGesture={swipe.panGesture}
       >
-        <Container>
+        <Wrapper>
           <SideTouch handleLeft={prevPage} handleRight={nextPage} />
           <SwipeButtons
             swipeLeft={swipe.swipeLeft}
@@ -41,9 +33,9 @@ const BookCard = ({
           <CardWrapper>
             <CardContent pageNum={pageNum} book={bookData} />
           </CardWrapper>
-        </Container>
+        </Wrapper>
       </SwipeDetector>
-    </View>
+    </Container>
   )
 }
 

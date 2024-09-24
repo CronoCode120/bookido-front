@@ -1,7 +1,15 @@
 import styled from 'styled-components/native'
 import { getWidthPercent } from '../../../utils/dimensions.js'
 
-export const Container = styled.View`
+export const Container = styled.View.attrs({
+  pointerEvents: 'box-none'
+})`
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+`
+
+export const Wrapper = styled.View`
   position: relative;
   align-items: center;
   justify-content: center;

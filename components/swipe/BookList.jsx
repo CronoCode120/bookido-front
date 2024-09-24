@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { ActivityIndicator, View } from 'react-native'
-import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { runOnUI } from 'react-native-reanimated'
 import BookCard from './BookCard.jsx'
 import BookViews from './BookViews.jsx'
 import { useBookPages } from '../../hooks'
+import { CardGestureHandler, Wrapper } from './styles/BookList.js'
 
 const BookList = ({ books, curIdx, swipeInstances, btnDisabled }) => {
   const [firstIdx, setFirstIdx] = useState(0)
@@ -79,14 +79,9 @@ const BookList = ({ books, curIdx, swipeInstances, btnDisabled }) => {
     )
 
   return (
-    <View style={{ flex: 1 }}>
+    <Wrapper>
       <BookViews pageNum={pageNum} />
-      <GestureHandlerRootView
-        style={{
-          flex: 1,
-          alignSelf: 'stretch'
-        }}
-      >
+      <CardGestureHandler>
         {firstBook && (
           <BookCard
             book={firstBook}
@@ -117,8 +112,8 @@ const BookList = ({ books, curIdx, swipeInstances, btnDisabled }) => {
             btnDisabled={btnDisabled}
           />
         )}
-      </GestureHandlerRootView>
-    </View>
+      </CardGestureHandler>
+    </Wrapper>
   )
 }
 

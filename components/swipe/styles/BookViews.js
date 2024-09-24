@@ -1,4 +1,5 @@
 import styled from 'styled-components/native'
+import { getWidthPercent } from '../../../utils/dimensions.js'
 
 export const Indicator = styled.View`
   flex: 1;
@@ -9,7 +10,7 @@ export const Indicator = styled.View`
 
 export const Container = styled.View`
   flex-direction: row;
+  width: ${getWidthPercent(90)}px;
   height: 4px;
   gap: 15px;
-  align-self: stretch;
 `
