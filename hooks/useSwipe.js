@@ -1,5 +1,5 @@
 import { Gesture } from 'react-native-gesture-handler'
-import { withSpring, runOnJS } from 'react-native-reanimated'
+import { withSpring, runOnJS, clamp } from 'react-native-reanimated'
 import useSwipeAnimation from './useSwipeAnimation.js'
 import { useWindowDimensions } from 'react-native'
 import { useState } from 'react'
@@ -7,9 +7,9 @@ import { useState } from 'react'
 const SWIPE_VELOCITY = 1600
 const COOLDOWN = 1500
 
-const useSwipe = ({ onSwipeLeft, onSwipeRight }) => {
+const useSwipe = ({ onSwipeLeft, onSwipeRight, onSwipeUp }) => {
   const [enabled, setEnabled] = useState(true)
-  const { width } = useWindowDimensions()
+  const { width, height } = useWindowDimensions()
   const {
     translationX,
     translationY,
@@ -21,8 +21,10 @@ const useSwipe = ({ onSwipeLeft, onSwipeRight }) => {
     animatedStyles
   } = useSwipeAnimation(width)
 
-  const decisionThreshold = width * 0.4
-  const hiddenTranslateX = width * 2
+  const decisionThresholdX = width * 0.4
+  const decisionThresholdY = height * 0.4
+  const hiddenTranslateX = width * 1.5
+  const hiddenTranslateY = -height * 1.5
 
   const reset = () => {
     'worklet'
@@ -48,6 +50,12 @@ const useSwipe = ({ onSwipeLeft, onSwipeRight }) => {
     runOnJS(onSwipeRight)()
   }
 
+  const swipeUp = () => {
+    'worklet'
+    translationY.value = withSpring(hiddenTranslateY)
+    runOnJS(onSwipeUp)()
+  }
+
   const enable = () => setEnabled(true)
   const enableWithCooldown = () => setTimeout(enable, COOLDOWN)
   const disable = () => setEnabled(false)
@@ -61,15 +69,26 @@ const useSwipe = ({ onSwipeLeft, onSwipeRight }) => {
     })
     .onUpdate(event => {
       translationX.value = prevTranslationX.value + event.translationX
-      translationY.value = prevTranslationY.value + event.translationY
+      translationY.value = clamp(
+        prevTranslationY.value + event.translationY,
+        -800,
+        0
+      )
     })
     .onEnd(event => {
       const velocityX = event.velocityX
-      const decisionMade = Math.abs(translationX.value) >= decisionThreshold
+      const velocityY = event.velocityY
+      const decisionMadeX = Math.abs(translationX.value) >= decisionThresholdX
+      const decisionMadeY = translationY.value <= -decisionThresholdY
 
-      if (Math.abs(velocityX) > SWIPE_VELOCITY || decisionMade) {
+      if (Math.abs(velocityX) > SWIPE_VELOCITY || decisionMadeX) {
         const goRight = translationX.value > 0
         goRight ? swipeRight() : swipeLeft()
+        return
+      }
+
+      if (-velocityY > SWIPE_VELOCITY || decisionMadeY) {
+        swipeUp()
         return
       }
 
