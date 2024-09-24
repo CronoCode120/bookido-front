@@ -2,9 +2,15 @@ import { forwardRef } from 'react'
 import { Label, StyledButton } from './styles/Button.js'
 import { Link } from 'expo-router'
 
-const Button = ({ children, onPress, type = 'primary', warning = false }) => {
+const Button = ({
+  children,
+  onPress,
+  type = 'primary',
+  warning = false,
+  style
+}) => {
   return (
-    <StyledButton onPress={onPress} type={type} warning={warning}>
+    <StyledButton onPress={onPress} type={type} warning={warning} style={style}>
       <Label type={type} warning={warning}>
         {children}
       </Label>
@@ -12,20 +18,26 @@ const Button = ({ children, onPress, type = 'primary', warning = false }) => {
   )
 }
 
-export const LinkButton = ({ href, type, warning, children }) => (
+export const LinkButton = ({ href, type, warning, style, children }) => (
   <Link href={href} asChild>
-    <RefBtn type={type} warning={warning}>
+    <RefBtn type={type} warning={warning} style={style}>
       {children}
     </RefBtn>
   </Link>
 )
 
 const RefBtn = forwardRef(function Button(
-  { children, onPress, type = 'primary', warning = false },
+  { children, onPress, type = 'primary', warning = false, style },
   ref
 ) {
   return (
-    <StyledButton onPress={onPress} type={type} warning={warning} ref={ref}>
+    <StyledButton
+      onPress={onPress}
+      type={type}
+      warning={warning}
+      style={style}
+      ref={ref}
+    >
       <Label type={type} warning={warning}>
         {children}
       </Label>
