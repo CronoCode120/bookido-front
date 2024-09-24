@@ -30,7 +30,7 @@ const ratings = [
 ]
 
 const Review = ({ isbn }) => {
-  const [book] = useBookISBN(isbn, ['title', 'author'])
+  const book = useBookISBN(isbn, ['title', 'author'])
   const { session } = useSession()
 
   const [review, setReview] = useState('')

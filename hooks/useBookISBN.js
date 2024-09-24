@@ -10,7 +10,7 @@ const useBookISBN = (isbn, fields) => {
     getBookByISBN(isbn, fieldsStr).then(data => setBook(data.book))
   }, [])
 
-  return [book, setBook]
+  return book
 }
 
 export default useBookISBN
