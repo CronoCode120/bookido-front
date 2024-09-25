@@ -1,8 +1,14 @@
 import { Stack } from 'expo-router'
 import NavHeader from '../components/NavHeader.jsx'
+import { Text } from 'react-native'
 import {
   Author,
+  BoldBodyText,
+  Divider,
+  InfoItem,
+  InfoWrapper,
   Publisher,
+  Section,
   SynopsisBody,
   SynopsisHeading,
   Title,
@@ -15,8 +21,8 @@ import getCoverUri from '../utils/getCoverUri.js'
 import { useBookISBN, useBookSynopsis } from '../hooks'
 
 const BookProfile = ({ isbn }) => {
-  const { title, author, publisher } =
-    useBookISBN(isbn, ['title', 'author', 'publisher']) ?? {}
+  const { title, author, publisher, publish_date } =
+    useBookISBN(isbn, ['title', 'author', 'publisher', 'publish_date']) ?? {}
   const cover = getCoverUri(isbn, 'L')
   const [synopsis] = useBookSynopsis(isbn)
 
@@ -28,12 +34,28 @@ const BookProfile = ({ isbn }) => {
           headerLeft: NavHeader
         }}
       />
-      <Cover src={cover} $width='56%' />
-      <Title>{title}</Title>
-      <Author>{author}</Author>
-      <Publisher>{publisher}</Publisher>
-      <SynopsisHeading>Sinopsis</SynopsisHeading>
-      <SynopsisBody>{synopsis}</SynopsisBody>
+      <Section>
+        <Cover src={cover} $width='56%' />
+        <Title>{title}</Title>
+        <Author>{author}</Author>
+        <Publisher>{publisher}</Publisher>
+        <SynopsisHeading>Sinopsis</SynopsisHeading>
+        <SynopsisBody>{synopsis}</SynopsisBody>
+      </Section>
+      <Divider />
+      <Section>
+        <InfoWrapper>
+          <InfoItem>
+            <BoldBodyText>ISBN</BoldBodyText>
+            <Text>{isbn}</Text>
+          </InfoItem>
+          <InfoItem>
+            <BoldBodyText>Fecha de publicación</BoldBodyText>
+            <Text>{publish_date}</Text>
+          </InfoItem>
+        </InfoWrapper>
+      </Section>
+      <Divider />
     </Wrapper>
   )
 }
