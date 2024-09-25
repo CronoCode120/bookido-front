@@ -16,9 +16,7 @@ import {
 import { Shadow } from 'react-native-shadow-2'
 
 const BookItem = ({ isbn, onPress, action }) => {
-  const book = useBookISBN(isbn, ['title', 'author', 'publisher'])
-
-  const { title, author } = book ?? {}
+  const { title, author } = useBookISBN(isbn, ['title', 'author']) ?? {}
   const authorInfo = getAuthors(author)
   const coverUri = getCoverUri(isbn)
   const [synopsis] = useBookSynopsis(isbn)
