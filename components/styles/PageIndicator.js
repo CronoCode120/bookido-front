@@ -5,10 +5,7 @@ export const Wrapper = styled.View`
   gap: 7px;
 `
 
-export const Indicator = styled.View`
-  background: ${({ active, theme }) =>
-    active ? theme.colors.AMBER_600 : theme.colors.NEUTRAL_200};
-  width: ${({ active }) => (active ? 40 : 10)}px;
+export const StyledIndicator = styled.View`
   height: 10px;
   border-radius: 6px;
 `
