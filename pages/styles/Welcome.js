@@ -1,8 +1,9 @@
 import styled from 'styled-components/native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import Button from '../../components/Button.jsx'
 import { getHeightPercent } from '../../utils/dimensions.js'
 
-export const Container = styled.View`
+export const Container = styled(SafeAreaView)`
   flex: 1;
   align-items: center;
   justify-content: center;
@@ -11,7 +12,7 @@ export const Container = styled.View`
 export const Wrapper = styled.View`
   width: 80%;
   max-width: 320px;
-  height: 70%;
+  height: 80%;
   justify-content: space-between;
   align-items: center;
 `
@@ -24,8 +25,15 @@ export const Title = styled.Text`
 
 export const BottomWrapper = styled.View`
   justify-content: space-between;
+  align-items: center;
   align-self: stretch;
   height: 75%;
+`
+
+export const ButtonWrapper = styled.View`
+  align-self: stretch;
+  align-items: center;
+  gap: 26px;
 `
 
 export const StyledButton = styled(Button)`

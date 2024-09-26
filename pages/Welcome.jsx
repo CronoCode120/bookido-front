@@ -1,5 +1,6 @@
 import {
   BottomWrapper,
+  ButtonWrapper,
   Container,
   StyledButton,
   SvgWrapper,
@@ -7,6 +8,7 @@ import {
   Wrapper
 } from './styles/Welcome'
 import WelcomeImg1 from '../components/images/WelcomeImg1.jsx'
+import PageIndicator from '../components/PageIndicator.jsx'
 
 const Welcome = () => {
   return (
@@ -17,7 +19,10 @@ const Welcome = () => {
           <SvgWrapper>
             <WelcomeImg1 />
           </SvgWrapper>
-          <StyledButton>Siguiente</StyledButton>
+          <ButtonWrapper>
+            <StyledButton>Siguiente</StyledButton>
+            <PageIndicator />
+          </ButtonWrapper>
         </BottomWrapper>
       </Wrapper>
     </Container>
