@@ -5,7 +5,13 @@ import { logIn } from '../api/user.js'
 const AuthContext = createContext()
 
 export const SessionProvider = ({ children }) => {
-  const [[isLoading, session], setSession] = useStorageState('session')
+  const [[loading, firstLaunchDone], setFirstLaunchDone] =
+    useStorageState('first_launch')
+  const [[loadingSession, session], setSession] = useStorageState('session')
+
+  const isLoading = loading || loadingSession
+
+  const disableWelcome = () => setFirstLaunchDone(true)
 
   const signIn = async (email, password) => {
     try {
@@ -25,9 +31,11 @@ export const SessionProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         session,
+        firstLaunchDone,
         isLoading,
         signIn,
         signOut,
+        disableWelcome,
         updateStand,
         setUpdateStand,
         updateShelf,
