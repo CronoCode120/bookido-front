@@ -1,11 +1,13 @@
 import { Indicator, Wrapper } from './styles/PageIndicator'
 
-const PageIndicator = () => {
+const PageIndicator = ({ pages, pageNum }) => {
   return (
     <Wrapper>
-      <Indicator />
-      <Indicator />
-      <Indicator />
+      {Array(pages)
+        .fill()
+        .map((_, idx) => (
+          <Indicator key={idx} active={idx + 1 === pageNum} />
+        ))}
     </Wrapper>
   )
 }

@@ -6,8 +6,9 @@ export const Wrapper = styled.View`
 `
 
 export const Indicator = styled.View`
-  background: ${({ theme }) => theme.colors.NEUTRAL_200};
-  width: 10px;
+  background: ${({ active, theme }) =>
+    active ? theme.colors.AMBER_600 : theme.colors.NEUTRAL_200};
+  width: ${({ active }) => (active ? 40 : 10)}px;
   height: 10px;
   border-radius: 6px;
 `
