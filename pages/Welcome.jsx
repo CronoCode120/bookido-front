@@ -14,17 +14,21 @@ import WelcomeImg3 from '../components/images/WelcomeImg3.jsx'
 
 import PageIndicator from '../components/PageIndicator.jsx'
 import { useState } from 'react'
+import { router } from 'expo-router'
 
 const Welcome = () => {
   const PAGES = 3
   const [pageNum, setPageNum] = useState(1)
   const { title, WelcomeImg } = pageInfo[pageNum - 1]
+  const lastPage = pageNum === PAGES
 
   const nextPage = () =>
     setPageNum(prevNum => {
       if (prevNum >= PAGES) return PAGES
       return prevNum + 1
     })
+
+  const navigate = () => router.replace('/login')
 
   return (
     <Container>
@@ -36,7 +40,9 @@ const Welcome = () => {
           </SvgWrapper>
         </MainWrapper>
         <ButtonWrapper>
-          <StyledButton onPress={nextPage}>Siguiente</StyledButton>
+          <StyledButton onPress={lastPage ? navigate : nextPage}>
+            {lastPage ? 'Empezar' : 'Siguiente'}
+          </StyledButton>
           <PageIndicator pages={PAGES} pageNum={pageNum} />
         </ButtonWrapper>
       </Wrapper>
