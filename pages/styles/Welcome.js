@@ -12,9 +12,16 @@ export const Container = styled(SafeAreaView)`
 export const Wrapper = styled.View`
   width: 80%;
   max-width: 320px;
-  height: 80%;
   justify-content: space-between;
   align-items: center;
+`
+
+export const MainWrapper = styled.View`
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  margin-top: 40px;
+  height: 70%;
 `
 
 export const Title = styled.Text`

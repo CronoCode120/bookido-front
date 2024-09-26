@@ -1,7 +1,7 @@
 import {
-  BottomWrapper,
   ButtonWrapper,
   Container,
+  MainWrapper,
   StyledButton,
   SvgWrapper,
   Title,
@@ -14,16 +14,16 @@ const Welcome = () => {
   return (
     <Container>
       <Wrapper>
-        <Title>¿Hace cuánto que no te enamoras de un libro?</Title>
-        <BottomWrapper>
+        <MainWrapper>
+          <Title>¿Hace cuánto que no te enamoras de un libro?</Title>
           <SvgWrapper>
             <WelcomeImg1 />
           </SvgWrapper>
-          <ButtonWrapper>
-            <StyledButton>Siguiente</StyledButton>
-            <PageIndicator />
-          </ButtonWrapper>
-        </BottomWrapper>
+        </MainWrapper>
+        <ButtonWrapper>
+          <StyledButton>Siguiente</StyledButton>
+          <PageIndicator />
+        </ButtonWrapper>
       </Wrapper>
     </Container>
   )
