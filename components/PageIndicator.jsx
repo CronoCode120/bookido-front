@@ -29,32 +29,28 @@ const Indicator = ({ active }) => {
   const ACTIVE_WIDTH = 40
   const { colors } = useTheme()
 
+  const progress = useDerivedValue(() => withTiming(active ? 1 : 0))
+
   const width = useSharedValue(MIN_WIDTH)
-  const bgColor = useDerivedValue(() =>
-    interpolateColor(
-      width.value,
-      [MIN_WIDTH, ACTIVE_WIDTH],
-      [colors.NEUTRAL_200, colors.AMBER_600]
-    )
-  )
 
   const animatedStyle = useAnimatedStyle(() => ({
     width: width.value,
-    backgroundColor: bgColor.value
+    backgroundColor: interpolateColor(
+      progress.value,
+      [0, 1],
+      [colors.NEUTRAL_200, colors.AMBER_600]
+    )
   }))
 
-  useEffect(() => {
-    if (active && width.value !== ACTIVE_WIDTH)
-      runOnUI(() => {
-        'worklet'
-        width.value = withTiming(ACTIVE_WIDTH)
-      })
+  const animateWidth = value => {
+    'worklet'
+    width.value = withTiming(value)
+  }
 
-    if (!active && width.value === ACTIVE_WIDTH)
-      runOnUI(() => {
-        'worklet'
-        width.value = withTiming(MIN_WIDTH)
-      })
+  useEffect(() => {
+    if (active) runOnUI(animateWidth)(ACTIVE_WIDTH)
+
+    if (!active) runOnUI(animateWidth)(MIN_WIDTH)
   }, [active])
 
   const AnimatedIndicator = Animated.createAnimatedComponent(StyledIndicator)
