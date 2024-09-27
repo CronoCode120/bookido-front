@@ -11,7 +11,7 @@ export const SessionProvider = ({ children }) => {
 
   const isLoading = loading || loadingSession
 
-  const disableWelcome = () => setFirstLaunchDone(true)
+  const disableWelcome = () => setFirstLaunchDone('true')
 
   const signIn = async (email, password) => {
     try {

@@ -16,7 +16,7 @@ const AppLayout = () => {
 
   if (isLoading) return <Text>Cargando...</Text>
 
-  if (!firstLaunchDone) return <Redirect href='/welcome' />
+  if (firstLaunchDone !== 'true') return <Redirect href='/welcome' />
 
   if (!session) return <Redirect href='/login' />
 
