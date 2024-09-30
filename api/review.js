@@ -13,3 +13,12 @@ export const addReview = async ({ userId, isbn, value, review }) =>
       review
     })
   ).data
+
+export const getReviewsByISBN = async isbn =>
+  (
+    await apiUrl.get('/', {
+      params: {
+        isbn
+      }
+    })
+  ).data
