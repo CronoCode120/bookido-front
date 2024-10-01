@@ -1,5 +1,6 @@
 import CoverView from './CoverView.jsx'
 import DetailView from './DetailView.jsx'
+import ReviewsView from './ReviewsView.jsx'
 import { ContentWrapper } from './styles/BookCard.js'
 
 const CardContent = ({ pageNum, book }) => {
@@ -22,7 +23,8 @@ const CardContent = ({ pageNum, book }) => {
             publisher={publisher}
             synopsis={synopsis}
           />
-        ))}
+        )) ||
+        (pageNum === 2 && <ReviewsView />)}
     </ContentWrapper>
   )
 }

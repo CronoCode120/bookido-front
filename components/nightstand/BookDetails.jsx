@@ -12,7 +12,7 @@ import {
 } from './styles/BookDetails.js'
 
 const BookDetails = ({ book }) => {
-  const { title, author, isbn, cover, publisher } = book ?? {}
+  const { title, author, isbn, cover } = book ?? {}
   const authorInfo = getFullAuthors(author)
 
   return (
@@ -26,9 +26,6 @@ const BookDetails = ({ book }) => {
         <DetailWrapper>
           <DetailText>
             <DetailTitle>ISBN</DetailTitle> {isbn}
-          </DetailText>
-          <DetailText>
-            <DetailTitle>EDITORIAL</DetailTitle> {publisher[0]}
           </DetailText>
         </DetailWrapper>
       </InfoWrapper>
