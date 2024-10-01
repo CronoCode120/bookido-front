@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { ActivityIndicator, View } from 'react-native'
 import { runOnUI } from 'react-native-reanimated'
 import BookCard from './BookCard.jsx'
 import BookViews from './BookViews.jsx'
@@ -64,19 +63,6 @@ const BookList = ({ books, curIdx, swipeInstances, btnDisabled }) => {
   }, [curIdx])
 
   const { pageNum, handleLeft, handleRight } = useBookPages(curIdx)
-
-  if (!books.length)
-    return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}
-      >
-        <ActivityIndicator />
-      </View>
-    )
 
   return (
     <Wrapper>
