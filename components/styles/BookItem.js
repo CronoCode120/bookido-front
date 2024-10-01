@@ -1,35 +1,25 @@
 import styled from 'styled-components/native'
-import { LinearGradient } from 'expo-linear-gradient'
 
-export const Wrapper = styled(LinearGradient).attrs({
-  colors: ['#F1F5F9E6', '#F1F5F9BF']
-})`
+export const Wrapper = styled.View`
   width: 100%;
   padding: 14px;
   gap: 14px;
   border-radius: 12px;
-`
-
-export const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  align-items: start;
-  width: 100%;
+  align-items: center;
+  background: ${({ theme }) => theme.colors.WHITE};
 `
 
 export const Heading = styled.View`
-  width: 85%;
+  width: 60%;
 `
 
-export const Title = styled.Text`
-  font-size: 20px;
-  font-weight: 600;
+export const Title = styled.Text.attrs({ numberOfLines: 2 })`
+  font-family: ${({ theme }) => theme.fonts.BODY_BOLD};
 `
 
-export const InfoText = styled.Text`
-  font-size: 16px;
-  font-weight: 300;
-`
+export const InfoText = styled.Text.attrs({ numberOfLines: 1 })``
 
 export const DetailWrapper = styled.View`
   flex-direction: row;
@@ -44,7 +34,6 @@ export const Synopsis = styled(InfoText)`
 `
 
 export const ActionButton = styled.Pressable`
-  margin: 0 0 auto 0;
   padding: 5px;
   border-radius: 99px;
 `
