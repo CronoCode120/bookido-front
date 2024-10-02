@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { DrawerModal } from '../nightstand'
-import Options from './Options.jsx'
+import { LinkButton } from '../Button.jsx'
 import DeleteModal from './DeleteModal.jsx'
-import { Title, Wrapper } from './styles/Options'
+import { Title, Wrapper, StyledButton } from './styles/Options'
 
-const OptionsDrawer = () => {
+const OptionsDrawer = ({ curIsbn }) => {
   const [deleteMsg, setDeleteMsg] = useState(false)
 
   const showDelete = () => setDeleteMsg(true)
@@ -14,7 +14,16 @@ const OptionsDrawer = () => {
       <DrawerModal>
         <Wrapper>
           <Title>Opciones</Title>
-          <Options showDelete={showDelete} />
+          <StyledButton
+            as={LinkButton}
+            href={`/review/${curIsbn}`}
+            type='secondary'
+          >
+            Editar/añadir reseña
+          </StyledButton>
+          <StyledButton onPress={showDelete} warning>
+            Archivar libro
+          </StyledButton>
         </Wrapper>
       </DrawerModal>
       <DeleteModal isVisible={deleteMsg} setVisible={setDeleteMsg} />
