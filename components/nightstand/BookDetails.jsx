@@ -9,7 +9,7 @@ import {
 } from './styles/BookDetails.js'
 
 const BookDetails = ({ book }) => {
-  const { title, author, isbn, cover } = book ?? {}
+  const { title, author, cover } = book ?? {}
   const authorInfo = getFullAuthors(author)
 
   return (
