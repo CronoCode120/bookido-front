@@ -1,9 +1,11 @@
 import { StyledButton } from './styles/Options.js'
 
-const Options = () => (
+const Options = ({ showDelete }) => (
   <>
     <StyledButton>Editar/añadir reseña</StyledButton>
-    <StyledButton warning>Archivar libro</StyledButton>
+    <StyledButton onPress={showDelete} warning>
+      Archivar libro
+    </StyledButton>
   </>
 )
 
