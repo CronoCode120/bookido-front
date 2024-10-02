@@ -8,7 +8,6 @@ const OptionsDrawer = () => {
   const [deleteMsg, setDeleteMsg] = useState(false)
 
   const showDelete = () => setDeleteMsg(true)
-  const hideDelete = () => setDeleteMsg(false)
 
   return (
     <>
