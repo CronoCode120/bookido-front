@@ -13,6 +13,7 @@ export const Wrapper = styled.View`
 
 export const Heading = styled.View`
   width: 60%;
+  gap: 4px;
 `
 
 export const Title = styled.Text.attrs({ numberOfLines: 2 })`

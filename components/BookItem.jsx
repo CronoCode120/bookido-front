@@ -24,21 +24,16 @@ const BookItem = ({ isbn, onPress, Icon }) => {
       containerStyle={{ marginHorizontal: 14 }}
     >
       <Wrapper>
-        <Header>
-          <Heading>
-            <Title numberOfLines={1}>{book.title}</Title>
-            <InfoText>{authorInfo}</InfoText>
-          </Heading>
-          <ActionButton
-            onPress={() => onPress({ ...book, isbn, cover: coverUri })}
-          >
-            <Icon />
-          </ActionButton>
-        </Header>
-        <DetailWrapper>
-          <Cover src={coverUri} $width='20%' />
-          <Synopsis numberOfLines={4}>{synopsis}</Synopsis>
-        </DetailWrapper>
+        <Cover src={coverUri} $width='20%' />
+        <Heading>
+          <Title numberOfLines={1}>{book.title}</Title>
+          <InfoText>{authorInfo}</InfoText>
+        </Heading>
+        <ActionButton
+          onPress={() => onPress({ ...book, isbn, cover: coverUri })}
+        >
+          <Icon />
+        </ActionButton>
       </Wrapper>
     </Shadow>
   )
