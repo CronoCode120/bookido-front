@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Switch, TouchableOpacity, ScrollView } from 'react-native';
+import { useState } from 'react'
+import { useSession } from '../../../context/SessionProvider.js'
+import {
+  View,
+  Text,
+  StyleSheet,
+  Switch,
+  TouchableOpacity,
+  ScrollView
+} from 'react-native'
 
 const ProfileScreen = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { signOut } = useSession()
+
+  const [isDarkMode, setIsDarkMode] = useState(false)
 
   const handleToggleSwitch = () => {
-    setIsDarkMode(previousState => !previousState);
-  };
+    setIsDarkMode(previousState => !previousState)
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -44,8 +54,10 @@ const ProfileScreen = () => {
         <TouchableOpacity style={styles.option}>
           <Text style={styles.optionText}>Ayuda</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.option}>
-          <Text style={[styles.optionText, styles.logoutText]}>Cerrar sesión</Text>
+        <TouchableOpacity style={styles.option} onPress={signOut}>
+          <Text style={[styles.optionText, styles.logoutText]}>
+            Cerrar sesión
+          </Text>
         </TouchableOpacity>
       </View>
 
@@ -53,18 +65,18 @@ const ProfileScreen = () => {
         <Text style={styles.premiumButtonText}>Vuélvete Premium</Text>
       </TouchableOpacity>
     </ScrollView>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#fff'
   },
   header: {
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#f5f5f5'
   },
   profileImage: {
     width: 80,
@@ -72,59 +84,58 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     backgroundColor: '#000',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   profileInitial: {
     color: '#fff',
-    fontSize: 40,
+    fontSize: 40
   },
   profileName: {
     fontSize: 22,
     fontWeight: 'bold',
-    marginTop: 10,
+    marginTop: 10
   },
   profileEmail: {
     color: '#777',
-    marginTop: 5,
+    marginTop: 5
   },
   profileCompletion: {
     color: 'red',
-    marginTop: 5,
+    marginTop: 5
   },
   section: {
     marginVertical: 10,
-    paddingHorizontal: 20,
+    paddingHorizontal: 20
   },
   sectionTitle: {
     color: '#888',
-    marginBottom: 10,
+    marginBottom: 10
   },
   option: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: 15,
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    borderBottomColor: '#eee'
   },
   optionText: {
-    fontSize: 16,
+    fontSize: 16
   },
   logoutText: {
-    color: 'red',
+    color: 'red'
   },
   premiumButton: {
     margin: 20,
     padding: 15,
     backgroundColor: '#007bff',
     alignItems: 'center',
-    borderRadius: 5,
+    borderRadius: 5
   },
   premiumButtonText: {
     color: '#fff',
     fontSize: 18,
-    fontWeight: 'bold',
-  },
-});
+    fontWeight: 'bold'
+  }
+})
 
-export default ProfileScreen;
-
+export default ProfileScreen
