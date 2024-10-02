@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { DrawerModal } from '../nightstand'
 import Options from './Options.jsx'
-import DeleteMessage from './DeleteMessage.jsx'
+import DeleteModal from './DeleteModal.jsx'
 import { Title, Wrapper } from './styles/Options'
 
 const OptionsDrawer = () => {
@@ -11,18 +11,15 @@ const OptionsDrawer = () => {
   const hideDelete = () => setDeleteMsg(false)
 
   return (
-    <DrawerModal>
-      <Wrapper>
-        <Title>
-          {deleteMsg ? '¿Estás seguro de que quieres archivarlo?' : 'Opciones'}
-        </Title>
-        {deleteMsg ? (
-          <DeleteMessage hideDelete={hideDelete} />
-        ) : (
+    <>
+      <DrawerModal>
+        <Wrapper>
+          <Title>Opciones</Title>
           <Options showDelete={showDelete} />
-        )}
-      </Wrapper>
-    </DrawerModal>
+        </Wrapper>
+      </DrawerModal>
+      <DeleteModal isVisible={deleteMsg} setVisible={setDeleteMsg} />
+    </>
   )
 }
 
