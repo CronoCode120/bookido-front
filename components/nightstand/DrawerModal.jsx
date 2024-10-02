@@ -14,7 +14,7 @@ import { useModal } from '../../context/ModalProvider.js'
 const DrawerModal = ({ children }) => {
   const [zIndex, setZIndex] = useState(-1)
 
-  const { visible, panGesture, translateY, openContainer, HEIGHT } = useModal()
+  const { visible, panGesture, translateY, openContainer, height } = useModal()
 
   useEffect(() => {
     if (visible) {
@@ -25,7 +25,7 @@ const DrawerModal = ({ children }) => {
   }, [visible])
 
   const bgOpacity = useDerivedValue(() =>
-    interpolate(translateY.value, [-HEIGHT, 0], [0.4, 0])
+    interpolate(translateY.value, [-height, 0], [0.4, 0])
   )
 
   const animatedStyle = useAnimatedStyle(() => ({
@@ -45,7 +45,7 @@ const DrawerModal = ({ children }) => {
     right: 0,
     borderTopStartRadius: 40,
     borderTopEndRadius: 40,
-    height: HEIGHT,
+    height,
     overflow: 'hidden',
     paddingHorizontal: 24,
     paddingBottom: 20,

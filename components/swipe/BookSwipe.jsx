@@ -10,9 +10,8 @@ import { Wrapper, BtnWrapper } from './styles/BookSwipe.js'
 
 const BookSwipe = () => {
   const [curIdx, setCurIdx] = useState(0)
-  const page = Math.floor((curIdx + 3) / 20) + 1
+  const { books, saveForLater } = useBooks(curIdx)
 
-  const { books, saveForLater } = useBooks(page)
   const { session, setUpdateStand } = useSession()
 
   const [btnDisabled, setBtnDisabled] = useState(false)

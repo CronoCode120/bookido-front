@@ -5,7 +5,9 @@ const DrawerButtons = ({ isbn }) => {
   return (
     <Wrapper>
       <LinkButton href={`/review/${isbn}`}>Marcar como leído</LinkButton>
-      <Button type='secondary'>Donar libro</Button>
+      <Button type='secondary' warning>
+        Donar libro
+      </Button>
     </Wrapper>
   )
 }

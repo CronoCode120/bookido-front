@@ -1,14 +1,17 @@
 import styled from 'styled-components/native'
 
 export const ContentWrapper = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  height: 200px;
+  gap: 25px;
+  margin-bottom: 25px;
 `
 
 export const InfoWrapper = styled.View`
-  width: 65%;
   justify-content: space-between;
-  gap: 12px;
+  gap: 4px;
 `
 
 export const Heading = styled.View`
@@ -16,22 +19,12 @@ export const Heading = styled.View`
 `
 
 export const Title = styled.Text`
-  font-size: 20px;
-  font-weight: 600;
+  font-family: ${({ theme }) => theme.fonts.BODY_BOLD};
+  font-size: 16px;
+  text-align: center;
 `
 
 export const Author = styled.Text`
   font-size: 16px;
-  font-weight: 300;
-`
-
-export const DetailWrapper = styled.View``
-
-export const DetailText = styled.Text`
-  font-size: 16px;
-  font-weight: 300;
-`
-
-export const DetailTitle = styled(DetailText)`
-  font-weight: 400;
+  text-align: center;
 `
