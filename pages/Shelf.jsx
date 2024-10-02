@@ -1,23 +1,36 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import BookItem from '../components/BookItem.jsx'
 import BookList from '../components/BookList.jsx'
+import OptionsDrawer from '../components/shelf/OptionsDrawer.jsx'
 import { getBooksInShelf } from '../api/books.js'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
+import { useFocusEffect } from 'expo-router'
 import { useSession } from '../context/SessionProvider.js'
+import { useModal } from '../context/ModalProvider.js'
 import shelfImg from '../assets/estanteria.png'
-import DotsIcon from '../components/icons/DotsIcon.jsx'
+import { DotsIcon } from '../components/icons'
 
 const Shelf = () => {
-  const { session } = useSession()
+  const [curBook, setCurBook] = useState(null)
+
+  const { session, updateShelf, setUpdateShelf } = useSession()
   const [books, setBooks] = useState([])
 
-  useEffect(() => {
+  const fetchBooks = () =>
     getBooksInShelf(session).then(data => setBooks(data.shelve))
-  }, [])
 
-  const handlePress = book => {
-    console.log('delete ' + book.isbn[0])
+  useFocusEffect(
+    useCallback(() => {
+      fetchBooks()
+      setUpdateShelf(false)
+    }, [updateShelf])
+  )
+
+  const { toggleVisible } = useModal()
+  const openDrawer = book => {
+    setCurBook(book)
+    toggleVisible()
   }
 
   return (
@@ -25,11 +38,12 @@ const Shelf = () => {
       <BookList
         books={books}
         renderBook={isbn => (
-          <BookItem isbn={isbn} Icon={DotsIcon} onPress={handlePress} />
+          <BookItem isbn={isbn} Icon={DotsIcon} onPress={openDrawer} />
         )}
         noBooksMsg={'Aún no tienes libros por leer.'}
         bgImage={shelfImg}
       />
+      <OptionsDrawer book={curBook} />
     </GestureHandlerRootView>
   )
 }
