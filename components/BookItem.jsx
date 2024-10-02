@@ -1,7 +1,6 @@
 import { useBookISBN, useBookSynopsis } from '../hooks/index.js'
 import getAuthors from '../utils/getAuthors.js'
 import getCoverUri from '../utils/getCoverUri.js'
-import { AddIcon, CrossIcon } from './icons/index.js'
 import { Cover } from './styles/Cover.js'
 import {
   ActionButton,
