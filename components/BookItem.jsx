@@ -15,7 +15,7 @@ import {
 } from './styles/BookItem.js'
 import { Shadow } from 'react-native-shadow-2'
 
-const BookItem = ({ isbn, onPress, action }) => {
+const BookItem = ({ isbn, onPress, Icon }) => {
   const book = useBookISBN(isbn, ['title', 'author']) ?? {}
   const authorInfo = getAuthors(book.author)
   const coverUri = getCoverUri(isbn)
@@ -37,8 +37,7 @@ const BookItem = ({ isbn, onPress, action }) => {
           <ActionButton
             onPress={() => onPress({ ...book, isbn, cover: coverUri })}
           >
-            {action === 'add' && <AddIcon />}
-            {action === 'delete' && <CrossIcon />}
+            <Icon />
           </ActionButton>
         </Header>
         <DetailWrapper>
