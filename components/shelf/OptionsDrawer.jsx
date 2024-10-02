@@ -4,10 +4,11 @@ import { LinkButton } from '../Button.jsx'
 import DeleteModal from './DeleteModal.jsx'
 import { Title, Wrapper, StyledButton } from './styles/Options'
 
-const OptionsDrawer = ({ curIsbn }) => {
+const OptionsDrawer = ({ book }) => {
   const [deleteMsg, setDeleteMsg] = useState(false)
-
   const showDelete = () => setDeleteMsg(true)
+
+  const { isbn } = book
 
   return (
     <>
@@ -16,7 +17,7 @@ const OptionsDrawer = ({ curIsbn }) => {
           <Title>Opciones</Title>
           <StyledButton
             as={LinkButton}
-            href={`/review/${curIsbn}`}
+            href={`/review/${isbn}`}
             type='secondary'
           >
             Editar/añadir reseña
