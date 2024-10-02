@@ -21,7 +21,7 @@ export const StyledButton = styled(Button)(({ type, warning, theme }) => {
 export const Label = styled.Text`
   text-align: center;
   font-size: 16px;
-  font-weight: 600;
+  font-family: ${({ theme }) => theme.fonts.BODY_BOLD};
   color: ${({ type, warning, theme }) =>
     type === 'secondary'
       ? warning
