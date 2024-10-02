@@ -17,7 +17,13 @@ export const Container = styled.View`
   height: 220px;
   justify-content: center;
   align-items: center;
+  gap: 20px;
   padding: 20px 40px;
   border-radius: 12px;
   background: ${({ theme }) => theme.colors.ROSE_50};
+`
+
+export const Message = styled.Text`
+  text-align: center;
+  font-size: 16px;
 `
