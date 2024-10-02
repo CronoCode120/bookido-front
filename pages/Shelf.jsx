@@ -6,6 +6,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 import { useSession } from '../context/SessionProvider.js'
 import shelfImg from '../assets/estanteria.png'
+import DotsIcon from '../components/icons/DotsIcon.jsx'
 
 const Shelf = () => {
   const { session } = useSession()
@@ -24,7 +25,7 @@ const Shelf = () => {
       <BookList
         books={books}
         renderBook={isbn => (
-          <BookItem isbn={isbn} action='add' onPress={handlePress} />
+          <BookItem isbn={isbn} Icon={DotsIcon} onPress={handlePress} />
         )}
         noBooksMsg={'Aún no tienes libros por leer.'}
         bgImage={shelfImg}

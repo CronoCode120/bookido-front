@@ -10,6 +10,8 @@ import { useSession } from '../../context/SessionProvider.js'
 import { useModal } from '../../context/ModalProvider.js'
 import standImg from '../../assets/mesita.png'
 
+import { AddIcon } from '../icons'
+
 const ReadList = () => {
   const [curBook, setCurBook] = useState(null)
 
@@ -37,7 +39,7 @@ const ReadList = () => {
       <BookList
         books={books}
         renderBook={isbn => (
-          <BookItem isbn={isbn} action='add' onPress={openDrawer} />
+          <BookItem isbn={isbn} onPress={openDrawer} Icon={AddIcon} />
         )}
         noBooksMsg={'Aún no tienes libros por leer.'}
         bgImage={standImg}
