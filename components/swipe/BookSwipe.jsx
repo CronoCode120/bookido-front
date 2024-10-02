@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { View, ActivityIndicator } from 'react-native'
 import { useSwipe, useBooks } from '../../hooks'
 import BookList from './BookList.jsx'
 import Button, { LinkButton } from '../Button.jsx'
@@ -59,6 +60,19 @@ const BookSwipe = () => {
       onSwipeUp
     })
   ]
+
+  if (!books.length)
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
+      >
+        <ActivityIndicator size='large' color='black' />
+      </View>
+    )
 
   return (
     <Wrapper>
