@@ -8,7 +8,7 @@ const OptionsDrawer = ({ book }) => {
   const [deleteMsg, setDeleteMsg] = useState(false)
   const showDelete = () => setDeleteMsg(true)
 
-  const { isbn } = book
+  const { isbn } = book ?? {}
 
   return (
     <>
