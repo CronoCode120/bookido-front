@@ -23,6 +23,7 @@ const Button = ({
       onPress={onPress}
       type={type}
       warning={warning}
+      disabled={disabled}
       onPressIn={animatePressIn}
       onPressOut={animatePressOut}
       style={[animatedStyle, { ...style }]}
