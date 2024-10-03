@@ -1,6 +1,8 @@
 import { forwardRef } from 'react'
 import { Label, StyledButton } from './styles/Button.js'
 import { Link } from 'expo-router'
+import { useButtonAnimation } from '../hooks'
+import Animated from 'react-native-reanimated'
 
 const Button = ({
   children,
@@ -9,12 +11,24 @@ const Button = ({
   warning = false,
   style
 }) => {
+  const { animatedStyle, animatePressIn, animatePressOut } =
+    useButtonAnimation()
+
+  const AnimatedButton = Animated.createAnimatedComponent(StyledButton)
+
   return (
-    <StyledButton onPress={onPress} type={type} warning={warning} style={style}>
+    <AnimatedButton
+      onPress={onPress}
+      type={type}
+      warning={warning}
+      onPressIn={animatePressIn}
+      onPressOut={animatePressOut}
+      style={[animatedStyle, { ...style }]}
+    >
       <Label type={type} warning={warning}>
         {children}
       </Label>
-    </StyledButton>
+    </AnimatedButton>
   )
 }
 
@@ -31,7 +45,7 @@ const RefBtn = forwardRef(function Button(
   ref
 ) {
   return (
-    <StyledButton
+    <AnimatedButton
       onPress={onPress}
       type={type}
       warning={warning}
@@ -41,7 +55,7 @@ const RefBtn = forwardRef(function Button(
       <Label type={type} warning={warning}>
         {children}
       </Label>
-    </StyledButton>
+    </AnimatedButton>
   )
 })
 
