@@ -23,10 +23,6 @@ const BookList = ({ books, curIdx, swipeInstances, btnDisabled }) => {
   const prevIdxRef = useRef(curIdx)
 
   useEffect(() => {
-    if (prevIdxRef.current === curIdx) return
-
-    prevIdxRef.current = curIdx
-
     const updateZIdx = (aZ, bZ, cZ) => {
       runOnUI(() => {
         'worklet'
@@ -36,17 +32,21 @@ const BookList = ({ books, curIdx, swipeInstances, btnDisabled }) => {
       })()
     }
 
-    const enableSwipe = (enableSwipe, disableSwipe, resetSwipe = true) => {
-      enableSwipe.enableWithCooldown()
-      disableSwipe.disable()
-      resetSwipe && runOnUI(disableSwipe.animation.reset)()
-    }
-
     if (curIdx === 0) {
       swipeA.enable()
       swipeB.disable()
       swipeC.disable()
       updateZIdx(3, 2, 1)
+    }
+
+    if (prevIdxRef.current === curIdx) return
+
+    prevIdxRef.current = curIdx
+
+    const enableSwipe = (enableSwipe, disableSwipe, resetSwipe = true) => {
+      enableSwipe.enableWithCooldown()
+      disableSwipe.disable()
+      resetSwipe && runOnUI(disableSwipe.animation.reset)()
     }
 
     if (curIdx !== 0 && remainder === 0) {
