@@ -1,5 +1,10 @@
 import { forwardRef } from 'react'
-import { Label, StyledButton } from './styles/Button.js'
+import {
+  Label,
+  LoadingIndicator,
+  LoadWrapper,
+  StyledButton
+} from './styles/Button.js'
 import { Link } from 'expo-router'
 import { useButtonAnimation } from '../hooks'
 import Animated from 'react-native-reanimated'
@@ -10,6 +15,7 @@ const Button = ({
   type = 'primary',
   warning = false,
   disabled = false,
+  loading = false,
   style
 }) => {
   const { animatedStyle, animatePressIn, animatePressOut } = useButtonAnimation(
@@ -28,7 +34,12 @@ const Button = ({
       onPressOut={animatePressOut}
       style={[animatedStyle, { ...style }]}
     >
-      <Label type={type} warning={warning}>
+      {loading && (
+        <LoadWrapper>
+          <LoadingIndicator />
+        </LoadWrapper>
+      )}
+      <Label type={type} warning={warning} loading={loading}>
         {children}
       </Label>
     </AnimatedButton>

@@ -19,6 +19,8 @@ export const StyledButton = styled(Button)(({ type, warning, theme }) => {
 })
 
 export const Label = styled.Text`
+  justify-content: center;
+  align-items: center;
   text-align: center;
   font-size: 16px;
   font-family: ${({ theme }) => theme.fonts.BODY_BOLD};
@@ -28,4 +30,23 @@ export const Label = styled.Text`
         ? theme.colors.ROSE_400
         : theme.colors.BLACK
       : theme.colors.WHITE};
+  opacity: ${({ loading }) => (loading ? 0 : 1)};
+`
+
+export const LoadWrapper = styled.View`
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`
+
+export const LoadingIndicator = styled.ActivityIndicator.attrs(({ theme }) => ({
+  color: theme.colors.WHITE
+}))`
+  position: absolute;
+  justify-content: center;
+  align-items: center;
 `
