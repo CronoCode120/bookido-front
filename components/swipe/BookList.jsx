@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { runOnUI } from 'react-native-reanimated'
 import BookCard from './BookCard.jsx'
 import BookViews from './BookViews.jsx'
@@ -20,7 +20,13 @@ const BookList = ({ books, curIdx, swipeInstances, btnDisabled }) => {
 
   const [swipeA, swipeB, swipeC] = swipeInstances
 
+  const prevIdxRef = useRef(curIdx)
+
   useEffect(() => {
+    if (prevIdxRef.current === curIdx) return
+
+    prevIdxRef.current = curIdx
+
     const updateZIdx = (aZ, bZ, cZ) => {
       runOnUI(() => {
         'worklet'
