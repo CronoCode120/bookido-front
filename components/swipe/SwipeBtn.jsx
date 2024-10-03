@@ -1,8 +1,8 @@
 import { Button } from './styles/SwipeBtn.js'
 
-const SwipeBtn = ({ onPress, disabled, Icon }) => {
+const SwipeBtn = ({ onPress, disabled, isDark, Icon }) => {
   return (
-    <Button onPress={onPress} disabled={disabled}>
+    <Button isDark={isDark} onPress={onPress} disabled={disabled}>
       <Icon />
     </Button>
   )
