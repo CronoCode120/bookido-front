@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import {
   runOnUI,
   useAnimatedStyle,
@@ -5,20 +6,24 @@ import {
   withTiming
 } from 'react-native-reanimated'
 
-const useButtonAnimation = () => {
-  const PRESS_DURATION = 150
+const useButtonAnimation = ({ disabled } = {}) => {
+  const DURATION = 150
 
   const opacity = useSharedValue(1)
 
-  const animatePressIn = runOnUI(() => {
+  const animateOpacity = runOnUI((value, duration) => {
     'worklet'
-    opacity.value = withTiming(0.6, { duration: PRESS_DURATION })
+    opacity.value = withTiming(value, { duration })
   })
 
-  const animatePressOut = runOnUI(() => {
-    'worklet'
-    opacity.value = withTiming(1, { duration: PRESS_DURATION })
-  })
+  useEffect(() => {
+    if (!disabled && !(opacity.value === 1)) animateOpacity(1, DURATION)
+    if (disabled && opacity.value === 1) animateOpacity(0.6, DURATION)
+  }, [disabled])
+
+  const animatePressIn = () => animateOpacity(0.6, DURATION)
+
+  const animatePressOut = () => animateOpacity(1, DURATION)
 
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: opacity.value

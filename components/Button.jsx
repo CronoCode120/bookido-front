@@ -9,10 +9,12 @@ const Button = ({
   onPress,
   type = 'primary',
   warning = false,
+  disabled = false,
   style
 }) => {
-  const { animatedStyle, animatePressIn, animatePressOut } =
-    useButtonAnimation()
+  const { animatedStyle, animatePressIn, animatePressOut } = useButtonAnimation(
+    { disabled }
+  )
 
   const AnimatedButton = Animated.createAnimatedComponent(StyledButton)
 
