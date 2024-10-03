@@ -18,7 +18,7 @@ const useBooks = curIdx => {
   useEffect(() => {
     if (!books) return
     if (books.length - 3 <= curIdx) setPage(prevPage => prevPage + 1)
-  }, [curIdx])
+  }, [curIdx, books])
 
   useEffect(() => {
     getBooksData(page, session)
