@@ -6,13 +6,13 @@ const ModalContext = createContext()
 
 const HEIGHT = 460
 
-export const ModalProvider = ({ children }) => {
+export const ModalProvider = ({ children, height = HEIGHT }) => {
   const [focused, setFocused] = useState(true)
   const [visible, setVisible] = useState(false)
   const toggleVisible = () => setVisible(prevState => !prevState)
 
   const { panGesture, translateY, openContainer, closeContainer } = useSlide(
-    HEIGHT,
+    height,
     toggleVisible
   )
 
@@ -39,7 +39,7 @@ export const ModalProvider = ({ children }) => {
         openContainer,
         panGesture,
         translateY,
-        HEIGHT
+        height
       }}
     >
       {children}

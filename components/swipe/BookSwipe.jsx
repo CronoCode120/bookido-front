@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { View, ActivityIndicator } from 'react-native'
 import { useSwipe, useBooks } from '../../hooks'
 import BookList from './BookList.jsx'
 import Button, { LinkButton } from '../Button.jsx'
@@ -9,9 +10,8 @@ import { Wrapper, BtnWrapper } from './styles/BookSwipe.js'
 
 const BookSwipe = () => {
   const [curIdx, setCurIdx] = useState(0)
-  const page = Math.floor((curIdx + 3) / 20) + 1
+  const { books, saveForLater } = useBooks(curIdx)
 
-  const { books, saveForLater } = useBooks(page)
   const { session, setUpdateStand } = useSession()
 
   const [btnDisabled, setBtnDisabled] = useState(false)
@@ -59,6 +59,19 @@ const BookSwipe = () => {
       onSwipeUp
     })
   ]
+
+  if (!books.length)
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
+      >
+        <ActivityIndicator size='large' color='black' />
+      </View>
+    )
 
   return (
     <Wrapper>

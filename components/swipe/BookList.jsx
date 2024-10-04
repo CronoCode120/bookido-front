@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react'
-import { ActivityIndicator, View } from 'react-native'
+import { useState, useEffect, useRef } from 'react'
 import { runOnUI } from 'react-native-reanimated'
 import BookCard from './BookCard.jsx'
 import BookViews from './BookViews.jsx'
@@ -21,6 +20,8 @@ const BookList = ({ books, curIdx, swipeInstances, btnDisabled }) => {
 
   const [swipeA, swipeB, swipeC] = swipeInstances
 
+  const prevIdxRef = useRef(curIdx)
+
   useEffect(() => {
     const updateZIdx = (aZ, bZ, cZ) => {
       runOnUI(() => {
@@ -31,17 +32,21 @@ const BookList = ({ books, curIdx, swipeInstances, btnDisabled }) => {
       })()
     }
 
-    const enableSwipe = (enableSwipe, disableSwipe, resetSwipe = true) => {
-      enableSwipe.enableWithCooldown()
-      disableSwipe.disable()
-      resetSwipe && runOnUI(disableSwipe.animation.reset)()
-    }
-
     if (curIdx === 0) {
       swipeA.enable()
       swipeB.disable()
       swipeC.disable()
       updateZIdx(3, 2, 1)
+    }
+
+    if (prevIdxRef.current === curIdx) return
+
+    prevIdxRef.current = curIdx
+
+    const enableSwipe = (enableSwipe, disableSwipe, resetSwipe = true) => {
+      enableSwipe.enableWithCooldown()
+      disableSwipe.disable()
+      resetSwipe && runOnUI(disableSwipe.animation.reset)()
     }
 
     if (curIdx !== 0 && remainder === 0) {
@@ -64,19 +69,6 @@ const BookList = ({ books, curIdx, swipeInstances, btnDisabled }) => {
   }, [curIdx])
 
   const { pageNum, handleLeft, handleRight } = useBookPages(curIdx)
-
-  if (!books.length)
-    return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}
-      >
-        <ActivityIndicator />
-      </View>
-    )
 
   return (
     <Wrapper>

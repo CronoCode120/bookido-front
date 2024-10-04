@@ -30,13 +30,6 @@ export const Title = styled.Text`
   text-align: center;
 `
 
-export const BottomWrapper = styled.View`
-  justify-content: space-between;
-  align-items: center;
-  align-self: stretch;
-  height: 75%;
-`
-
 export const ButtonWrapper = styled.View`
   align-self: stretch;
   align-items: center;

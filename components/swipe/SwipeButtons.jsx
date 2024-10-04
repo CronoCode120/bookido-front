@@ -12,18 +12,27 @@ const SwipeButtons = ({
   const gradientColors =
     pageNum === 0 ? ['#1F1F1F00', '#1F1F1F'] : ['transparent', 'transparent']
 
+  const dark = pageNum !== 0
+
   return (
     <Wrapper colors={gradientColors}>
       <SwipeBtn
         onPress={swipeLeft}
         disabled={disabled}
-        Icon={() => <DislikeIcon big />}
+        isDark={dark}
+        Icon={() => <DislikeIcon dark={dark} big />}
       />
-      <SwipeBtn onPress={swipeUp} disabled={disabled} Icon={ClockIcon} />
+      <SwipeBtn
+        onPress={swipeUp}
+        disabled={disabled}
+        isDark={dark}
+        Icon={() => <ClockIcon dark={dark} />}
+      />
       <SwipeBtn
         onPress={swipeRight}
         disabled={disabled}
-        Icon={() => <LikeIcon big />}
+        isDark={dark}
+        Icon={() => <LikeIcon big dark={dark} />}
       />
     </Wrapper>
   )

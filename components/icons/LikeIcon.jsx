@@ -1,6 +1,7 @@
 import Svg, { Path } from 'react-native-svg'
+import theme from '../../theme.js'
 
-const LikeIcon = ({ selected, big = false, ...props }) => (
+const LikeIcon = ({ selected, big = false, dark, ...props }) => (
   <Svg
     xmlns='http://www.w3.org/2000/svg'
     width={big ? 32 : 24}
@@ -11,14 +12,14 @@ const LikeIcon = ({ selected, big = false, ...props }) => (
     {big ? (
       <>
         <Path
-          stroke='#1F1F1F'
+          stroke={dark ? theme.colors.WHITE : '#1F1F1F'}
           strokeLinecap='round'
           strokeLinejoin='round'
           strokeWidth={1.5}
           d='M2.65 16.663a2.65 2.65 0 0 1 2.65-2.65 3.975 3.975 0 0 1 3.974 3.975v5.3A3.975 3.975 0 0 1 5.3 27.261a2.65 2.65 0 0 1-2.65-2.65v-7.95Z'
         />
         <Path
-          stroke='#1F1F1F'
+          stroke={dark ? theme.colors.WHITE : '#1F1F1F'}
           strokeLinecap='round'
           strokeLinejoin='round'
           strokeWidth={1.5}
@@ -27,7 +28,7 @@ const LikeIcon = ({ selected, big = false, ...props }) => (
       </>
     ) : (
       <Path
-        stroke='#1F1F1F'
+        stroke={dark ? theme.colors.WHITE : '#1F1F1F'}
         strokeLinecap='round'
         strokeLinejoin='round'
         strokeWidth={1.4}
