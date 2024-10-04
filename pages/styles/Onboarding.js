@@ -54,7 +54,8 @@ export const SearchInput = styled.TextInput.attrs(({ theme }) => ({
   placeholder: 'Buscar por título',
   placeholderTextColor: theme.colors.NEUTRAL_500,
   inputMode: 'search',
-  autoCorrect: false
+  autoCorrect: false,
+  autoComplete: 'off'
 }))`
   color: ${({ theme }) => theme.colors.NEUTRAL_500};
   flex: 1;
@@ -64,3 +65,7 @@ export const SearchInput = styled.TextInput.attrs(({ theme }) => ({
 export const StyledButton = styled(Button)`
   width: 80%;
 `
+
+export const LoadIndicator = styled.ActivityIndicator.attrs(({ theme }) => ({
+  color: theme.colors.BLACK
+}))``
