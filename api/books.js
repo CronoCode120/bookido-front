@@ -27,6 +27,15 @@ export const getSynopsisByISBN = async isbn =>
     })
   ).data
 
+export const getBooksByTitle = async title =>
+  (
+    await apiUrl.get('/title', {
+      params: {
+        title
+      }
+    })
+  ).data
+
 export const addToTable = async (isbn, userId) =>
   (
     await apiUrl.post('/table', {
