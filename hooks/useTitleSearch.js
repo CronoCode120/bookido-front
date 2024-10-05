@@ -16,8 +16,8 @@ const useTitleSearch = () => {
     })
   }
 
-  const filteredBooks = suggestedBooks.filter(book =>
-    book.title.includes(searchTitle)
+  const filteredBooks = books.filter(book =>
+    book.title.toLowerCase().includes(searchTitle.toLowerCase())
   )
 
   useEffect(() => {
