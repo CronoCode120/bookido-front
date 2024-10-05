@@ -8,9 +8,11 @@ import {
   TopWrapper,
   ProgressBar,
   Progress,
-  LoadIndicator
+  LoadIndicator,
+  DropdownList
 } from './styles/Onboarding'
 import useTitleSearch from '../hooks/useTitleSearch.js'
+import { Text } from 'react-native'
 
 const Onboarding = () => {
   const { searchTitle, setSearchTitle, filteredBooks, loading } =
@@ -26,6 +28,11 @@ const Onboarding = () => {
         <SearchWrapper>
           <SearchInput value={searchTitle} onChangeText={setSearchTitle} />
           {loading ? <LoadIndicator /> : <SearchIcon />}
+          <DropdownList
+            data={filteredBooks}
+            renderItem={({ item }) => <Text>{item.title}</Text>}
+            keyExtractor={({ item }) => item?.isbn[0]}
+          />
         </SearchWrapper>
       </TopWrapper>
       <StyledButton>Siguiente</StyledButton>

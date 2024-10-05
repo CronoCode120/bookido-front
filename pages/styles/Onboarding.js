@@ -69,3 +69,12 @@ export const StyledButton = styled(Button)`
 export const LoadIndicator = styled.ActivityIndicator.attrs(({ theme }) => ({
   color: theme.colors.BLACK
 }))``
+
+export const DropdownList = styled.FlatList`
+  border: 1px solid red;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+`
