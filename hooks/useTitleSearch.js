@@ -1,33 +1,39 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { getBooksByTitle } from '../api/books.js'
 
 const useTitleSearch = () => {
   const [searchTitle, setSearchTitle] = useState('')
   const [loading, setLoading] = useState(false)
-  const [suggestedBooks, setSuggestedBooks] = useState([])
-  const [filteredBooks, setFilteredBooks] = useState([])
+  const [books, setBooks] = useState([])
+
+  const timerRef = useRef(null)
+
+  const retrieveBooks = () => {
+    setLoading(true)
+    getBooksByTitle(searchTitle).then(({ books }) => {
+      setBooks(books)
+      setLoading(false)
+    })
+  }
+
+  const filteredBooks = suggestedBooks.filter(book =>
+    book.title.includes(searchTitle)
+  )
 
   useEffect(() => {
-    const booksRetrieved = suggestedBooks.length > 0
+    if (timerRef.current) clearTimeout(timerRef.current)
+
+    const booksRetrieved = books.length > 0
     const isFetchDone = booksRetrieved || loading
 
-    if (booksRetrieved) {
-      const filteredBooks = suggestedBooks.filter(book =>
-        book.title.includes(searchTitle)
-      )
-      setFilteredBooks(filteredBooks)
-    }
-
     if (!isFetchDone && searchTitle.length > 2) {
-      setLoading(true)
-      getBooksByTitle(searchTitle).then(({ books }) => {
-        setSuggestedBooks(books)
-        setLoading(false)
-      })
+      timerRef.current = setTimeout(retrieveBooks, 2000)
     }
-  }, [searchTitle])
 
-  useEffect(() => console.log('suggested: ', filteredBooks), [filteredBooks])
+    if (isFetchDone && searchTitle.length <= 2) setBooks([])
+
+    return () => clearTimeout(timerRef.current)
+  }, [searchTitle])
 
   return { searchTitle, setSearchTitle, filteredBooks, loading }
 }
