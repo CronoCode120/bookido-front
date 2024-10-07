@@ -9,6 +9,8 @@ import { Link } from 'expo-router'
 import { useButtonAnimation } from '../hooks'
 import Animated from 'react-native-reanimated'
 
+const AnimatedButton = Animated.createAnimatedComponent(StyledButton)
+
 const Button = ({
   children,
   onPress,
@@ -21,8 +23,6 @@ const Button = ({
   const { animatedStyle, animatePressIn, animatePressOut } = useButtonAnimation(
     { disabled }
   )
-
-  const AnimatedButton = Animated.createAnimatedComponent(StyledButton)
 
   return (
     <AnimatedButton
@@ -55,15 +55,22 @@ export const LinkButton = ({ href, type, warning, style, children }) => (
 )
 
 const RefBtn = forwardRef(function Button(
-  { children, onPress, type = 'primary', warning = false, style },
+  { children, onPress, type = 'primary', warning = false, disabled, style },
   ref
 ) {
+  const { animatedStyle, animatePressIn, animatePressOut } = useButtonAnimation(
+    { disabled }
+  )
+
   return (
     <AnimatedButton
       onPress={onPress}
       type={type}
       warning={warning}
-      style={style}
+      disabled={disabled}
+      onPressIn={animatePressIn}
+      onPressOut={animatePressOut}
+      style={[animatedStyle, { ...style }]}
       ref={ref}
     >
       <Label type={type} warning={warning}>
