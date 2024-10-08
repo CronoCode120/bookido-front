@@ -1,10 +1,11 @@
 import styled from 'styled-components/native'
 
-export const Wrapper = styled.View`
+export const Wrapper = styled.Pressable`
   flex: 1;
   justify-content: center;
   align-items: center;
   padding: 10px;
+  background: white;
 `
 
 export const Title = styled.Text`
