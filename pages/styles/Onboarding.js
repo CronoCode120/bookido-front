@@ -73,8 +73,14 @@ export const LoadIndicator = styled.ActivityIndicator.attrs(({ theme }) => ({
 export const DropdownList = styled.View`
   border: 1px solid ${({ theme }) => theme.colors.NEUTRAL_400};
   border-radius: 12px;
+  background: ${({ theme }) => theme.colors.NEUTRAL_400};
   max-height: 400px;
   align-self: stretch;
-  background: white;
   overflow: hidden;
+`
+
+export const Separator = styled.View`
+  align-self: stretch;
+  height: 1px;
+  background: ${({ theme }) => theme.colors.NEUTRAL_400};
 `

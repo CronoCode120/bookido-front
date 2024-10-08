@@ -9,7 +9,8 @@ import {
   ProgressBar,
   Progress,
   LoadIndicator,
-  DropdownList
+  DropdownList,
+  Separator
 } from './styles/Onboarding'
 import useTitleSearch from '../hooks/useTitleSearch.js'
 import DropdownItem from '../components/onboarding/DropdownItem.jsx'
@@ -48,6 +49,7 @@ const Onboarding = () => {
                 overflow: 'scroll',
                 alignSelf: 'stretch'
               }}
+              ItemSeparatorComponent={Separator}
             />
           </DropdownList>
         )}
