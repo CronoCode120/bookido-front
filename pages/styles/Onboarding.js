@@ -70,11 +70,11 @@ export const LoadIndicator = styled.ActivityIndicator.attrs(({ theme }) => ({
   color: theme.colors.BLACK
 }))``
 
-export const DropdownList = styled.FlatList`
-  border: 1px solid red;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
+export const DropdownList = styled.View`
+  border: 1px solid ${({ theme }) => theme.colors.NEUTRAL_400};
+  border-radius: 12px;
+  max-height: 400px;
+  align-self: stretch;
   background: white;
+  overflow: hidden;
 `

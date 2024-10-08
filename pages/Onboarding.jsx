@@ -12,11 +12,19 @@ import {
   DropdownList
 } from './styles/Onboarding'
 import useTitleSearch from '../hooks/useTitleSearch.js'
-import { Text } from 'react-native'
+import DropdownItem from '../components/onboarding/DropdownItem.jsx'
+import { FlatList } from 'react-native'
 
 const Onboarding = () => {
   const { searchTitle, setSearchTitle, filteredBooks, loading } =
     useTitleSearch()
+
+  const renderBook = ({ item }) => {
+    const publisher = item.publisher
+      ? item.publisher[0]
+      : 'Editorial desconocida'
+    return <DropdownItem title={item.title} publisher={publisher} />
+  }
 
   return (
     <Container>
@@ -28,12 +36,21 @@ const Onboarding = () => {
         <SearchWrapper>
           <SearchInput value={searchTitle} onChangeText={setSearchTitle} />
           {loading ? <LoadIndicator /> : <SearchIcon />}
-          <DropdownList
-            data={filteredBooks}
-            renderItem={({ item }) => <Text>{item.title}</Text>}
-            keyExtractor={({ item }) => item?.isbn[0]}
-          />
         </SearchWrapper>
+        {filteredBooks?.length > 0 && (
+          <DropdownList>
+            <FlatList
+              data={filteredBooks}
+              renderItem={renderBook}
+              keyExtractor={({ item }) => item?.isbn[0]}
+              contentContainerStyle={{
+                backgroundColor: 'transparent',
+                overflow: 'scroll',
+                alignSelf: 'stretch'
+              }}
+            />
+          </DropdownList>
+        )}
       </TopWrapper>
       <StyledButton>Siguiente</StyledButton>
     </Container>
