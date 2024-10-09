@@ -23,9 +23,14 @@ const Login = () => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const inputEmpty = !email && !password
+
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async () => {
+    setLoading(true)
     await signIn(email.trim(), password)
+    setLoading(false)
     router.replace('/')
   }
 
@@ -44,7 +49,9 @@ const Login = () => {
         <ForgotLink as={Link} href='/forgot-password'>
           ¿Has olvidado la contraseña?
         </ForgotLink>
-        <Button onPress={handleSubmit}>Acceder</Button>
+        <Button onPress={handleSubmit} loading={loading} disabled={inputEmpty}>
+          Acceder
+        </Button>
         <Divider>
           <Line />
           <OrText>O</OrText>
