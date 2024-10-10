@@ -13,7 +13,7 @@ import { Shadow } from 'react-native-shadow-2'
 
 const BookItem = ({ isbn, onPress, Icon }) => {
   const book = useBookISBN(isbn, ['title', 'author']) ?? {}
-  const authorInfo = getAuthors(book.author)
+  const authorInfo = getAuthors(book.author ?? book.authors)
   const coverUri = getCoverUri(isbn)
 
   return (
