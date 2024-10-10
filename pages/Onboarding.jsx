@@ -80,10 +80,13 @@ const Onboarding = () => {
         )}
         keyExtractor={item => item}
         contentContainerStyle={{
-          flex: 1
+          flex: 1,
+          gap: 20
         }}
       />
-      <StyledButton>Siguiente ({favBooks.length}/3)</StyledButton>
+      <StyledButton disabled={favBooks.length / 3 !== 1}>
+        Siguiente ({favBooks.length}/3)
+      </StyledButton>
     </Container>
   )
 }
