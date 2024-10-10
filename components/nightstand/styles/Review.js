@@ -28,7 +28,7 @@ export const StyledText = styled.Text`
 `
 
 export const Heading = styled(StyledText)`
-  font-weight: 600;
+  font-family: ${({ theme }) => theme.fonts.BODY_BOLD};
 `
 
 export const SectionTitle = styled(StyledText)`
@@ -50,8 +50,7 @@ export const RateBtn = styled.Pressable`
 `
 
 export const RateText = styled.Text`
-  font-weight: 600;
-  font-size: 14px;
+  font-family: ${({ theme }) => theme.fonts.BODY_BOLD};
 `
 
 export const Input = styled.TextInput.attrs({
