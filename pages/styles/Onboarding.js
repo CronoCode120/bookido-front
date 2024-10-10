@@ -48,6 +48,7 @@ export const SearchWrapper = styled.View`
   padding: 0 16px;
   border: 1px solid ${({ theme }) => theme.colors.NEUTRAL_300};
   border-radius: 30px;
+  margin-bottom: 15px;
 `
 
 export const SearchInput = styled.TextInput.attrs(({ theme }) => ({
