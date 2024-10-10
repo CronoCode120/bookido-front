@@ -9,8 +9,8 @@ import {
 } from './styles/BookDetails.js'
 
 const BookDetails = ({ book }) => {
-  const { title, author, cover } = book ?? {}
-  const authorInfo = getFullAuthors(author)
+  const { title, cover } = book ?? {}
+  const authorInfo = getFullAuthors(book?.author ?? book?.authors)
 
   return (
     <ContentWrapper>

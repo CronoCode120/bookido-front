@@ -67,7 +67,7 @@ const Review = ({ isbn }) => {
             />
             <HeadingWrapper>
               <Heading>{book?.title}</Heading>
-              <Text>{getAuthors(book?.author)}</Text>
+              <Text>{getAuthors(book?.author ?? book?.authors)}</Text>
             </HeadingWrapper>
           </Header>
           <SectionTitle>¿Qué te pareció este libro? *</SectionTitle>
