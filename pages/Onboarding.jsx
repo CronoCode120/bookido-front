@@ -31,7 +31,7 @@ const Onboarding = () => {
   }
 
   const removeFav = removedIsbn => () =>
-    setFavBooks(prevBooks => prevBooks.filter(isbn => isbn === removedIsbn))
+    setFavBooks(prevBooks => prevBooks.filter(isbn => isbn !== removedIsbn))
 
   const renderBook =
     addBook =>
@@ -62,7 +62,7 @@ const Onboarding = () => {
             <FlatList
               data={filteredBooks}
               renderItem={renderBook(addFav)}
-              keyExtractor={({ item }) => item?.isbn[0]}
+              keyExtractor={({ item }) => item?.isbn}
               contentContainerStyle={{
                 backgroundColor: 'transparent',
                 overflow: 'scroll',
@@ -73,9 +73,16 @@ const Onboarding = () => {
           </DropdownList>
         )}
       </TopWrapper>
-      {favBooks.map(isbn => (
-        <BookItem isbn={isbn} onPress={removeFav(isbn)} Icon={CrossIcon} />
-      ))}
+      <FlatList
+        data={favBooks}
+        renderItem={({ item }) => (
+          <BookItem isbn={item} onPress={removeFav(item)} Icon={CrossIcon} />
+        )}
+        keyExtractor={item => item}
+        contentContainerStyle={{
+          flex: 1
+        }}
+      />
       <StyledButton>Siguiente ({favBooks.length}/3)</StyledButton>
     </Container>
   )
