@@ -1,4 +1,9 @@
-import SearchIcon from '../components/icons/SearchIcon.jsx'
+import { useState } from 'react'
+import { FlatList } from 'react-native'
+import { useTitleSearch } from '../hooks'
+import DropdownItem from '../components/onboarding/DropdownItem.jsx'
+import BookItem from '../components/BookItem.jsx'
+import { SearchIcon, CrossIcon } from '../components/icons'
 import {
   Container,
   SearchInput,
@@ -12,20 +17,34 @@ import {
   DropdownList,
   Separator
 } from './styles/Onboarding'
-import useTitleSearch from '../hooks/useTitleSearch.js'
-import DropdownItem from '../components/onboarding/DropdownItem.jsx'
-import { FlatList } from 'react-native'
 
 const Onboarding = () => {
   const { searchTitle, setSearchTitle, filteredBooks, loading } =
     useTitleSearch()
 
-  const renderBook = ({ item }) => {
-    const publisher = item.publisher
-      ? item.publisher[0]
-      : 'Editorial desconocida'
-    return <DropdownItem title={item.title} publisher={publisher} />
+  const [favBooks, setFavBooks] = useState([])
+
+  const addFav = book => {
+    if (favBooks.includes(book)) return
+    setFavBooks(prevBooks => [...prevBooks, book])
+    setSearchTitle('')
   }
+
+  const removeFav = removedIsbn => () =>
+    setFavBooks(prevBooks => prevBooks.filter(isbn => isbn === removedIsbn))
+
+  const renderBook =
+    addBook =>
+    ({ item }) => {
+      const publisher = item.publisher || 'Editorial desconocida'
+      return (
+        <DropdownItem
+          title={item.title}
+          publisher={publisher}
+          onPress={() => addBook(item.isbn)}
+        />
+      )
+    }
 
   return (
     <Container>
@@ -42,7 +61,7 @@ const Onboarding = () => {
           <DropdownList>
             <FlatList
               data={filteredBooks}
-              renderItem={renderBook}
+              renderItem={renderBook(addFav)}
               keyExtractor={({ item }) => item?.isbn[0]}
               contentContainerStyle={{
                 backgroundColor: 'transparent',
@@ -54,7 +73,10 @@ const Onboarding = () => {
           </DropdownList>
         )}
       </TopWrapper>
-      <StyledButton>Siguiente</StyledButton>
+      {favBooks.map(isbn => (
+        <BookItem isbn={isbn} onPress={removeFav(isbn)} Icon={CrossIcon} />
+      ))}
+      <StyledButton>Siguiente ({favBooks.length}/3)</StyledButton>
     </Container>
   )
 }
