@@ -62,7 +62,7 @@ const Onboarding = () => {
             <FlatList
               data={filteredBooks}
               renderItem={renderBook(addFav)}
-              keyExtractor={({ item }) => item?.isbn}
+              keyExtractor={item => item?.isbn}
               contentContainerStyle={{
                 backgroundColor: 'transparent',
                 overflow: 'scroll',
@@ -81,7 +81,8 @@ const Onboarding = () => {
         keyExtractor={item => item}
         contentContainerStyle={{
           flex: 1,
-          gap: 20
+          gap: 20,
+          marginTop: 15
         }}
       />
       <StyledButton disabled={favBooks.length / 3 !== 1}>
