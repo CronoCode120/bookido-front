@@ -48,7 +48,6 @@ export const SearchWrapper = styled.View`
   padding: 0 16px;
   border: 1px solid ${({ theme }) => theme.colors.NEUTRAL_300};
   border-radius: 30px;
-  margin-bottom: 15px;
 `
 
 export const SearchInput = styled.TextInput.attrs(({ theme }) => ({
@@ -71,7 +70,9 @@ export const LoadIndicator = styled.ActivityIndicator.attrs(({ theme }) => ({
   color: theme.colors.BLACK
 }))``
 
-export const DropdownList = styled.View`
+export const DropdownList = styled.View.attrs({
+  pointerEvents: 'box-none'
+})`
   border: 1px solid ${({ theme }) => theme.colors.NEUTRAL_400};
   border-radius: 12px;
   background: ${({ theme }) => theme.colors.NEUTRAL_400};
