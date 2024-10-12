@@ -86,3 +86,19 @@ export const Separator = styled.View`
   height: 1px;
   background: ${({ theme }) => theme.colors.NEUTRAL_400};
 `
+
+export const BooksWrapper = styled.View`
+  flex: 1;
+  align-self: stretch;
+  margin-top: 15px;
+`
+
+export const SlotsWrapper = styled.View`
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 14px;
+  gap: 20px;
+`

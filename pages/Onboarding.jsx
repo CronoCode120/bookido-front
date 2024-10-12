@@ -3,6 +3,7 @@ import { FlatList } from 'react-native'
 import { useTitleSearch } from '../hooks'
 import DropdownItem from '../components/onboarding/DropdownItem.jsx'
 import BookItem from '../components/BookItem.jsx'
+import BookSlot from '../components/onboarding/BookSlot.jsx'
 import { SearchIcon, CrossIcon } from '../components/icons'
 import {
   Container,
@@ -15,7 +16,9 @@ import {
   Progress,
   LoadIndicator,
   DropdownList,
-  Separator
+  Separator,
+  BooksWrapper,
+  SlotsWrapper
 } from './styles/Onboarding'
 
 const Onboarding = () => {
@@ -46,6 +49,8 @@ const Onboarding = () => {
       )
     }
 
+  const BOOK_NUM = 3
+
   return (
     <Container>
       <TopWrapper>
@@ -74,20 +79,26 @@ const Onboarding = () => {
           </DropdownList>
         )}
       </TopWrapper>
-      <FlatList
-        data={favBooks}
-        renderItem={({ item }) => (
-          <BookItem isbn={item} onPress={removeFav(item)} Icon={CrossIcon} />
-        )}
-        keyExtractor={item => item}
-        contentContainerStyle={{
-          flex: 1,
-          gap: 20,
-          marginTop: 15
-        }}
-      />
-      <StyledButton disabled={favBooks.length / 3 !== 1}>
-        Siguiente ({favBooks.length}/3)
+      <BooksWrapper>
+        <SlotsWrapper>
+          <BookSlot num={1} />
+          <BookSlot num={2} />
+          <BookSlot num={3} />
+        </SlotsWrapper>
+        <FlatList
+          data={favBooks}
+          renderItem={({ item }) => (
+            <BookItem isbn={item} onPress={removeFav(item)} Icon={CrossIcon} />
+          )}
+          keyExtractor={item => item}
+          contentContainerStyle={{
+            flex: 1,
+            gap: 20
+          }}
+        />
+      </BooksWrapper>
+      <StyledButton disabled={favBooks.length / BOOK_NUM !== 1}>
+        Siguiente ({favBooks.length}/{BOOK_NUM})
       </StyledButton>
     </Container>
   )
