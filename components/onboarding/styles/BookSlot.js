@@ -11,9 +11,15 @@ export const Wrapper = styled.View`
 export const Container = styled.View`
   aspect-ratio: 10/3;
   align-self: stretch;
+  justify-content: center;
+  align-items: center;
   height: auto;
 `
 
 export const SlotNum = styled.Text.attrs({
   adjustsFontSizeToFit: true
-})``
+})`
+  color: ${({ theme }) => theme.colors.NEUTRAL_400};
+  text-align: center;
+  font-size: 80px;
+`
