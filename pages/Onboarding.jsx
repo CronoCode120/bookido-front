@@ -69,6 +69,7 @@ const Onboarding = () => {
                 alignSelf: 'stretch'
               }}
               ItemSeparatorComponent={Separator}
+              keyboardShouldPersistTaps='always'
             />
           </DropdownList>
         )}
