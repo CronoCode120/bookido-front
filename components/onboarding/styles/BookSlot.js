@@ -2,8 +2,7 @@ import styled from 'styled-components/native'
 
 export const Wrapper = styled.View`
   align-self: stretch;
-  padding: 14px;
-  margin: 0 14px;
+  padding: 12px;
   border-radius: 12px;
   border: 2px dashed ${({ theme }) => theme.colors.NEUTRAL_400};
 `
