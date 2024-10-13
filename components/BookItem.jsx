@@ -21,7 +21,9 @@ const BookItem = ({ isbn, onPress, Icon }) => {
       distance={6}
       offset={[0, 2]}
       style={{ borderRadius: 12 }}
-      containerStyle={{ marginHorizontal: 14 }}
+      containerStyle={{
+        marginHorizontal: 14
+      }}
     >
       <Wrapper>
         <Cover src={coverUri} $width='20%' />

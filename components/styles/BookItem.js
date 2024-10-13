@@ -12,7 +12,7 @@ export const Wrapper = styled.View`
 `
 
 export const Heading = styled.View`
-  width: 60%;
+  width: 50%;
   gap: 4px;
 `
 
