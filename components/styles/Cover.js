@@ -6,4 +6,5 @@ export const Cover = styled.Image`
   max-width: 200px;
   height: auto;
   border-radius: 6px;
+  background-color: ${({ theme }) => theme.colors.NEUTRAL_200};
 `
