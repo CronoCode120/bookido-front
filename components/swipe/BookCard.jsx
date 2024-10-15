@@ -13,7 +13,7 @@ const BookCard = ({
   nextPage,
   btnDisabled
 }) => {
-  const [synopsis] = useBookSynopsis(book.isbn?.[0] ?? '')
+  const synopsis = book?.description || useBookSynopsis(book.isbn?.[0] ?? '')[0]
   const bookData = { ...book, synopsis }
 
   return (
