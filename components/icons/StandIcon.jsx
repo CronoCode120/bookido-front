@@ -1,15 +1,15 @@
 import Svg, { Path } from 'react-native-svg'
 
-const StandIcon = ({ selected, ...props }) => (
+const StandIcon = ({ selected, selectColor, ...props }) => (
   <Svg
     xmlns='http://www.w3.org/2000/svg'
     width={24}
     height={24}
-    fill='#1F1F1F'
+    fill={selected ? selectColor : '#1F1F1F'}
     {...props}
   >
     <Path
-      stroke='#1F1F1F'
+      stroke={selected ? selectColor : '#1F1F1F'}
       strokeLinecap='round'
       strokeLinejoin='round'
       strokeWidth={selected ? 2.5 : 1.5}
