@@ -4,18 +4,11 @@ import ReviewsView from './ReviewsView.jsx'
 import { ContentWrapper } from './styles/BookCard.js'
 
 const CardContent = ({ pageNum, book }) => {
-  const { title, author, publisher, synopsis, isbn } = book
+  const { title, author, publisher, synopsis, isbn, cover } = book
 
   return (
     <ContentWrapper>
-      {(pageNum === 0 && (
-        <CoverView
-          title={title}
-          author={author}
-          publisher={publisher[0]}
-          isbn={isbn ? isbn[0] : ''}
-        />
-      )) ||
+      {(pageNum === 0 && <CoverView isbn={isbn ? isbn : ''} cover={cover} />) ||
         (pageNum === 1 && (
           <DetailView
             title={title}
