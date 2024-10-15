@@ -11,11 +11,12 @@ import { Wrapper, BtnWrapper } from './styles/BookSwipe.js'
 const BookSwipe = () => {
   const [curIdx, setCurIdx] = useState(0)
   const { books, saveForLater } = useBooks(curIdx)
+  console.log('BOOKS: ', books)
 
   const { session, setUpdateStand } = useSession()
 
   const [btnDisabled, setBtnDisabled] = useState(false)
-  const curIsbn = books[curIdx]?.isbn[0]
+  const curIsbn = 'isbn' //books[curIdx]?.isbn[0]
 
   const toggleBtnCooldown = () => {
     setBtnDisabled(true)
