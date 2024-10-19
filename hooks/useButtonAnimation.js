@@ -17,7 +17,7 @@ const useButtonAnimation = ({ disabled } = {}) => {
   })
 
   useEffect(() => {
-    if (!disabled && !(opacity.value === 1)) animateOpacity(1, DURATION)
+    if (!disabled && opacity.value !== 1) animateOpacity(1, DURATION)
     if (disabled && opacity.value === 1) animateOpacity(0.6, DURATION)
   }, [disabled])
 
