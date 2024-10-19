@@ -16,7 +16,7 @@ const BookSwipe = () => {
   const { session, setUpdateStand } = useSession()
 
   const [btnDisabled, setBtnDisabled] = useState(false)
-  const curIsbn = 'isbn' //books[curIdx]?.isbn[0]
+  const curIsbn = books[curIdx]?.isbn
 
   const toggleBtnCooldown = () => {
     setBtnDisabled(true)
