@@ -17,6 +17,8 @@ import {
   RegisterLink,
   RegisterText
 } from './styles/login.js'
+import { logIn } from '../api/user.js'
+import PopUp from '../components/PopUp.jsx'
 
 const Login = () => {
   const { signIn } = useSession()
@@ -26,16 +28,34 @@ const Login = () => {
   const inputEmpty = !email && !password
 
   const [loading, setLoading] = useState(false)
+  const [popUpShown, setPopUpShown] = useState(false)
 
   const handleSubmit = async () => {
-    setLoading(true)
-    await signIn(email.trim(), password)
-    setLoading(false)
-    router.replace('/')
+    try {
+      setLoading(true)
+      const session = (await logIn({ email: email.trim(), password })).userId
+      setPopUpShown(false)
+
+      await signIn(session)
+      setLoading(false)
+      router.replace('/')
+    } catch (error) {
+      setLoading(false)
+      setPassword('')
+      if (error.response.status === 400) {
+        setPopUpShown(true)
+        console.log('handled')
+        return
+      }
+    }
   }
 
   return (
     <Container>
+      <PopUp
+        message='Correo o contraseña incorrectos. Por favor, inténtelo de nuevo.'
+        visible={popUpShown}
+      />
       <Wrapper>
         <Title>Iniciar sesión</Title>
         <InputsContainer>
