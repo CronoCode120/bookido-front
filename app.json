@@ -40,6 +40,11 @@
         }
       ]
     ],
+    "build": {
+      "preview": {
+        "distribution": "internal"
+      }
+    },
     "extra": {
       "eas": {
         "projectId": "79c4e526-6b20-42a1-b422-fed33df79ad4"
