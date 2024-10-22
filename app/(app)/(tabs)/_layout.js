@@ -38,7 +38,7 @@ const TabsLayout = () => {
             <StandIcon selected={focused} selectColor={selectColor} />
           ),
           headerShown: true,
-          headerLeft: () => <NavHeader title='Mesita de Noche' />
+          headerLeft: () => <NavHeader title='Mesita de noche' />
         }}
       />
       <Tabs.Screen
