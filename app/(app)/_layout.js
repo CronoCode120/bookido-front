@@ -1,9 +1,10 @@
-import { Redirect, Stack } from 'expo-router'
-import { Text } from 'react-native'
+import { Redirect, SplashScreen, Stack } from 'expo-router'
 
 import { useSession } from '../../context/SessionProvider'
 import { useEffect, useState } from 'react'
 import Tutorial from '../../components/Tutorial'
+
+SplashScreen.preventAutoHideAsync()
 
 const AppLayout = () => {
   const { isLoading, session, firstLaunchDone, disableWelcome } = useSession()
@@ -19,9 +20,13 @@ const AppLayout = () => {
     if (!mounted) setMounted(true)
   }, [mounted])
 
+  useEffect(() => {
+    if (!isLoading) SplashScreen.hideAsync()
+  }, [isLoading])
+
   if (!mounted) return
 
-  if (isLoading) return <Text>Cargando...</Text>
+  if (isLoading) return
 
   if (firstLaunchDone !== 'true') return <Redirect href='/welcome' />
 
