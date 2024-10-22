@@ -1,6 +1,5 @@
 import { createContext, useContext, useState } from 'react'
 import { useStorageState } from '../hooks/useStorageState.js'
-import { logIn } from '../api/user.js'
 
 const AuthContext = createContext()
 
