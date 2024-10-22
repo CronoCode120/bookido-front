@@ -9,6 +9,8 @@ const AppLayout = () => {
   const { isLoading, session, firstLaunchDone } = useSession()
   const [mounted, setMounted] = useState(false)
 
+  const [tutorial, setTutorial] = useState(true)
+
   useEffect(() => {
     if (!mounted) setMounted(true)
   }, [mounted])
@@ -34,7 +36,7 @@ const AppLayout = () => {
             animation: 'slide_from_right'
           }}
         />
-        <Tutorial />
+        {tutorial && <Tutorial closeTutorial={() => setTutorial(false)} />}
       </>
     )
 }

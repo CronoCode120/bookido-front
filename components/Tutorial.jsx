@@ -17,12 +17,15 @@ import {
 } from './styles/Tutorial.js'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-const Tutorial = () => {
+const Tutorial = ({ closeTutorial }) => {
   const { top } = useSafeAreaInsets()
   const LAST_PAGE = 3
-  const [page, setPage] = useState(2)
+  const [page, setPage] = useState(1)
 
-  const handlePress = () => setPage(page + 1)
+  const handlePress = () => {
+    if (page === LAST_PAGE) return closeTutorial()
+    setPage(page + 1)
+  }
 
   return (
     <Wrapper marginTop={top}>
