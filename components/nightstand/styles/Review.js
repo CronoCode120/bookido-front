@@ -56,8 +56,8 @@ export const RateText = styled.Text`
 export const Input = styled.TextInput.attrs({
   multiline: true,
   numberOfLines: 6,
-  cursorColor: '#94a3b8',
-  selectionColor: '#94a3b8',
+  cursorColor: 'black',
+  selectionColor: '#1F1F1F44',
   textAlignVertical: 'top'
 })`
   align-self: stretch;

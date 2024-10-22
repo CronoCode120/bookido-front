@@ -55,7 +55,9 @@ export const SearchInput = styled.TextInput.attrs(({ theme }) => ({
   placeholderTextColor: theme.colors.NEUTRAL_500,
   inputMode: 'search',
   autoCorrect: false,
-  autoComplete: 'off'
+  autoComplete: 'off',
+  cursorColor: 'black',
+  selectionColor: '#1F1F1F44'
 }))`
   color: ${({ theme }) => theme.colors.NEUTRAL_500};
   flex: 1;
