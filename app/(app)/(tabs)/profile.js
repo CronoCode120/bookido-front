@@ -1,25 +1,20 @@
-import { useState } from 'react'
 import { useSession } from '../../../context/SessionProvider.js'
 import {
   View,
   Text,
   StyleSheet,
-  Switch,
   TouchableOpacity,
   ScrollView
 } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import theme from '../../../theme.js'
 
 const ProfileScreen = () => {
   const { signOut } = useSession()
-
-  const [isDarkMode, setIsDarkMode] = useState(false)
-
-  const handleToggleSwitch = () => {
-    setIsDarkMode(previousState => !previousState)
-  }
+  const { top } = useSafeAreaInsets()
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={[styles.container, { paddingTop: top }]}>
       <View style={styles.header}>
         <View style={styles.profileImage}>
           <Text style={styles.profileInitial}>J</Text>
@@ -38,12 +33,8 @@ const ProfileScreen = () => {
           <Text style={styles.optionText}>Preferencias de lectura</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.option}>
-          <Text style={styles.optionText}>Caja de donaciones</Text>
+          <Text style={styles.optionText}>Libros archivados</Text>
         </TouchableOpacity>
-        <View style={styles.option}>
-          <Text style={styles.optionText}>Modo oscuro</Text>
-          <Switch value={isDarkMode} onValueChange={handleToggleSwitch} />
-        </View>
       </View>
 
       <View style={styles.section}>
@@ -93,7 +84,8 @@ const styles = StyleSheet.create({
   profileName: {
     fontSize: 22,
     fontWeight: 'bold',
-    marginTop: 10
+    marginTop: 10,
+    fontFamily: theme.fonts.HEADING
   },
   profileEmail: {
     color: '#777',
