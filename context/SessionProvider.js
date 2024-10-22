@@ -13,7 +13,7 @@ export const SessionProvider = ({ children }) => {
   const disableWelcome = () => setFirstLaunchDone('true')
 
   const signIn = async session => {
-    if (session) setSession(userId)
+    if (session) setSession(session)
   }
 
   const signOut = () => setSession(null)
