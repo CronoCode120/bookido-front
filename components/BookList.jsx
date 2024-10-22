@@ -1,7 +1,7 @@
-import { FlatList } from 'react-native'
+import { ActivityIndicator, FlatList, View } from 'react-native'
 import { EmptyText, ImgBackground } from './styles/BookList.js'
 
-const BookList = ({ books, renderBook, noBooksMsg, bgImage }) => {
+const BookList = ({ books, loading, renderBook, noBooksMsg, bgImage }) => {
   return (
     <ImgBackground source={bgImage}>
       {books.length ? (
@@ -17,6 +17,12 @@ const BookList = ({ books, renderBook, noBooksMsg, bgImage }) => {
             overflow: 'auto'
           }}
         />
+      ) : loading ? (
+        <View
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        >
+          <ActivityIndicator size='large' color='black' />
+        </View>
       ) : (
         <EmptyText>{noBooksMsg}</EmptyText>
       )}

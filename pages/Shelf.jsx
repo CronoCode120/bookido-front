@@ -16,9 +16,13 @@ const Shelf = () => {
 
   const { session, updateShelf, setUpdateShelf } = useSession()
   const [books, setBooks] = useState([])
+  const [loading, setLoading] = useState(true)
 
   const fetchBooks = () =>
-    getBooksInShelf(session).then(data => setBooks(data.shelve))
+    getBooksInShelf(session).then(data => {
+      setBooks(data.shelve)
+      setLoading(false)
+    })
 
   useFocusEffect(
     useCallback(() => {
@@ -37,6 +41,7 @@ const Shelf = () => {
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: 'white' }}>
       <BookList
         books={books}
+        loading={loading}
         renderBook={isbn => (
           <BookItem isbn={isbn} Icon={DotsIcon} onPress={openDrawer} />
         )}

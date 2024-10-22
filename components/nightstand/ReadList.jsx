@@ -17,9 +17,13 @@ const ReadList = () => {
 
   const { session, updateStand, setUpdateStand } = useSession()
   const [books, setBooks] = useState([])
+  const [loading, setLoading] = useState(true)
 
   const fetchBooks = () =>
-    getBooksInTable(session).then(data => setBooks(data.table))
+    getBooksInTable(session).then(data => {
+      setBooks(data.table)
+      setLoading(false)
+    })
 
   useFocusEffect(
     useCallback(() => {
@@ -38,6 +42,7 @@ const ReadList = () => {
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: 'white' }}>
       <BookList
         books={books}
+        loading={loading}
         renderBook={isbn => (
           <BookItem isbn={isbn} onPress={openDrawer} Icon={AddIcon} />
         )}
