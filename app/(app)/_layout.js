@@ -3,6 +3,7 @@ import { Text } from 'react-native'
 
 import { useSession } from '../../context/SessionProvider'
 import { useEffect, useState } from 'react'
+import Tutorial from '../../components/Tutorial'
 
 const AppLayout = () => {
   const { isLoading, session, firstLaunchDone } = useSession()
@@ -22,16 +23,19 @@ const AppLayout = () => {
 
   if (session)
     return (
-      <Stack
-        screenOptions={{
-          headerTitle: '',
-          headerShadowVisible: false,
-          headerStyle: { backgroundColor: 'transparent' },
-          headerShown: false,
-          contentStyle: { backgroundColor: 'transparent' },
-          animation: 'slide_from_right'
-        }}
-      />
+      <>
+        <Stack
+          screenOptions={{
+            headerTitle: '',
+            headerShadowVisible: false,
+            headerStyle: { backgroundColor: 'transparent' },
+            headerShown: false,
+            contentStyle: { backgroundColor: 'transparent' },
+            animation: 'slide_from_right'
+          }}
+        />
+        <Tutorial />
+      </>
     )
 }
 
