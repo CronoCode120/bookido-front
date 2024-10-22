@@ -2,11 +2,12 @@ import SwipeLeft from '../components/images/SwipeLeft.jsx'
 import SwipeRight from '../components/images/SwipeRight.jsx'
 import SwipeUp from '../components/images/SwipeUp.jsx'
 import {
-  ArrowsWrapper,
+  SideWrapper,
   BoldText,
   StyledText,
   TextWrapper,
-  Wrapper
+  Wrapper,
+  NextButton
 } from './styles/Tutorial.js'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
@@ -14,14 +15,17 @@ const Tutorial = () => {
   const { top } = useSafeAreaInsets()
   return (
     <Wrapper marginTop={top}>
+      <NextButton>
+        <StyledText>Siguiente</StyledText>
+      </NextButton>
       <TextWrapper>
         <BoldText>"Me lo pienso"</BoldText>
         <StyledText>
           Desliza hacia arriba para que el libro se vaya al final de la cola de
-          recomendaciones{' '}
+          recomendaciones
         </StyledText>
       </TextWrapper>
-      <ArrowsWrapper>
+      <SideWrapper>
         <TextWrapper $width={145}>
           <SwipeLeft />
           <BoldText>"No me gusta"</BoldText>
@@ -37,7 +41,7 @@ const Tutorial = () => {
             Desliza hacia la derecha para añadirlo a tu Mesita de Noche
           </StyledText>
         </TextWrapper>
-      </ArrowsWrapper>
+      </SideWrapper>
     </Wrapper>
   )
 }
