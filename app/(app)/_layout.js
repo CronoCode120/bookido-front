@@ -6,10 +6,14 @@ import { useEffect, useState } from 'react'
 import Tutorial from '../../components/Tutorial'
 
 const AppLayout = () => {
-  const { isLoading, session, firstLaunchDone } = useSession()
+  const { isLoading, session, firstLaunchDone, disableWelcome } = useSession()
   const [mounted, setMounted] = useState(false)
 
-  const [tutorial, setTutorial] = useState(true)
+  const [tutorial, setTutorial] = useState(false)
+  const closeTutorial = () => {
+    setTutorial(false)
+    disableWelcome()
+  }
 
   useEffect(() => {
     if (!mounted) setMounted(true)
@@ -36,7 +40,7 @@ const AppLayout = () => {
             animation: 'slide_from_right'
           }}
         />
-        {tutorial && <Tutorial closeTutorial={() => setTutorial(false)} />}
+        {tutorial && <Tutorial closeTutorial={closeTutorial} />}
       </>
     )
 }

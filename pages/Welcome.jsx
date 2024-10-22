@@ -16,11 +16,7 @@ import PageIndicator from '../components/PageIndicator.jsx'
 import { useState } from 'react'
 import { router } from 'expo-router'
 
-import { useSession } from '../context/SessionProvider.js'
-
 const Welcome = () => {
-  const { disableWelcome } = useSession()
-
   const PAGES = 3
   const [pageNum, setPageNum] = useState(1)
   const { title, WelcomeImg } = pageInfo[pageNum - 1]
@@ -32,10 +28,7 @@ const Welcome = () => {
       return prevNum + 1
     })
 
-  const endWelcome = () => {
-    disableWelcome()
-    router.replace('/login')
-  }
+  const endWelcome = () => router.replace('/login')
 
   return (
     <Container>
