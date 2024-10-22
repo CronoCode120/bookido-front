@@ -36,7 +36,7 @@ const Review = ({ isbn }) => {
   const [review, setReview] = useState('')
   const [rating, setRating] = useState(null)
 
-  const cover = getCoverUri(isbn)
+  const cover = book?.cover || getCoverUri(isbn)
 
   const submitReview = async () => {
     if (rating === null) return
