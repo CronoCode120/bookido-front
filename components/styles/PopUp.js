@@ -6,6 +6,7 @@ export const Wrapper = styled.View`
   border-radius: 30px;
   position: absolute;
   top: -100px;
+  z-index: 10;
 `
 
 export const StyledText = styled.Text`
