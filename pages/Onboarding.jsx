@@ -20,11 +20,18 @@ import {
   BooksWrapper,
   SlotsWrapper
 } from './styles/Onboarding'
+import { useLocalSearchParams } from 'expo-router'
+import { register } from '../api/user.js'
+import { useSession } from '../context/SessionProvider.js'
+import { addReview } from '../api/review.js'
 
 const Onboarding = () => {
+  const { username, email, password } = useLocalSearchParams()
   const { searchTitle, setSearchTitle, filteredBooks, loading } =
     useTitleSearch()
+  const { signIn } = useSession()
 
+  const [loadingSubmit, setLoadingSubmit] = useState(false)
   const [favBooks, setFavBooks] = useState([])
 
   const addFav = book => {
@@ -48,6 +55,17 @@ const Onboarding = () => {
         />
       )
     }
+
+  const submitUser = async () => {
+    setLoadingSubmit(true)
+    const res = await register({ username, email, password })
+    if (!res.userId) return
+    await Promise.all(
+      favBooks.map(isbn => addReview({ userId: res.userId, isbn, value: 2 }))
+    )
+    await signIn(res.userId)
+    setLoadingSubmit(false)
+  }
 
   const BOOK_NUM = 3
 
@@ -97,7 +115,11 @@ const Onboarding = () => {
           }}
         />
       </BooksWrapper>
-      <StyledButton disabled={favBooks.length / BOOK_NUM !== 1}>
+      <StyledButton
+        onPress={submitUser}
+        loading={loadingSubmit}
+        disabled={favBooks.length / BOOK_NUM !== 1}
+      >
         Siguiente ({favBooks.length}/{BOOK_NUM})
       </StyledButton>
     </Container>
