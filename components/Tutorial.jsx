@@ -2,6 +2,7 @@ import { useState } from 'react'
 import SwipeLeft from './images/SwipeLeft.jsx'
 import SwipeRight from './images/SwipeRight.jsx'
 import SwipeUp from './images/SwipeUp.jsx'
+import SmilingBook from './images/SmilingBook.jsx'
 import { TapIcon } from './icons'
 import {
   SideWrapper,
@@ -11,12 +12,14 @@ import {
   Wrapper,
   NextButton,
   Container,
-  TapWrapper
+  TapWrapper,
+  TitleText
 } from './styles/Tutorial.js'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 const Tutorial = () => {
   const { top } = useSafeAreaInsets()
+  const LAST_PAGE = 3
   const [page, setPage] = useState(2)
 
   const handlePress = () => setPage(page + 1)
@@ -24,7 +27,7 @@ const Tutorial = () => {
   return (
     <Wrapper marginTop={top}>
       <NextButton onPress={handlePress}>
-        <StyledText>Siguiente</StyledText>
+        <StyledText>{page === LAST_PAGE ? 'Cerrar' : 'Siguiente'}</StyledText>
       </NextButton>
       {page === 1 && (
         <Container>
@@ -63,6 +66,14 @@ const Tutorial = () => {
           <BoldText fontSize={18}>
             Toca la pantalla para cambiar de página
           </BoldText>
+        </Container>
+      )}
+      {page === LAST_PAGE && (
+        <Container style={{ justifyContent: 'center' }}>
+          <SmilingBook />
+          <TitleText>
+            ¡Listo!{'\n'} Puedes empezar a hacer match con historias únicas.
+          </TitleText>
         </Container>
       )}
     </Wrapper>

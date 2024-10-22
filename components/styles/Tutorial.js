@@ -59,3 +59,11 @@ export const TapWrapper = styled.View`
   padding: 0 26px;
   margin-bottom: 50px;
 `
+
+export const TitleText = styled(StyledText)`
+  font-family: ${({ theme }) => theme.fonts.HEADING};
+  font-size: 20px;
+  line-height: 28px;
+  max-width: 90%;
+  margin-top: 18px;
+`
