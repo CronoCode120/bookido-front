@@ -1,13 +1,14 @@
 import { useState } from 'react'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { router } from 'expo-router'
 import FormInput from '../components/Input.jsx'
 import Button from '../components/Button.jsx'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import PopUp from '../components/PopUp.jsx'
 import {
   validateEmail,
   validatePassword,
   validateUsername
 } from '../utils/validateData.js'
-import { register } from '../api/user.js'
 import {
   BackBtn,
   Container,
@@ -17,37 +18,45 @@ import {
   Title,
   Wrapper
 } from './styles/login.js'
-import { router } from 'expo-router'
 
 const Register = () => {
+  const { top, bottom } = useSafeAreaInsets()
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirm, setConfirm] = useState('')
 
-  const { top, bottom } = useSafeAreaInsets()
+  const [popUpShown, setPopUpShown] = useState(false)
+  const [errorMsg, setErrorMsg] = useState('')
+
+  const setPopUp = message => {
+    setErrorMsg(message)
+    setPopUpShown(true)
+    setTimeout(() => setPopUpShown(false), 4000)
+  }
 
   const registerUser = async () => {
     const usernameData = validateUsername(username)
     const emailData = validateEmail(email)
     const passwordData = validatePassword(password, confirm)
 
-    if (!usernameData.valid) return console.log(usernameData.value)
-    if (!emailData.valid) return console.log(emailData.value)
-    if (!passwordData.valid) return console.log(passwordData.value)
+    if (!usernameData.valid) return setPopUp(usernameData.value)
+    if (!emailData.valid) return setPopUp(emailData.value)
+    if (!passwordData.valid) return setPopUp(passwordData.value)
 
-    const res = await register({
-      username: usernameData.value,
-      email: emailData.value,
-      password: passwordData.value
+    router.push({
+      pathname: 'onboarding',
+      params: {
+        username: usernameData.value,
+        email: emailData.value,
+        password: passwordData.value
+      }
     })
-
-    console.log(res)
-    router.back()
   }
 
   return (
     <Container style={{ paddingTop: top, paddingBottom: bottom }}>
+      <PopUp message={errorMsg} visible={popUpShown} />
       <BackBtn top={top + 16} left={24} />
       <Wrapper>
         <Title>Crear una cuenta</Title>
