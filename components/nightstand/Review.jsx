@@ -38,14 +38,18 @@ const Review = ({ isbn }) => {
 
   const cover = book?.cover || getCoverUri(isbn)
 
+  const [loading, setLoading] = useState(false)
+
   const submitReview = async () => {
     if (rating === null) return
+    setLoading(true)
     await addReview({
       userId: session,
       isbn,
       value: rating,
       review
     })
+    setLoading(false)
     router.back()
   }
 
@@ -86,7 +90,13 @@ const Review = ({ isbn }) => {
           <SectionTitle>Si quieres, deja una reseña</SectionTitle>
           <Input value={review} onChangeText={text => setReview(text)} />
         </MainWrapper>
-        <Button onPress={submitReview}>Guardar y enviar a Estantería</Button>
+        <Button
+          onPress={submitReview}
+          loading={loading}
+          disabled={rating === null}
+        >
+          Guardar y enviar a Estantería
+        </Button>
       </Container>
     </Screen>
   )
