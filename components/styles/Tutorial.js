@@ -8,14 +8,17 @@ export const Wrapper = styled.View`
   left: 0;
   right: 0;
   padding: 24px;
-  align-items: center;
   background: ${({ theme }) => theme.colors.BLACK + 'CC'};
   z-index: 5;
 `
 
+export const Container = styled.View`
+  flex: 1;
+  align-items: center;
+`
+
 export const NextButton = styled.Pressable`
   margin-left: auto;
-  margin-bottom: 80px;
   border: 1px solid white;
   padding: 10px 15px;
   border-radius: 32px;
@@ -28,11 +31,13 @@ export const StyledText = styled.Text`
 `
 
 export const BoldText = styled(StyledText)`
-  font-size: 16px;
+  font-size: ${({ fontSize }) => fontSize || 16}px;
   font-family: ${({ theme }) => theme.fonts.BODY_BOLD};
+  max-width: 220px;
 `
 
 export const TextWrapper = styled.View`
+  margin-top: ${({ marginTop }) => marginTop || 0}px;
   gap: 20px;
   width: ${({ $width }) => $width || 190}px;
   align-items: center;
@@ -45,4 +50,12 @@ export const SideWrapper = styled.View`
   align-self: stretch;
   justify-content: center;
   gap: 10px;
+`
+
+export const TapWrapper = styled.View`
+  flex-direction: row;
+  align-self: stretch;
+  justify-content: space-between;
+  padding: 0 26px;
+  margin-bottom: 50px;
 `
