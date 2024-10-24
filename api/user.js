@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const apiUrl = axios.create({
-  baseURL: 'https://bookido-back.onrender.com/users/'
+  baseURL: 'https://bookido-back-production.up.railway.app/users/'
 })
 
 export const logIn = async ({ email, password }) =>
