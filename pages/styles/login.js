@@ -9,9 +9,7 @@ export const Container = styled.View`
 `
 
 export const Wrapper = styled.View`
-  align-self: stretch;
   justify-content: center;
-  margin: auto;
   width: 100%;
   max-width: 312px;
   background: white;
