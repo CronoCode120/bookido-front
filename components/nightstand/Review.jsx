@@ -31,7 +31,7 @@ const ratings = [
 
 const Review = ({ isbn }) => {
   const book = useBookISBN(isbn, ['title', 'author'])
-  const { session } = useSession()
+  const { session, setUpdateStand, setUpdateShelf } = useSession()
 
   const [review, setReview] = useState('')
   const [rating, setRating] = useState(null)
@@ -50,6 +50,9 @@ const Review = ({ isbn }) => {
       review
     })
     setLoading(false)
+    setUpdateStand(true)
+    setUpdateShelf(true)
+
     router.back()
   }
 
