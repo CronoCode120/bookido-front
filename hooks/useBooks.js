@@ -5,7 +5,7 @@ import { getBooksData } from '../api/books.js'
 const useBooks = curIdx => {
   const { session } = useSession()
   const [books, setBooks] = useState([])
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(0)
   const [doubtedBooks, setDoubtedBooks] = useState([])
 
   const sortBooks = fetchedBooks => {
