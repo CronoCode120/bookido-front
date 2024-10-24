@@ -9,3 +9,5 @@ export const logIn = async ({ email, password }) =>
 
 export const register = async ({ username, email, password }) =>
   (await apiUrl.post('/', { username, email, password })).data
+
+export const getUserById = async userId => (await apiUrl.get('/' + userId)).data
