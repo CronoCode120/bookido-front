@@ -1,6 +1,8 @@
 import styled from 'styled-components/native'
 
-const Button = styled.Pressable`
+const Button = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.6
+})`
   padding: 10px;
   border-radius: 65px;
 `

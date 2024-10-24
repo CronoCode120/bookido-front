@@ -30,9 +30,9 @@ const Button = ({
       type={type}
       warning={warning}
       disabled={disabled}
-      onPressIn={animatePressIn}
-      onPressOut={animatePressOut}
-      style={[animatedStyle, { ...style }]}
+      // onPressIn={animatePressIn}
+      // onPressOut={animatePressOut}
+      style={[animatedStyle, style]}
     >
       {loading && (
         <LoadWrapper>
