@@ -20,7 +20,7 @@ import {
   BooksWrapper,
   SlotsWrapper
 } from './styles/Onboarding'
-import { useLocalSearchParams } from 'expo-router'
+import { router, useLocalSearchParams } from 'expo-router'
 import { register } from '../api/user.js'
 import { useSession } from '../context/SessionProvider.js'
 import { addReview } from '../api/review.js'
@@ -57,14 +57,20 @@ const Onboarding = () => {
     }
 
   const submitUser = async () => {
-    setLoadingSubmit(true)
-    const res = await register({ username, email, password })
-    if (!res.userId) return
-    await Promise.all(
-      favBooks.map(isbn => addReview({ userId: res.userId, isbn, value: 2 }))
-    )
-    await signIn(res.userId)
-    setLoadingSubmit(false)
+    try {
+      setLoadingSubmit(true)
+      const res = await register({ username, email, password })
+      if (!res.userId) return
+      await Promise.all(
+        favBooks.map(isbn => addReview({ userId: res.userId, isbn, value: 2 }))
+      )
+      await signIn(res.userId)
+      router.replace('/')
+    } catch (error) {
+      console.log(error.response.data)
+    } finally {
+      setLoadingSubmit(false)
+    }
   }
 
   const BOOK_NUM = 3
