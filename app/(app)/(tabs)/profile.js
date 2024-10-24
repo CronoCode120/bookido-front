@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react'
 import { useSession } from '../../../context/SessionProvider.js'
+import { getUserById } from '../../../api/user.js'
 import {
   View,
   Text,
@@ -10,17 +12,23 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import theme from '../../../theme.js'
 
 const ProfileScreen = () => {
-  const { signOut } = useSession()
+  const { signOut, session } = useSession()
   const { top } = useSafeAreaInsets()
+
+  const [{ username, email }, setUser] = useState({
+    username: '...',
+    email: '...'
+  })
+
+  useEffect(() => {
+    getUserById(session).then(data => setUser(data.user))
+  }, [])
 
   return (
     <ScrollView style={[styles.container, { paddingTop: top }]}>
       <View style={styles.header}>
-        <View style={styles.profileImage}>
-          <Text style={styles.profileInitial}>J</Text>
-        </View>
-        <Text style={styles.profileName}>John Doe</Text>
-        <Text style={styles.profileEmail}>johndoe@gmail.com</Text>
+        <Text style={styles.profileName}>{username}</Text>
+        <Text style={styles.profileEmail}>{email}</Text>
         <Text style={styles.profileCompletion}>Perfil al 70%</Text>
       </View>
 
@@ -68,18 +76,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     backgroundColor: '#f5f5f5'
-  },
-  profileImage: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    backgroundColor: '#000',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  profileInitial: {
-    color: '#fff',
-    fontSize: 40
   },
   profileName: {
     fontSize: 22,
