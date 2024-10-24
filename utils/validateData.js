@@ -26,7 +26,7 @@ export const validatePassword = (input, repeat) => {
   const password = input.trim()
   const confirmPassword = repeat.trim()
   const result = { valid: false, value: '' }
-  if (!password.length) {
+  if (password.length < 6) {
     result.value = 'La contraseña debe contener al menos 6 caracteres.'
   } else if (password !== confirmPassword) {
     result.value = 'Las contraseñas no coinciden.'
