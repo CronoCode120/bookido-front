@@ -34,7 +34,6 @@ const AppLayout = () => {
   if (!session) return <Redirect href='/login' />
 
   if (session) {
-    if (firstLaunchDone !== 'true') setTutorial(true)
     return (
       <>
         <Stack
@@ -47,7 +46,6 @@ const AppLayout = () => {
             animation: 'slide_from_right'
           }}
         />
-        {tutorial && <Tutorial closeTutorial={closeTutorial} />}
       </>
     )
   }
