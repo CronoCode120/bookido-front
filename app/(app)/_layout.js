@@ -28,11 +28,13 @@ const AppLayout = () => {
 
   if (isLoading) return
 
-  if (firstLaunchDone !== 'true') return <Redirect href='/welcome' />
+  if (firstLaunchDone !== 'true' && !session)
+    return <Redirect href='/welcome' />
 
   if (!session) return <Redirect href='/login' />
 
-  if (session)
+  if (session) {
+    if (firstLaunchDone !== 'true') setTutorial(true)
     return (
       <>
         <Stack
@@ -48,6 +50,7 @@ const AppLayout = () => {
         {tutorial && <Tutorial closeTutorial={closeTutorial} />}
       </>
     )
+  }
 }
 
 export default AppLayout
