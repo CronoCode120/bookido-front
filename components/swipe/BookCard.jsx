@@ -14,7 +14,7 @@ const BookCard = ({
   btnDisabled
 }) => {
   const synopsis = book?.description || useBookSynopsis(book.isbn?.[0] ?? '')[0]
-  const bookData = { ...book, synopsis }
+  const bookData = { ...book, synopsis, isbn: book.isbn.isbn }
 
   return (
     <Container>

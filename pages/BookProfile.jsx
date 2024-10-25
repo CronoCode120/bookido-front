@@ -21,8 +21,8 @@ import getCoverUri from '../utils/getCoverUri.js'
 import { useBookISBN, useBookSynopsis } from '../hooks'
 
 const BookProfile = ({ isbn }) => {
-  const { title, authors, publisher, publishedDate, cover } =
-    useBookISBN(isbn, ['title', 'author', 'publisher', 'publishedDate']) ?? {}
+  const { title, authors, publisher, publish_date, cover } =
+    useBookISBN(isbn, ['title', 'author', 'publisher', 'publish_date']) ?? {}
   const coverUri = cover ?? getCoverUri(isbn, 'L')
   const [synopsis] = useBookSynopsis(isbn)
 
@@ -51,7 +51,7 @@ const BookProfile = ({ isbn }) => {
           </InfoItem>
           <InfoItem>
             <BoldBodyText>Fecha de publicación</BoldBodyText>
-            <Text>{publishedDate}</Text>
+            <Text>{publish_date}</Text>
           </InfoItem>
         </InfoWrapper>
       </Section>
